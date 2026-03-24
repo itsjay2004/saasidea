@@ -1,6 +1,5 @@
 import type { Keyword } from '@/types'
 import { formatNumber } from '@/lib/utils'
-import Badge from '@/components/ui/Badge'
 
 interface KeywordTableProps {
   keywords: Keyword[]
@@ -32,9 +31,6 @@ export default function KeywordTable({ keywords }: KeywordTableProps) {
             <tr key={kw.id} className="border-b border-border/50 hover:bg-surface-2/50 transition-colors">
               <td className="py-3 px-4">
                 <span className="text-text-primary font-medium">{kw.keyword}</span>
-                {(kw as any).is_primary && (
-                  <Badge variant="info" className="ml-2 text-[10px]">Primary</Badge>
-                )}
               </td>
               <td className="text-right py-3 px-4 text-text-muted">
                 {kw.search_volume ? formatNumber(kw.search_volume) : '—'}
@@ -49,14 +45,15 @@ export default function KeywordTable({ keywords }: KeywordTableProps) {
               </td>
               <td className="text-center py-3 px-4">
                 {kw.competition ? (
-                  <Badge
-                    variant={
-                      kw.competition === 'LOW' ? 'success' :
-                      kw.competition === 'MEDIUM' ? 'warning' : 'danger'
-                    }
-                  >
+                  <span className={`inline-block px-2 py-0.5 rounded-full text-[11px] font-semibold ${
+                    kw.competition === 'LOW'
+                      ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
+                      : kw.competition === 'MEDIUM'
+                      ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400'
+                      : 'bg-red-500/10 text-red-700 dark:text-red-400'
+                  }`}>
                     {kw.competition}
-                  </Badge>
+                  </span>
                 ) : '—'}
               </td>
             </tr>

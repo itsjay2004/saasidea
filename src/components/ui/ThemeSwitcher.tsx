@@ -26,25 +26,15 @@ export default function ThemeSwitcher() {
     <button
       type="button"
       onClick={toggle}
-      className="inline-flex items-center gap-2 rounded-button border border-border bg-surface px-3 py-1.5 text-sm text-text-muted transition-colors hover:border-border-light hover:text-text-primary"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      className="group inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface text-text-subtle transition-all duration-200 hover:border-border-light hover:bg-surface-2 hover:text-text-primary"
     >
       {ready ? (
-        isDark ? (
-          <>
-            <Sun className="h-4 w-4 shrink-0 text-accent" aria-hidden />
-            <span>Light</span>
-          </>
-        ) : (
-          <>
-            <Moon className="h-4 w-4 shrink-0 text-accent" aria-hidden />
-            <span>Dark</span>
-          </>
-        )
+        isDark
+          ? <Sun className="h-3.5 w-3.5 transition-transform group-hover:rotate-12" aria-hidden />
+          : <Moon className="h-3.5 w-3.5 transition-transform group-hover:-rotate-12" aria-hidden />
       ) : (
-        <span className="inline-flex h-4 w-16 items-center justify-center" aria-hidden>
-          <span className="h-3.5 w-3.5 animate-pulse rounded-full bg-border-light" />
-        </span>
+        <span className="h-3.5 w-3.5 rounded-full bg-border-light animate-pulse" aria-hidden />
       )}
     </button>
   )

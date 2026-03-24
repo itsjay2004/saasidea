@@ -17,7 +17,7 @@ export default function IdeaGrid({ ideas, hasAccess }: IdeaGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
       {ideas.map((idea) => (
         <IdeaCard key={idea.id} idea={idea} hasAccess={hasAccess} />
       ))}

@@ -1,142 +1,300 @@
 import Link from 'next/link'
-import { Lock, ArrowRight } from 'lucide-react'
+import { Lock, ArrowRight, Sparkles, Search } from 'lucide-react'
 import Button from '@/components/ui/Button'
-import { INDUSTRY_COLORS, DIFFICULTY_STYLES, formatMrrRange, formatBuildTime, getCompetitionWidth, COMPETITION_COLORS } from '@/lib/utils'
+import { INDUSTRY_COLORS, DIFFICULTY_STYLES, formatMrrShort, formatBuildTime, formatNumber } from '@/lib/utils'
 import type { Idea } from '@/types'
 
 interface PreviewSectionProps {
   ideas: Idea[]
 }
 
+/* ─── Competition segments ──────────────────────────────────────────────── */
+function CompetitionSegments({ level }: { level: string }) {
+  const filled = level === 'low' ? 1 : level === 'medium' ? 2 : 3
+  const color  = level === 'low'
+    ? 'bg-emerald-500'
+    : level === 'medium'
+    ? 'bg-amber-400'
+    : 'bg-red-500'
+  const labelColor = level === 'low'
+    ? 'text-emerald-700 dark:text-emerald-400'
+    : level === 'medium'
+    ? 'text-amber-700 dark:text-amber-400'
+    : 'text-red-700 dark:text-red-400'
+  const label = level === 'low' ? 'Low' : level === 'medium' ? 'Medium' : 'High'
+
+  return (
+    <div className="flex items-center gap-2">
+      <div className="flex gap-[3px]">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className={`w-5 h-[5px] rounded-sm ${i <= filled ? color : 'bg-border-light dark:bg-border'}`} />
+        ))}
+      </div>
+      <span className={`text-[12px] font-semibold ${labelColor}`}>{label}</span>
+    </div>
+  )
+}
+
+/* ─── Keyword display ───────────────────────────────────────────────────── */
+function KeywordDisplay({ idea }: { idea: Idea }) {
+  if (idea.primary_keyword) {
+    const vol = idea.primary_keyword.search_volume
+    return (
+      <div className="flex items-start gap-2">
+        <Search className="w-3.5 h-3.5 text-text-subtle mt-0.5 shrink-0" />
+        <div>
+          {vol ? (
+            <>
+              <span className="text-[13px] font-bold text-text-primary">{formatNumber(vol)}/mo</span>
+              <span className="text-[11px] text-text-subtle ml-1.5">searches</span>
+              <div className="text-[11px] text-text-muted mt-0.5 truncate max-w-[160px]">
+                &ldquo;{idea.primary_keyword.keyword}&rdquo;
+              </div>
+            </>
+          ) : (
+            <span className="text-[13px] font-semibold text-text-primary truncate max-w-[160px]">
+              &ldquo;{idea.primary_keyword.keyword}&rdquo;
+            </span>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  if (idea.keywords && idea.keywords.length > 0) {
+    return (
+      <div className="flex items-start gap-2">
+        <Search className="w-3.5 h-3.5 text-text-subtle mt-0.5 shrink-0" />
+        <div>
+          <span className="text-[13px] font-bold text-text-primary">{idea.keywords.length} keywords</span>
+          <div className="text-[11px] text-text-subtle mt-0.5">no volume data yet</div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <Search className="w-3.5 h-3.5 text-text-subtle shrink-0" />
+      <span className="text-[12px] text-text-subtle italic">Not yet tracked</span>
+    </div>
+  )
+}
+
+/* ─── Unlocked idea card ────────────────────────────────────────────────── */
+function IdeaCardPreview({ idea }: { idea: Idea }) {
+  const ind  = INDUSTRY_COLORS[idea.industry]          || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
+  const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
+
+  return (
+    <div className="group relative bg-surface border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200">
+
+      {/* Hover accent bar */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      <div className="p-5">
+
+        {/* Row 1 — industry (left) · difficulty (right) */}
+        <div className="flex items-center justify-between gap-3 mb-3">
+          <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${ind.bg} ${ind.text}`}>
+            {idea.industry}
+          </span>
+          <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${diff.bg} ${diff.text}`}>
+            {idea.difficulty_label}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="font-bold text-text-primary text-[15px] leading-snug mb-2">
+          {idea.title}
+        </h3>
+
+        {/* Tagline */}
+        <p className="text-text-muted text-sm leading-[1.65] line-clamp-2 mb-4">
+          {idea.tagline}
+        </p>
+
+        {/* Validation note — full text, no clamp */}
+        {idea.validation_note && (
+          <div className="bg-accent-subtle dark:bg-accent-light/15 border border-accent/12 rounded-xl px-4 py-3.5 mb-5">
+            <div className="flex items-center gap-1.5 mb-2">
+              <Sparkles className="w-3 h-3 text-accent shrink-0" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-accent">Why It Works</span>
+            </div>
+            <p className="text-[13px] text-text-muted leading-[1.75]">
+              {idea.validation_note}
+            </p>
+          </div>
+        )}
+
+        {/* Metrics divider + grid */}
+        <div className="border-t border-border/60 pt-4">
+          <div className="grid grid-cols-3 gap-3 mb-4">
+            {[
+              { label: 'MRR Est.',  value: formatMrrShort(idea.mrr_potential.min, idea.mrr_potential.max) },
+              { label: 'Build',     value: formatBuildTime(idea.build_time_weeks.min, idea.build_time_weeks.max) },
+              { label: 'Price',     value: `$${idea.suggested_price.amount}/${idea.suggested_price.interval}` },
+            ].map(({ label, value }) => (
+              <div key={label}>
+                <div className="text-[10px] uppercase tracking-widest text-text-subtle mb-1 font-semibold">{label}</div>
+                <div className="text-[13px] font-bold text-text-primary">{value}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Competition + Keyword row */}
+          <div className="border-t border-border/40 pt-3.5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-[10px] uppercase tracking-widest text-text-subtle mb-1.5 font-semibold">Competition</div>
+                <CompetitionSegments level={idea.competition_level} />
+                {idea.tags && idea.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mt-2.5">
+                    {idea.tags.slice(0, 3).map((tag) => (
+                      <span key={tag} className="px-2 py-0.5 rounded-full text-[10px] bg-surface-2 text-text-subtle">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="text-right">
+                <div className="text-[10px] uppercase tracking-widest text-text-subtle mb-1.5 font-semibold">Keyword</div>
+                <div className="flex justify-end">
+                  <KeywordDisplay idea={idea} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ─── Locked idea card ──────────────────────────────────────────────────── */
+function LockedCard({ idea }: { idea?: Idea }) {
+  const ind  = idea ? (INDUSTRY_COLORS[idea.industry]          || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }) : null
+  const diff = idea ? (DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }) : null
+
+  return (
+    <div className="relative bg-surface border border-border rounded-2xl overflow-hidden shadow-card">
+      {/* Background content — blurred tease */}
+      <div className="p-5 select-none pointer-events-none" aria-hidden>
+
+        {/* Tags row — visible */}
+        <div className="flex items-center justify-between gap-3 mb-3">
+          {ind && idea ? (
+            <>
+              <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${ind.bg} ${ind.text}`}>{idea.industry}</span>
+              <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${diff!.bg} ${diff!.text}`}>{idea.difficulty_label}</span>
+            </>
+          ) : (
+            <>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-2 text-text-subtle">Industry</span>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-2 text-text-subtle">Difficulty</span>
+            </>
+          )}
+        </div>
+
+        {/* Blurred: title + tagline + validation + metrics */}
+        <div className="blur-[6px]">
+          <div className="font-bold text-text-primary text-[15px] leading-snug mb-2">
+            {idea?.title ?? 'This is an unlocked idea title waiting to be revealed'}
+          </div>
+          <p className="text-text-muted text-sm leading-[1.65] mb-4">
+            {idea?.tagline ?? 'A short description of what this product does and who it is for.'}
+          </p>
+          <div className="bg-accent-subtle dark:bg-accent-light/15 border border-accent/12 rounded-xl px-4 py-3.5 mb-5">
+            <div className="flex items-center gap-1.5 mb-2">
+              <div className="w-3 h-3 rounded-full bg-accent/40" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-accent">Why It Works</span>
+            </div>
+            <p className="text-[13px] text-text-muted leading-[1.75]">
+              {idea?.validation_note ?? 'There is strong market validation for this idea because founders in this space have already proven demand through early traction and paying customers.'}
+            </p>
+          </div>
+          <div className="border-t border-border/60 pt-4">
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              {['MRR Est.', 'Build', 'Price'].map((l) => (
+                <div key={l}>
+                  <div className="text-[10px] uppercase tracking-widest text-text-subtle mb-1 font-semibold">{l}</div>
+                  <div className="h-4 w-10 bg-surface-2 rounded" />
+                </div>
+              ))}
+            </div>
+            <div className="border-t border-border/40 pt-3.5 flex items-start justify-between gap-4">
+              <div>
+                <div className="text-[10px] uppercase tracking-widest text-text-subtle mb-1.5 font-semibold">Competition</div>
+                <div className="flex gap-[3px]">
+                  {[1,2,3].map(i => <div key={i} className="w-5 h-[5px] rounded-sm bg-border" />)}
+                </div>
+              </div>
+              <div>
+                <div className="text-[10px] uppercase tracking-widest text-text-subtle mb-1.5 font-semibold">Keyword</div>
+                <div className="h-3.5 w-16 bg-surface-2 rounded" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Lock overlay — gradient from bottom */}
+      <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/92 to-surface/10 flex flex-col items-center justify-end pb-8 gap-3">
+        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-surface border border-border shadow-card">
+          <Lock className="w-4 h-4 text-text-subtle" />
+        </div>
+        <p className="text-sm font-semibold text-text-primary">This idea is locked</p>
+        <p className="text-xs text-text-muted -mt-1 text-center px-6">Unlock all 1,200+ ideas with one payment</p>
+        <Link href="/#pricing">
+          <Button size="sm" className="mt-1">Get Access</Button>
+        </Link>
+      </div>
+    </div>
+  )
+}
+
+/* ─── Section ───────────────────────────────────────────────────────────── */
 export default function PreviewSection({ ideas }: PreviewSectionProps) {
-  const freeIdeas = ideas.slice(0, 2)
+  const freeIdeas   = ideas.slice(0, 2)
   const lockedIdeas = ideas.slice(2, 6)
 
   return (
     <section id="preview" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <p className="text-accent text-sm font-medium tracking-wide uppercase mb-3">Preview</p>
+
+        {/* Header */}
+        <div className="text-center mb-14">
+          <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Preview</p>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary mb-4">
             A Glimpse of What&apos;s Inside
           </h2>
-          <p className="text-text-muted max-w-lg mx-auto">
+          <p className="text-text-muted max-w-md mx-auto text-base leading-relaxed">
             Browse a small sample of the 1,200+ ideas waiting for you
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {freeIdeas.map((idea) => {
-            const indColors = INDUSTRY_COLORS[idea.industry] || { bg: 'bg-gray-500/10', text: 'text-gray-400' }
-            const diffStyle = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-900/50', text: 'text-gray-400' }
-            return (
-              <Link href={`/ideas/${idea.id}`} key={idea.id} className="block">
-                <div className="bg-surface border border-border rounded-card-lg p-5 hover:border-accent/30 transition-all h-full">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${indColors.bg} ${indColors.text}`}>
-                      {idea.industry}
-                    </span>
-                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${diffStyle.bg} ${diffStyle.text}`}>
-                      {idea.difficulty_label}
-                    </span>
-                  </div>
-                  <h3 className="font-bold text-text-primary mb-1">{idea.title}</h3>
-                  <p className="text-text-muted text-[13px] line-clamp-2 mb-3">{idea.tagline}</p>
-                  <div className="grid grid-cols-3 gap-2 text-xs mb-3">
-                    <div>
-                      <span className="text-text-subtle block">MRR</span>
-                      <span className="text-text-primary font-medium">{formatMrrRange(idea.mrr_potential.min, idea.mrr_potential.max)}</span>
-                    </div>
-                    <div>
-                      <span className="text-text-subtle block">Build</span>
-                      <span className="text-text-primary font-medium">{formatBuildTime(idea.build_time_weeks.min, idea.build_time_weeks.max)}</span>
-                    </div>
-                    <div>
-                      <span className="text-text-subtle block">Price</span>
-                      <span className="text-text-primary font-medium">${idea.suggested_price.amount}/{idea.suggested_price.interval}</span>
-                    </div>
-                  </div>
-                  <div className="mb-3">
-                    <div className="flex items-center justify-between text-xs mb-1">
-                      <span className="text-text-subtle">Competition</span>
-                      <span className="text-text-muted capitalize">{idea.competition_level}</span>
-                    </div>
-                    <div className="w-full h-1.5 bg-surface-2 rounded-full overflow-hidden">
-                      <div
-                        className="h-full rounded-full transition-all"
-                        style={{
-                          width: getCompetitionWidth(idea.competition_level),
-                          backgroundColor: COMPETITION_COLORS[idea.competition_level],
-                        }}
-                      />
-                    </div>
-                  </div>
-                  {idea.tags && idea.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
-                      {idea.tags.slice(0, 3).map((tag) => (
-                        <span key={tag} className="px-2 py-0.5 rounded-full text-[10px] bg-surface-2 text-text-subtle">{tag}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </Link>
-            )
-          })}
-
-          {lockedIdeas.map((idea, i) => {
-            const indColors = INDUSTRY_COLORS[idea.industry] || { bg: 'bg-gray-500/10', text: 'text-gray-400' }
-            const diffStyle = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-900/50', text: 'text-gray-400' }
-            return (
-              <div key={idea.id || i} className="relative bg-surface border border-border rounded-card-lg p-5 overflow-hidden">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${indColors.bg} ${indColors.text}`}>
-                    {idea.industry}
-                  </span>
-                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${diffStyle.bg} ${diffStyle.text}`}>
-                    {idea.difficulty_label}
-                  </span>
-                </div>
-                <h3 className="font-bold text-text-primary mb-1 blur-[6px]">{idea.title}</h3>
-                <p className="text-text-muted text-[13px] blur-[6px] mb-3">{idea.tagline}</p>
-                <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/90 to-surface/40 flex flex-col items-center justify-center gap-2">
-                  <Lock className="w-5 h-5 text-text-subtle" />
-                  <p className="text-sm text-text-muted font-medium">Unlock to see this idea</p>
-                  <Link href="/#pricing">
-                    <Button size="sm">Get Access</Button>
-                  </Link>
-                </div>
-              </div>
-            )
-          })}
-
-          {/* Fill remaining slots with placeholder locked cards if needed */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+          {freeIdeas.map((idea) => (
+            <IdeaCardPreview key={idea.id} idea={idea} />
+          ))}
+          {lockedIdeas.map((idea, i) => (
+            <LockedCard key={idea.id || i} idea={idea} />
+          ))}
           {Array.from({ length: Math.max(0, 4 - lockedIdeas.length) }).map((_, i) => (
-            <div key={`placeholder-${i}`} className="relative bg-surface border border-border rounded-card-lg p-5 overflow-hidden min-h-[250px]">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-500/10 text-gray-400">Industry</span>
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-900/50 text-gray-400">Difficulty</span>
-              </div>
-              <div className="h-4 bg-surface-2 rounded mb-2 w-3/4" />
-              <div className="h-3 bg-surface-2 rounded mb-1 w-full" />
-              <div className="h-3 bg-surface-2 rounded mb-3 w-2/3" />
-              <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/90 to-surface/40 flex flex-col items-center justify-center gap-2">
-                <Lock className="w-5 h-5 text-text-subtle" />
-                <p className="text-sm text-text-muted font-medium">Unlock to see this idea</p>
-                <Link href="/#pricing">
-                  <Button size="sm">Get Access</Button>
-                </Link>
-              </div>
-            </div>
+            <LockedCard key={`ph-${i}`} />
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-accent/10 via-accent/5 to-accent/10 border border-accent/20 rounded-card-lg p-8 text-center">
-          <p className="text-text-primary font-heading text-xl font-bold mb-2">
+        {/* CTA Banner */}
+        <div className="relative overflow-hidden bg-accent-subtle dark:bg-accent-light/20 border border-accent/20 rounded-2xl p-8 text-center">
+          <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5 pointer-events-none" />
+          <p className="font-heading text-xl font-bold text-text-primary mb-1.5 relative">
             You&apos;re seeing 2 of 1,200+ ideas
           </p>
-          <p className="text-text-muted text-sm mb-6">Get instant access to the full library</p>
+          <p className="text-text-muted text-base mb-6 relative">Get instant access to the full library</p>
           <Link href="/#pricing">
-            <Button size="lg" className="gap-2">
+            <Button size="lg" className="gap-2 relative">
               Unlock All Ideas — One-Time Payment <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { Plus, Minus } from 'lucide-react'
 
 const faqs = [
   {
@@ -31,36 +31,54 @@ const faqs = [
 ]
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null)
+  const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-24 bg-surface/30">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <p className="text-accent text-sm font-medium tracking-wide uppercase mb-3">FAQ</p>
+    <section id="faq" className="py-24 bg-surface-alt">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
+        <div className="text-center mb-14">
+          <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">FAQ</p>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
             Frequently Asked Questions
           </h2>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           {faqs.map((faq, i) => (
-            <div key={i} className="bg-surface border border-border rounded-card-lg overflow-hidden">
+            <div
+              key={i}
+              className={`bg-surface border rounded-card-lg overflow-hidden shadow-card transition-all duration-200 ${
+                open === i ? 'border-accent/30' : 'border-border hover:border-border-light'
+              }`}
+            >
               <button
                 type="button"
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between p-5 text-left"
+                className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
               >
-                <span className="font-medium text-text-primary text-sm pr-4">{faq.q}</span>
-                <ChevronDown
-                  className={`w-4 h-4 text-text-subtle shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`}
-                />
+                <span className={`font-medium text-[15px] leading-snug transition-colors ${open === i ? 'text-text-primary' : 'text-text-muted'}`}>
+                  {faq.q}
+                </span>
+                <span className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-colors ${
+                  open === i ? 'bg-accent text-white' : 'bg-surface-2 text-text-subtle'
+                }`}>
+                  {open === i
+                    ? <Minus className="w-3 h-3" />
+                    : <Plus  className="w-3 h-3" />
+                  }
+                </span>
               </button>
-              {open === i && (
-                <div className="px-5 pb-5 -mt-1">
-                  <p className="text-sm text-text-muted leading-relaxed">{faq.a}</p>
-                </div>
-              )}
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  open === i ? 'max-h-56 opacity-100' : 'max-h-0 opacity-0'
+                }`}
+              >
+                <p className="px-5 pb-6 text-[15px] text-text-muted leading-[1.8]">
+                  {faq.a}
+                </p>
+              </div>
             </div>
           ))}
         </div>

@@ -145,7 +145,11 @@ export async function getIdeasSimple(filters: Filters): Promise<{
       target_audience, "mrr_potential.min", "mrr_potential.max", "mrr_potential.currency",
       "build_time_weeks.min", "build_time_weeks.max", pricing_model,
       "suggested_price.amount", "suggested_price.interval", "suggested_price.currency",
-      complexity, difficulty_label, competition_level, validation_note, is_free, keywords, created_at
+      complexity, difficulty_label, competition_level, validation_note, is_free, keywords, created_at,
+      keyword_idea_mapping(
+        is_primary,
+        keywords(id, keyword, search_volume, competition, competition_index, cpc, search_trend)
+      )
     `, { count: 'exact' })
 
   if (filters.industry) {
@@ -201,7 +205,14 @@ export async function getIdeasSimple(filters: Filters): Promise<{
     return { ideas: [], total: 0, hasMore: false }
   }
 
-  const ideas = (data || []).map(mapRawIdea)
+  const ideas = (data || []).map((raw: any) => {
+    const idea = mapRawIdea(raw)
+    const primaryMapping = raw.keyword_idea_mapping?.find((m: any) => m.is_primary)
+    if (primaryMapping?.keywords) {
+      idea.primary_keyword = primaryMapping.keywords
+    }
+    return idea
+  })
   const total = count || 0
   return { ideas, total, hasMore: to < total - 1 }
 }

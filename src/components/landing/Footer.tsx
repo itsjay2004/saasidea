@@ -2,28 +2,50 @@ import Link from 'next/link'
 import { Zap } from 'lucide-react'
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
 
+const links = [
+  { label: 'Browse Ideas', href: '/ideas'      },
+  { label: 'Pricing',      href: '/#pricing'   },
+  { label: 'FAQ',          href: '/#faq'       },
+  { label: 'Contact',      href: 'mailto:hello@saasidea.pro' },
+]
+
 export default function Footer() {
   return (
-    <footer className="py-12 border-t border-border bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="border-t border-border bg-background">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        {/* Top row */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
+
+          {/* Brand */}
           <div className="flex items-center gap-2">
-            <Zap className="w-5 h-5 text-accent" />
-            <span className="font-bold text-text-primary">SaaSIdea Pro</span>
-            <span className="text-text-subtle text-sm ml-2">Find your next SaaS idea.</span>
+            <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-accent text-white shadow-accent">
+              <Zap className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="font-bold text-text-primary text-sm">SaaSIdea Pro</span>
+              <p className="text-xs text-text-subtle leading-tight mt-0.5">Find your next SaaS idea.</p>
+            </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <Link href="/ideas" className="text-sm text-text-muted hover:text-text-primary transition-colors">Browse Ideas</Link>
-            <Link href="/#pricing" className="text-sm text-text-muted hover:text-text-primary transition-colors">Pricing</Link>
-            <Link href="/#faq" className="text-sm text-text-muted hover:text-text-primary transition-colors">FAQ</Link>
-            <a href="mailto:hello@saasidea.pro" className="text-sm text-text-muted hover:text-text-primary transition-colors">Contact</a>
-          </div>
+          {/* Nav links */}
+          <nav className="flex items-center flex-wrap gap-x-6 gap-y-2">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-text-muted hover:text-text-primary transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Bottom row */}
+        <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-text-subtle text-center sm:text-left">
-            &copy; 2025 SaaSIdea Pro. All rights reserved.
+            &copy; {new Date().getFullYear()} SaaSIdea Pro. All rights reserved.
           </p>
           <ThemeSwitcher />
         </div>

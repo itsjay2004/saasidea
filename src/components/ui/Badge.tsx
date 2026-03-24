@@ -6,10 +6,10 @@ interface BadgeProps {
 
 const variantStyles = {
   default: 'bg-surface-2 text-text-muted border-border',
-  success: 'bg-emerald-900/50 text-emerald-400 border-emerald-500/20',
-  warning: 'bg-amber-900/50 text-amber-400 border-amber-500/20',
-  danger: 'bg-red-900/50 text-red-400 border-red-500/20',
-  info: 'bg-blue-900/50 text-blue-400 border-blue-500/20',
+  success: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20',
+  warning: 'bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20',
+  danger:  'bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20',
+  info:    'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20',
 }
 
 export default function Badge({ children, className = '', variant = 'default' }: BadgeProps) {

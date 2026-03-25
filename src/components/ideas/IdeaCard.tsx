@@ -1,7 +1,11 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Lock, Search, Sparkles } from 'lucide-react'
 import { INDUSTRY_COLORS, DIFFICULTY_STYLES, formatMrrShort, formatBuildTime, formatNumber } from '@/lib/utils'
 import type { Idea } from '@/types'
+import AuthModal from '@/components/auth/AuthModal'
 
 interface IdeaCardProps {
   idea: Idea
@@ -86,6 +90,7 @@ function truncateWords(text: string, max: number): string {
 
 /* ─── Locked teaser card ────────────────────────────────────────────────── */
 function LockedIdeaCard({ idea }: { idea: Idea }) {
+  const [showAuth, setShowAuth] = useState(false)
   const ind  = INDUSTRY_COLORS[idea.industry]          || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
   const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
 
@@ -130,14 +135,15 @@ function LockedIdeaCard({ idea }: { idea: Idea }) {
             <Lock className="w-4 h-4 text-text-subtle" />
           </div>
           <p className="text-xs font-semibold text-text-primary">Unlock full details</p>
-          <Link
-            href="/#pricing"
+          <button
+            onClick={() => setShowAuth(true)}
             className="text-xs font-semibold text-accent flex items-center gap-1 hover:gap-1.5 transition-all duration-150"
           >
             Get Access <ArrowRight className="w-3 h-3" />
-          </Link>
+          </button>
         </div>
       </div>
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </div>
   )
 }

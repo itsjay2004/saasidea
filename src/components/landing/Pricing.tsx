@@ -4,6 +4,7 @@ import { Check, Zap, ShieldCheck, ArrowRight } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import { createClient } from '@/lib/supabase/client'
 import { getCheckoutUrl } from '@/lib/dodo'
+import { PRICING } from '@/lib/config'
 import { useState, useEffect } from 'react'
 import AuthModal from '@/components/auth/AuthModal'
 import type { User } from '@supabase/supabase-js'
@@ -39,11 +40,11 @@ export default function Pricing() {
 
   return (
     <>
-      <section id="pricing" className="py-24 bg-background">
+      <section id="pricing" className="py-14 sm:py-24 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Header */}
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-14">
             <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Simple Pricing</p>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
               One Price. Everything Included. Forever.
@@ -59,7 +60,7 @@ export default function Pricing() {
             <div className="grid grid-cols-1 md:grid-cols-2">
 
               {/* ── Left column: price & CTA ── */}
-              <div className="flex flex-col justify-between p-10 md:p-12 md:border-r border-border">
+              <div className="flex flex-col justify-between p-6 sm:p-10 md:p-12 md:border-r border-border">
                 <div>
                   {/* Badge */}
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-subtle text-accent text-xs font-semibold mb-8 border border-accent/20">
@@ -67,12 +68,12 @@ export default function Pricing() {
                   </span>
 
                   {/* Product name */}
-                  <h3 className="font-heading text-4xl sm:text-5xl font-bold text-text-primary leading-tight mb-4">
+                  <h3 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary leading-tight mb-4">
                     Complete<br />Collection
                   </h3>
 
                   {/* Description */}
-                  <p className="text-text-muted text-base leading-relaxed mb-10 max-w-xs">
+                  <p className="text-text-muted text-base leading-relaxed mb-6 sm:mb-10 max-w-xs">
                     Get instant access to thousands of validated micro SaaS ideas, deep-dive market research, and expert strategies to build your next profitable business.
                   </p>
                 </div>
@@ -85,11 +86,11 @@ export default function Pricing() {
                         className="font-heading font-bold text-text-primary leading-none"
                         style={{ fontSize: 'clamp(4rem, 10vw, 6rem)' }}
                       >
-                        $49
+                        {PRICING.label}
                       </span>
                       <div className="pb-3">
-                        <span className="block text-sm font-medium text-text-subtle line-through">$99</span>
-                        <span className="block text-sm text-text-muted">one-time</span>
+                        <span className="block text-sm font-medium text-text-subtle line-through">{PRICING.originalLabel}</span>
+                        <span className="block text-sm text-text-muted">{PRICING.interval}</span>
                       </div>
                     </div>
                     <p className="text-xs text-text-subtle">Lifetime access · no subscription</p>
@@ -97,7 +98,7 @@ export default function Pricing() {
 
                   {/* CTA button */}
                   <Button
-                    className="w-full sm:w-auto gap-2 group"
+                    className="w-full gap-2 group"
                     size="lg"
                     onClick={handlePurchase}
                   >
@@ -114,7 +115,7 @@ export default function Pricing() {
               </div>
 
               {/* ── Right column: benefits ── */}
-              <div className="flex flex-col justify-center p-10 md:p-12 bg-surface-alt">
+              <div className="flex flex-col justify-center p-6 sm:p-10 md:p-12 bg-surface-alt border-t md:border-t-0 border-border">
                 <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-text-subtle mb-7">
                   Everything you need to succeed, including:
                 </p>

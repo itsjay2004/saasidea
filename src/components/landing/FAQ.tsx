@@ -34,11 +34,11 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-24 bg-surface-alt">
+    <section id="faq" className="py-14 sm:py-24 bg-surface-alt">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-8 sm:mb-14">
           <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">FAQ</p>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
             Frequently Asked Questions

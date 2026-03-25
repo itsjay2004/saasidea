@@ -16,7 +16,7 @@ export default async function HomePage() {
 
   try {
     ;[freeIdeas, lockedIdeas, industries] = await Promise.all([
-      getFreeIdeas(50),
+      getFreeIdeas(45),
       getPaidPreviewIdeas(3),
       getIndustries(),
     ])
@@ -29,8 +29,8 @@ export default async function HomePage() {
       <Hero />
       <Stats />
       <HowItWorks />
-      <FeaturesGrid />
       <PreviewSection ideas={freeIdeas} lockedIdeas={lockedIdeas} />
+      <FeaturesGrid />
       <NicheGrid industries={industries} />
       <Pricing />
       <FAQ />

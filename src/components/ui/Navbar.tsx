@@ -75,14 +75,15 @@ export default function Navbar() {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-2.5">
-              {user && (
+              {user ? (
                 <Link href="/dashboard">
-                  <Button variant="ghost" size="sm">Dashboard</Button>
+                  <Button size="sm">Dashboard</Button>
                 </Link>
+              ) : (
+                <Button size="sm" onClick={handleCTA}>
+                  Get Lifetime Access
+                </Button>
               )}
-              <Button size="sm" onClick={handleCTA}>
-                Get Lifetime Access
-              </Button>
             </div>
 
             {/* Mobile menu toggle */}
@@ -111,9 +112,15 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="pt-3 border-t border-border mt-3">
-                <Button size="sm" className="w-full" onClick={handleCTA}>
-                  Get Lifetime Access
-                </Button>
+                {user ? (
+                  <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
+                    <Button size="sm" className="w-full">Dashboard</Button>
+                  </Link>
+                ) : (
+                  <Button size="sm" className="w-full" onClick={handleCTA}>
+                    Get Lifetime Access
+                  </Button>
+                )}
               </div>
             </div>
           </div>

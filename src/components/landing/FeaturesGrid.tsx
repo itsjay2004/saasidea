@@ -35,11 +35,11 @@ const features = [
 
 export default function FeaturesGrid() {
   return (
-    <section id="features" className="py-24 bg-surface-alt">
+    <section id="features" className="py-14 sm:py-24 bg-surface-alt">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-16">
           <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">What You Get</p>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
             Everything You Need to Find Your Next SaaS

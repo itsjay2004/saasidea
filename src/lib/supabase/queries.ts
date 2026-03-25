@@ -342,6 +342,24 @@ export async function hasAccess(userId: string): Promise<boolean> {
   return !error && !!data
 }
 
+export async function getNicheStats(): Promise<{ niches: number; subNiches: number }> {
+  const supabase = await createServerSupabaseClient()
+  const { data, error } = await supabase
+    .from('ideas')
+    .select('niche, sub_niche')
+
+  if (error || !data) return { niches: 0, subNiches: 0 }
+
+  const niches = new Set<string>()
+  const subNiches = new Set<string>()
+  data.forEach((row: any) => {
+    if (row.niche) niches.add(row.niche)
+    if (row.sub_niche) subNiches.add(row.sub_niche)
+  })
+
+  return { niches: niches.size, subNiches: subNiches.size }
+}
+
 export async function getTotalIdeasCount(): Promise<number> {
   const supabase = await createServerSupabaseClient()
   const { count, error } = await supabase

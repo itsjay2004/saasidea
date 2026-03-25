@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Lock, ArrowRight, Sparkles, Search } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import CrawlableLink from './CrawlableLink'
 import { INDUSTRY_COLORS, DIFFICULTY_STYLES, formatMrrShort, formatBuildTime, formatNumber } from '@/lib/utils'
 import type { Idea } from '@/types'
 
@@ -235,10 +236,10 @@ export default function PreviewSection({ ideas, lockedIdeas }: PreviewSectionPro
   if (ideas.length === 0) return null
 
   return (
-    <section id="preview" className="py-24 bg-background">
+    <section id="preview" className="py-14 sm:py-24 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="text-center mb-14">
+        <div className="text-center mb-8 sm:mb-14">
           <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Preview</p>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary mb-4">
             A Glimpse of What&apos;s Inside
@@ -250,24 +251,24 @@ export default function PreviewSection({ ideas, lockedIdeas }: PreviewSectionPro
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {ideas.map((idea) => (
-            <Link key={idea.id} href={`/ideas/${idea.id}`} className="block">
+            <CrawlableLink key={idea.id} href={`/ideas/${idea.id}`} className="block">
               <IdeaCardPreview idea={idea} />
-            </Link>
+            </CrawlableLink>
           ))}
           {lockedIdeas.map((idea) => (
             <LockedCard key={idea.id} idea={idea} />
           ))}
         </div>
 
-        <div className="relative overflow-hidden bg-accent-subtle dark:bg-accent-light/20 border border-accent/20 rounded-2xl p-8 text-center">
+        <div className="relative overflow-hidden bg-accent-subtle dark:bg-accent-light/20 border border-accent/20 rounded-2xl p-5 sm:p-8 text-center">
           <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5 pointer-events-none" />
-          <p className="font-heading text-xl font-bold text-text-primary mb-1.5 relative">
+          <p className="font-heading text-lg sm:text-xl font-bold text-text-primary mb-1.5 relative">
             You&apos;re seeing {ideas.length} of 1,200+ ideas
           </p>
-          <p className="text-text-muted text-base mb-6 relative">Get instant access to the full library</p>
-          <Link href="/#pricing">
-            <Button size="lg" className="gap-2 relative">
-              Unlock All Ideas &mdash; One-Time Payment <ArrowRight className="w-4 h-4" />
+          <p className="text-text-muted text-sm sm:text-base mb-5 sm:mb-6 relative">Get instant access to the full library</p>
+          <Link href="/#pricing" className="block sm:inline-block">
+            <Button size="lg" className="gap-2 relative w-full sm:w-auto">
+              Unlock All Ideas <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
         </div>

@@ -3,6 +3,7 @@
 import { Lock } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import { getCheckoutUrl } from '@/lib/dodo'
+import { PRICING } from '@/lib/config'
 import { createClient } from '@/lib/supabase/client'
 import { useState, useEffect } from 'react'
 import AuthModal from '@/components/auth/AuthModal'
@@ -43,7 +44,7 @@ export default function PaywallBlur({ children, locked }: PaywallBlurProps) {
           </div>
           <p className="text-sm text-text-muted font-medium">Unlock 1,200+ Ideas</p>
           <Button size="sm" onClick={handleUnlock}>
-            Get Access — $49 one-time
+            {PRICING.ctaPaywall}
           </Button>
         </div>
       </div>

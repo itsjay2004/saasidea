@@ -51,6 +51,7 @@ const config: Config = {
         'slide-down':  'slideDown 0.2s ease-out',
         'pulse-dot':   'pulseDot 2s ease-in-out infinite',
         'spin-slow':   'spin 8s linear infinite',
+        'marquee':     'marquee 20s linear infinite',
       },
       keyframes: {
         fadeInUp: {
@@ -76,6 +77,10 @@ const config: Config = {
         pulseDot: {
           '0%, 100%': { opacity: '1' },
           '50%':      { opacity: '0.35' },
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to:   { transform: 'translateX(-50%)' },
         },
       },
     },

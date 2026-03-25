@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, ArrowDown } from 'lucide-react'
+import { ArrowRight, ArrowDown, ShieldCheck } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import { PRICING } from '@/lib/config'
 
 const CARDS = [
   {
@@ -31,7 +32,7 @@ const floatClasses = ['animate-float delay-0', 'animate-float-alt delay-300', 'a
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-14 sm:pt-16 overflow-hidden">
 
       {/* Grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-60 dark:opacity-100" />
@@ -46,10 +47,10 @@ export default function Hero() {
       <div className="absolute top-40 right-[15%] w-[280px] h-[280px] bg-purple-400/8 dark:bg-purple-500/10 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute top-60 left-[12%] w-[220px] h-[220px] bg-violet-400/6 dark:bg-violet-600/8 rounded-full blur-[70px] pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-24 text-center">
 
         {/* Badge */}
-        <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-subtle dark:bg-accent-light/30 border border-accent/20 text-accent text-sm font-medium mb-8">
+        <div className="animate-fade-in-up inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-accent-subtle dark:bg-accent-light/30 border border-accent/20 text-accent text-xs sm:text-sm font-medium mb-6 sm:mb-8">
           <span className="w-2 h-2 rounded-full bg-success animate-pulse-dot" />
           1,200+ Validated Ideas &bull; Updated Monthly
         </div>
@@ -62,17 +63,17 @@ export default function Hero() {
         </h1>
 
         {/* Subheadline */}
-        <p className="animate-fade-in-up delay-200 max-w-xl mx-auto text-text-muted text-xl sm:text-2xl leading-[1.75] mb-10">
+        <p className="animate-fade-in-up delay-200 max-w-xl mx-auto text-text-muted text-base leading-[1.6rem] sm:text-[1.2rem] sm:leading-[1.8rem] mb-10">
           1,200+ pain-driven SaaS ideas across 100s of niches.
           Each idea includes MRR potential, build time, competition level,
           and keyword data. One-time payment. Lifetime access.
         </p>
 
         {/* CTAs */}
-        <div className="animate-fade-in-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+        <div className="animate-fade-in-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
           <Link href="/#pricing">
             <Button size="lg" className="gap-2 text-base">
-              Get Lifetime Access — $29 <ArrowRight className="w-4 h-4" />
+              {PRICING.ctaHero} <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
           <a href="#preview">
@@ -82,8 +83,14 @@ export default function Hero() {
           </a>
         </div>
 
+        {/* Money-back guarantee */}
+        <div className="animate-fade-in-up delay-350 flex items-center justify-center gap-1.5 mb-10 text-text-subtle text-xs">
+          <ShieldCheck className="w-3.5 h-3.5 text-success shrink-0" />
+          <span>15-day money-back guarantee &mdash; no questions asked</span>
+        </div>
+
         {/* Social proof */}
-        <div className="animate-fade-in-up delay-400 flex items-center justify-center gap-3 mb-20">
+        <div className="animate-fade-in-up delay-400 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-14 sm:mb-20">
           <Image
             src="/trusted_user.png"
             alt="Founders who use SaaSIdea Pro"
@@ -91,35 +98,67 @@ export default function Hero() {
             height={40}
             className="h-9 w-auto object-contain"
           />
-          <div className="flex flex-col items-start">
-            <span className="text-sm font-semibold text-text-primary leading-tight">2,000+ founders</span>
-            <span className="text-sm text-text-muted leading-tight">already building with these ideas</span>
+          <div className="flex flex-col items-center sm:items-start">
+            <span className="text-sm font-semibold text-text-primary leading-tight text-center sm:text-left">Trusted by 500+ solopreneurs &amp; indie hackers</span>
+            <span className="text-xs text-text-muted leading-tight text-center sm:text-left">already building with these ideas</span>
           </div>
         </div>
 
-        {/* Floating preview cards */}
-        <div className="animate-fade-in-up delay-500 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          {CARDS.map((card, i) => (
-            <div
-              key={i}
-              className={`${floatClasses[i]} bg-surface border border-border rounded-card-lg p-5 text-left shadow-card-md hover:shadow-card-lg hover:border-border-light transition-all duration-300`}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <span className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${card.industryColor}`}>
-                  {card.industry}
-                </span>
-                <span className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${card.difficultyColor}`}>
-                  {card.difficulty}
-                </span>
-              </div>
-              <h3 className="font-bold text-text-primary text-sm mb-1.5 leading-snug">{card.title}</h3>
-              <p className="text-text-muted text-[13px] line-clamp-2 mb-3 leading-[1.65]">{card.tagline}</p>
-              <div className="flex items-center gap-3 text-xs text-text-subtle">
-                <span>MRR: <span className="text-text-muted font-medium">{card.mrr}</span></span>
-                <span>Build: <span className="text-text-muted font-medium">{card.build}</span></span>
-              </div>
+        {/* Preview cards — marquee on mobile, static grid on sm+ */}
+        <div className="animate-fade-in-up delay-500">
+
+          {/* Mobile: continuous auto-scroll marquee */}
+          <div className="sm:hidden overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+            <div className="flex gap-4 animate-marquee hover:[animation-play-state:paused] w-max">
+              {[...CARDS, ...CARDS].map((card, i) => (
+                <div
+                  key={i}
+                  className="w-[72vw] max-w-[260px] flex-shrink-0 bg-surface border border-border rounded-card-lg p-5 text-left shadow-card-md"
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${card.industryColor}`}>
+                      {card.industry}
+                    </span>
+                    <span className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${card.difficultyColor}`}>
+                      {card.difficulty}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-text-primary text-sm mb-1.5 leading-snug">{card.title}</h3>
+                  <p className="text-text-muted text-[13px] line-clamp-2 mb-3 leading-[1.65]">{card.tagline}</p>
+                  <div className="flex items-center gap-3 text-xs text-text-subtle">
+                    <span>MRR: <span className="text-text-muted font-medium">{card.mrr}</span></span>
+                    <span>Build: <span className="text-text-muted font-medium">{card.build}</span></span>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Desktop: static 3-col grid with float animations */}
+          <div className="hidden sm:grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {CARDS.map((card, i) => (
+              <div
+                key={i}
+                className={`${floatClasses[i]} bg-surface border border-border rounded-card-lg p-5 text-left shadow-card-md hover:shadow-card-lg hover:border-border-light transition-all duration-300`}
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${card.industryColor}`}>
+                    {card.industry}
+                  </span>
+                  <span className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${card.difficultyColor}`}>
+                    {card.difficulty}
+                  </span>
+                </div>
+                <h3 className="font-bold text-text-primary text-sm mb-1.5 leading-snug">{card.title}</h3>
+                <p className="text-text-muted text-[13px] line-clamp-2 mb-3 leading-[1.65]">{card.tagline}</p>
+                <div className="flex items-center gap-3 text-xs text-text-subtle">
+                  <span>MRR: <span className="text-text-muted font-medium">{card.mrr}</span></span>
+                  <span>Build: <span className="text-text-muted font-medium">{card.build}</span></span>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

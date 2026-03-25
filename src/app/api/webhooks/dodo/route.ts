@@ -2,18 +2,49 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import crypto from 'crypto'
 
+function verifyStandardWebhook(
+  body: string,
+  headers: { id: string; signature: string; timestamp: string },
+  secret: string
+): boolean {
+  const secretBytes = Buffer.from(secret.replace(/^whsec_/, ''), 'base64')
+  const signedContent = `${headers.id}.${headers.timestamp}.${body}`
+  const computed = crypto
+    .createHmac('sha256', secretBytes)
+    .update(signedContent)
+    .digest('base64')
+
+  const expectedSig = `v1,${computed}`
+
+  const parts = headers.signature.split(' ')
+  return parts.some(sig => {
+    try {
+      return sig.length === expectedSig.length &&
+        crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expectedSig))
+    } catch {
+      return false
+    }
+  })
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.text()
-    const signature = request.headers.get('x-dodo-signature') || ''
+
+    const webhookId = request.headers.get('webhook-id') || ''
+    const webhookSignature = request.headers.get('webhook-signature') || ''
+    const webhookTimestamp = request.headers.get('webhook-timestamp') || ''
+
+    if (!webhookId || !webhookSignature || !webhookTimestamp) {
+      return NextResponse.json({ error: 'Missing webhook headers' }, { status: 401 })
+    }
+
     const secret = process.env.DODO_PAYMENTS_WEBHOOK_SECRET!
-
-    const hmac = crypto.createHmac('sha256', secret)
-    hmac.update(body)
-    const expectedSignature = hmac.digest('hex')
-
-    const isValid = signature.length === expectedSignature.length &&
-      crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))
+    const isValid = verifyStandardWebhook(body, {
+      id: webhookId,
+      signature: webhookSignature,
+      timestamp: webhookTimestamp,
+    }, secret)
 
     if (!isValid) {
       return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
@@ -21,18 +52,20 @@ export async function POST(request: Request) {
 
     const event = JSON.parse(body)
 
-    if (event.type === 'payment.succeeded' || event.event_type === 'payment.succeeded') {
-      const metadata = event.data?.metadata || event.metadata || {}
+    if (event.type === 'payment.succeeded') {
+      const data = event.data || {}
+      const metadata = data.metadata || {}
       const userId = metadata.user_id
-      const email = event.data?.customer?.email || metadata.email || ''
-      const orderId = event.data?.payment_id || event.payment_id || event.data?.id || ''
-      const amount = event.data?.amount || event.amount || 4900
-      const currency = event.data?.currency || event.currency || 'USD'
 
       if (!userId) {
         console.error('No user_id in webhook metadata')
         return NextResponse.json({ error: 'Missing user_id' }, { status: 400 })
       }
+
+      const email = data.customer?.email || ''
+      const orderId = data.payment_id || ''
+      const amount = data.total_amount || 4900
+      const currency = data.currency || 'USD'
 
       const supabase = createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,

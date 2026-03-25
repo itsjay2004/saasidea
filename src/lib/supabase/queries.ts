@@ -292,6 +292,24 @@ export async function getFreeIdeas(limit: number = 6): Promise<Idea[]> {
   return data.map(mapRawIdea)
 }
 
+export async function getPaidPreviewIdeas(limit: number = 3): Promise<Idea[]> {
+  const supabase = await createServerSupabaseClient()
+  const { data, error } = await supabase
+    .from('ideas')
+    .select(`
+      id, title, tagline, pain_point, industry, niche, sub_niche, tags,
+      target_audience, "mrr_potential.min", "mrr_potential.max", "mrr_potential.currency",
+      "build_time_weeks.min", "build_time_weeks.max", pricing_model,
+      "suggested_price.amount", "suggested_price.interval", "suggested_price.currency",
+      complexity, difficulty_label, competition_level, validation_note, is_free, keywords, created_at
+    `)
+    .eq('is_free', false)
+    .limit(limit)
+
+  if (error || !data) return []
+  return data.map(mapRawIdea)
+}
+
 export async function getRelatedIdeas(niche: string, excludeId: string, limit: number = 3): Promise<Idea[]> {
   const supabase = await createServerSupabaseClient()
   const { data, error } = await supabase

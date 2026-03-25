@@ -35,7 +35,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Features',     href: '/#features' },
-    { label: 'Browse Ideas', href: '/ideas' },
+    { label: 'Browse Ideas', href: '/#preview' },
     { label: 'Pricing',      href: '/#pricing' },
     { label: 'FAQ',          href: '/#faq' },
   ]
@@ -45,8 +45,8 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-background/95 backdrop-blur-xl border-b border-border shadow-[0_1px_20px_rgba(28,25,23,0.08)] dark:shadow-[0_1px_20px_rgba(0,0,0,0.36)]'
-            : 'bg-background/70 backdrop-blur-md border-b border-border/40'
+            ? 'bg-background/95 backdrop-blur-xl border-b border-border shadow-[0_1px_20px_rgba(28,25,23,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.5)]'
+            : 'bg-background/70 backdrop-blur-md border-b border-border/40 dark:border-white/10'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

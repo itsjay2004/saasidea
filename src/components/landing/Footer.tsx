@@ -3,7 +3,6 @@ import { Zap } from 'lucide-react'
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
 
 const links = [
-  { label: 'Browse Ideas', href: '/ideas'      },
   { label: 'Pricing',      href: '/#pricing'   },
   { label: 'FAQ',          href: '/#faq'       },
   { label: 'Contact',      href: 'mailto:hello@saasidea.pro' },
@@ -46,6 +45,13 @@ export default function Footer() {
         <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-text-subtle text-center sm:text-left">
             &copy; {new Date().getFullYear()} SaaSIdea Pro. All rights reserved.
+            <span className="mx-1.5 opacity-30">·</span>
+            <Link
+              href="/ideas"
+              className="text-[10px] text-text-subtle/50 hover:text-text-subtle transition-colors"
+            >
+              Library
+            </Link>
           </p>
           <ThemeSwitcher />
         </div>

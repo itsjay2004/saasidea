@@ -1,10 +1,11 @@
-import Link from 'next/link'
+'use client'
+
 import {
   ArrowRight, Banknote, Users, Heart, BookOpen, ShoppingCart,
   Layers, Scale, Home, Palette, Briefcase, UtensilsCrossed,
   Plane, Code2, Megaphone, Zap,
 } from 'lucide-react'
-import type { ElementType } from 'react'
+import type { ElementType, MouseEvent } from 'react'
 import { INDUSTRY_COLORS } from '@/lib/utils'
 
 interface NicheGridProps {
@@ -52,6 +53,11 @@ const ALL_INDUSTRIES = Object.keys(nicheExamples)
 export default function NicheGrid({ industries }: NicheGridProps) {
   const industriesMap = new Map(industries.map((i) => [i.industry, i.count]))
 
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section className="py-24 bg-surface-alt">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,9 +82,10 @@ export default function NicheGrid({ industries }: NicheGridProps) {
             const Icon   = LUCIDE_ICONS[industry]
 
             return (
-              <Link
+              <a
                 key={industry}
                 href={`/ideas?industry=${encodeURIComponent(industry)}`}
+                onClick={handleClick}
                 className="group relative flex flex-col bg-surface border border-border rounded-2xl p-4 overflow-hidden hover:shadow-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200"
               >
                 {/* Hover accent top bar */}
@@ -118,19 +125,20 @@ export default function NicheGrid({ industries }: NicheGridProps) {
                 <div className="flex items-center gap-1 text-[11px] font-semibold text-accent mt-auto opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
                   Explore <ArrowRight className="w-3 h-3" />
                 </div>
-              </Link>
+              </a>
             )
           })}
         </div>
 
         {/* Footer link */}
         <div className="text-center mt-10">
-          <Link
+          <a
             href="/ideas"
+            onClick={handleClick}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:gap-2.5 transition-all duration-150"
           >
             Browse all ideas <ArrowRight className="w-4 h-4" />
-          </Link>
+          </a>
         </div>
 
       </div>

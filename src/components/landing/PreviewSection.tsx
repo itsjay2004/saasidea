@@ -6,9 +6,9 @@ import type { Idea } from '@/types'
 
 interface PreviewSectionProps {
   ideas: Idea[]
+  lockedIdeas: Idea[]
 }
 
-/* ─── Competition segments ──────────────────────────────────────────────── */
 function CompetitionSegments({ level }: { level: string }) {
   const filled = level === 'low' ? 1 : level === 'medium' ? 2 : 3
   const color  = level === 'low'
@@ -35,7 +35,6 @@ function CompetitionSegments({ level }: { level: string }) {
   )
 }
 
-/* ─── Keyword display ───────────────────────────────────────────────────── */
 function KeywordDisplay({ idea }: { idea: Idea }) {
   if (idea.primary_keyword) {
     const vol = idea.primary_keyword.search_volume
@@ -81,7 +80,6 @@ function KeywordDisplay({ idea }: { idea: Idea }) {
   )
 }
 
-/* ─── Unlocked idea card ────────────────────────────────────────────────── */
 function IdeaCardPreview({ idea }: { idea: Idea }) {
   const ind  = INDUSTRY_COLORS[idea.industry]          || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
   const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
@@ -89,12 +87,10 @@ function IdeaCardPreview({ idea }: { idea: Idea }) {
   return (
     <div className="group relative bg-surface border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200">
 
-      {/* Hover accent bar */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       <div className="p-5">
 
-        {/* Row 1 — industry (left) · difficulty (right) */}
         <div className="flex items-center justify-between gap-3 mb-3">
           <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${ind.bg} ${ind.text}`}>
             {idea.industry}
@@ -104,17 +100,14 @@ function IdeaCardPreview({ idea }: { idea: Idea }) {
           </span>
         </div>
 
-        {/* Title */}
         <h3 className="font-bold text-text-primary text-[15px] leading-snug mb-2">
           {idea.title}
         </h3>
 
-        {/* Tagline */}
         <p className="text-text-muted text-sm leading-[1.65] line-clamp-2 mb-4">
           {idea.tagline}
         </p>
 
-        {/* Validation note — full text, no clamp */}
         {idea.validation_note && (
           <div className="bg-accent-subtle dark:bg-accent-light/15 border border-accent/12 rounded-xl px-4 py-3.5 mb-5">
             <div className="flex items-center gap-1.5 mb-2">
@@ -127,7 +120,6 @@ function IdeaCardPreview({ idea }: { idea: Idea }) {
           </div>
         )}
 
-        {/* Metrics divider + grid */}
         <div className="border-t border-border/60 pt-4">
           <div className="grid grid-cols-3 gap-3 mb-4">
             {[
@@ -142,7 +134,6 @@ function IdeaCardPreview({ idea }: { idea: Idea }) {
             ))}
           </div>
 
-          {/* Competition + Keyword row */}
           <div className="border-t border-border/40 pt-3.5">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -172,38 +163,25 @@ function IdeaCardPreview({ idea }: { idea: Idea }) {
   )
 }
 
-/* ─── Locked idea card ──────────────────────────────────────────────────── */
-function LockedCard({ idea }: { idea?: Idea }) {
-  const ind  = idea ? (INDUSTRY_COLORS[idea.industry]          || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }) : null
-  const diff = idea ? (DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }) : null
+function LockedCard({ idea }: { idea: Idea }) {
+  const ind  = INDUSTRY_COLORS[idea.industry]          || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
+  const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
 
   return (
     <div className="relative bg-surface border border-border rounded-2xl overflow-hidden shadow-card">
-      {/* Background content — blurred tease */}
       <div className="p-5 select-none pointer-events-none" aria-hidden>
 
-        {/* Tags row — visible */}
         <div className="flex items-center justify-between gap-3 mb-3">
-          {ind && idea ? (
-            <>
-              <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${ind.bg} ${ind.text}`}>{idea.industry}</span>
-              <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${diff!.bg} ${diff!.text}`}>{idea.difficulty_label}</span>
-            </>
-          ) : (
-            <>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-2 text-text-subtle">Industry</span>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-2 text-text-subtle">Difficulty</span>
-            </>
-          )}
+          <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${ind.bg} ${ind.text}`}>{idea.industry}</span>
+          <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${diff.bg} ${diff.text}`}>{idea.difficulty_label}</span>
         </div>
 
-        {/* Blurred: title + tagline + validation + metrics */}
         <div className="blur-[6px]">
           <div className="font-bold text-text-primary text-[15px] leading-snug mb-2">
-            {idea?.title ?? 'This is an unlocked idea title waiting to be revealed'}
+            {idea.title}
           </div>
           <p className="text-text-muted text-sm leading-[1.65] mb-4">
-            {idea?.tagline ?? 'A short description of what this product does and who it is for.'}
+            {idea.tagline}
           </p>
           <div className="bg-accent-subtle dark:bg-accent-light/15 border border-accent/12 rounded-xl px-4 py-3.5 mb-5">
             <div className="flex items-center gap-1.5 mb-2">
@@ -211,7 +189,7 @@ function LockedCard({ idea }: { idea?: Idea }) {
               <span className="text-[10px] font-bold uppercase tracking-widest text-accent">Why It Works</span>
             </div>
             <p className="text-[13px] text-text-muted leading-[1.75]">
-              {idea?.validation_note ?? 'There is strong market validation for this idea because founders in this space have already proven demand through early traction and paying customers.'}
+              {idea.validation_note || 'There is strong market validation for this idea because founders in this space have already proven demand through early traction and paying customers.'}
             </p>
           </div>
           <div className="border-t border-border/60 pt-4">
@@ -239,7 +217,6 @@ function LockedCard({ idea }: { idea?: Idea }) {
         </div>
       </div>
 
-      {/* Lock overlay — gradient from bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/92 to-surface/10 flex flex-col items-center justify-end pb-8 gap-3">
         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-surface border border-border shadow-card">
           <Lock className="w-4 h-4 text-text-subtle" />
@@ -254,16 +231,13 @@ function LockedCard({ idea }: { idea?: Idea }) {
   )
 }
 
-/* ─── Section ───────────────────────────────────────────────────────────── */
-export default function PreviewSection({ ideas }: PreviewSectionProps) {
-  const freeIdeas   = ideas.slice(0, 2)
-  const lockedIdeas = ideas.slice(2, 6)
+export default function PreviewSection({ ideas, lockedIdeas }: PreviewSectionProps) {
+  if (ideas.length === 0) return null
 
   return (
     <section id="preview" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header */}
         <div className="text-center mb-14">
           <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Preview</p>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary mb-4">
@@ -275,27 +249,25 @@ export default function PreviewSection({ ideas }: PreviewSectionProps) {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-          {freeIdeas.map((idea) => (
-            <IdeaCardPreview key={idea.id} idea={idea} />
+          {ideas.map((idea) => (
+            <Link key={idea.id} href={`/ideas/${idea.id}`} className="block">
+              <IdeaCardPreview idea={idea} />
+            </Link>
           ))}
-          {lockedIdeas.map((idea, i) => (
-            <LockedCard key={idea.id || i} idea={idea} />
-          ))}
-          {Array.from({ length: Math.max(0, 4 - lockedIdeas.length) }).map((_, i) => (
-            <LockedCard key={`ph-${i}`} />
+          {lockedIdeas.map((idea) => (
+            <LockedCard key={idea.id} idea={idea} />
           ))}
         </div>
 
-        {/* CTA Banner */}
         <div className="relative overflow-hidden bg-accent-subtle dark:bg-accent-light/20 border border-accent/20 rounded-2xl p-8 text-center">
           <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5 pointer-events-none" />
           <p className="font-heading text-xl font-bold text-text-primary mb-1.5 relative">
-            You&apos;re seeing 2 of 1,200+ ideas
+            You&apos;re seeing {ideas.length} of 1,200+ ideas
           </p>
           <p className="text-text-muted text-base mb-6 relative">Get instant access to the full library</p>
           <Link href="/#pricing">
             <Button size="lg" className="gap-2 relative">
-              Unlock All Ideas — One-Time Payment <ArrowRight className="w-4 h-4" />
+              Unlock All Ideas &mdash; One-Time Payment <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
         </div>

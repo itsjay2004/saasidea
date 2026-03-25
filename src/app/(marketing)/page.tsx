@@ -7,15 +7,17 @@ import NicheGrid from '@/components/landing/NicheGrid'
 import Pricing from '@/components/landing/Pricing'
 import FAQ from '@/components/landing/FAQ'
 import Footer from '@/components/landing/Footer'
-import { getFreeIdeas, getIndustries } from '@/lib/supabase/queries'
+import { getFreeIdeas, getPaidPreviewIdeas, getIndustries } from '@/lib/supabase/queries'
 
 export default async function HomePage() {
   let freeIdeas: Awaited<ReturnType<typeof getFreeIdeas>> = []
+  let lockedIdeas: Awaited<ReturnType<typeof getPaidPreviewIdeas>> = []
   let industries: { industry: string; count: number }[] = []
 
   try {
-    ;[freeIdeas, industries] = await Promise.all([
-      getFreeIdeas(6),
+    ;[freeIdeas, lockedIdeas, industries] = await Promise.all([
+      getFreeIdeas(50),
+      getPaidPreviewIdeas(3),
       getIndustries(),
     ])
   } catch {
@@ -28,7 +30,7 @@ export default async function HomePage() {
       <Stats />
       <HowItWorks />
       <FeaturesGrid />
-      <PreviewSection ideas={freeIdeas} />
+      <PreviewSection ideas={freeIdeas} lockedIdeas={lockedIdeas} />
       <NicheGrid industries={industries} />
       <Pricing />
       <FAQ />

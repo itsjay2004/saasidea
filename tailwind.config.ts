@@ -13,6 +13,7 @@ const config: Config = {
         background:    "var(--background)",
         foreground:    "var(--foreground)",
         surface:       "var(--surface)",
+        "surface-solid": "var(--surface-solid)",
         "surface-2":   "var(--surface-2)",
         "surface-alt": "var(--surface-alt)",
         border:        "var(--border)",

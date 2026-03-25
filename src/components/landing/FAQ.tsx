@@ -34,8 +34,11 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-14 sm:py-24 bg-surface-alt">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="relative py-14 sm:py-24 bg-surface-alt section-mesh overflow-hidden">
+      <div className="orb orb-blue top-[15%] right-[-5%] w-[400px] h-[400px]" />
+      <div className="orb orb-purple bottom-[10%] left-[-5%] w-[350px] h-[350px]" />
+
+      <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="text-center mb-8 sm:mb-14">
@@ -49,8 +52,8 @@ export default function FAQ() {
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className={`bg-surface border rounded-card-lg overflow-hidden shadow-card transition-all duration-200 ${
-                open === i ? 'border-accent/30' : 'border-border hover:border-border-light'
+              className={`glass-card rounded-card-lg overflow-hidden shadow-card transition-all duration-200 ${
+                open === i ? 'border-accent/30' : 'hover:border-border-light'
               }`}
             >
               <button

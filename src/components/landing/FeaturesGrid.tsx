@@ -35,8 +35,11 @@ const features = [
 
 export default function FeaturesGrid() {
   return (
-    <section id="features" className="py-14 sm:py-24 bg-surface-alt">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="features" className="relative py-14 sm:py-24 bg-surface-alt section-mesh">
+      <div className="orb orb-purple top-[5%] right-[10%] w-[450px] h-[450px]" />
+      <div className="orb orb-cyan bottom-[10%] left-[5%] w-[350px] h-[350px]" />
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="text-center mb-8 sm:mb-16">
@@ -50,7 +53,7 @@ export default function FeaturesGrid() {
           {features.map((feature, i) => (
             <div
               key={i}
-              className="group bg-surface border border-border rounded-card-lg p-6 shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200"
+              className="group glass-card rounded-card-lg p-6 shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200"
             >
               <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-accent-subtle border border-accent/15 text-accent mb-4 group-hover:bg-accent-light transition-colors duration-200">
                 <feature.icon className="w-5 h-5" />

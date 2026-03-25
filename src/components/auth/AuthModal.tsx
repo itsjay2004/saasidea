@@ -212,7 +212,7 @@ export default function AuthModal({ onClose }: AuthModalProps) {
                     Get Instant Access to 1000+ Validated SaaS Ideas
                     </h2>
                     <p className="text-sm text-text-muted leading-relaxed mb-6">
-                      Built from real customer complaints &amp; pain points.
+                      Built products people actually need.
                     </p>
                   </>
                 ) : (

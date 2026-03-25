@@ -73,10 +73,9 @@ export default function NicheGrid({ industries }: NicheGridProps) {
   const totalIdeas = industries.reduce((sum, i) => sum + i.count, 0)
 
   return (
-    <section className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-surface-alt" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-accent/[0.04] blur-[120px] pointer-events-none" />
+    <section className="relative py-20 sm:py-28 overflow-hidden bg-surface-alt section-mesh">
+      <div className="orb orb-violet top-[5%] right-[10%] w-[500px] h-[500px]" />
+      <div className="orb orb-pink bottom-[10%] left-[5%] w-[400px] h-[400px]" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -97,7 +96,7 @@ export default function NicheGrid({ industries }: NicheGridProps) {
 
         {/* Headline stat */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex items-center gap-6 sm:gap-10 px-7 py-4 bg-surface border border-border rounded-2xl shadow-card">
+          <div className="inline-flex items-center gap-6 sm:gap-10 px-7 py-4 glass-card rounded-2xl shadow-card">
             <div className="text-center">
               <p className="text-2xl sm:text-3xl font-bold font-heading text-text-primary tracking-tight">{totalIdeas.toLocaleString()}+</p>
               <p className="text-xs text-text-muted mt-0.5">Total ideas</p>
@@ -127,7 +126,7 @@ export default function NicheGrid({ industries }: NicheGridProps) {
               <CrawlableLink
                 key={industry}
                 href={`/ideas?industry=${encodeURIComponent(industry)}`}
-                className={`group relative flex flex-col bg-surface border border-border rounded-2xl p-4 sm:p-5 ring-2 ring-transparent ${colors.ring} hover:shadow-card-md hover:-translate-y-1 transition-all duration-250 overflow-hidden`}
+                className={`group relative flex flex-col glass-card rounded-2xl p-4 sm:p-5 ring-2 ring-transparent ${colors.ring} hover:shadow-card-md hover:-translate-y-1 transition-all duration-250 overflow-hidden`}
               >
                 {/* Hover glow */}
                 <div className={`absolute -top-8 -right-8 w-24 h-24 ${colors.bg} rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />

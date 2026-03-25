@@ -40,8 +40,11 @@ export default function Pricing() {
 
   return (
     <>
-      <section id="pricing" className="py-14 sm:py-24 bg-background">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="pricing" className="relative py-14 sm:py-24 bg-background section-glow overflow-hidden">
+        <div className="orb orb-violet top-[10%] left-1/2 -translate-x-1/2 w-[700px] h-[500px]" />
+        <div className="orb orb-pink bottom-[5%] right-[10%] w-[350px] h-[350px]" />
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Header */}
           <div className="text-center mb-8 sm:mb-14">
@@ -52,10 +55,10 @@ export default function Pricing() {
           </div>
 
           {/* Two-column pricing card */}
-          <div className="relative rounded-2xl overflow-hidden bg-surface border border-border shadow-card-lg">
+          <div className="relative rounded-2xl overflow-hidden glass-card shadow-card-lg">
 
-            {/* Subtle top accent bar */}
-            <div className="h-1 w-full bg-gradient-to-r from-accent via-purple-400 to-accent opacity-70" />
+            {/* Top accent bar */}
+            <div className="h-1 w-full bg-gradient-to-r from-violet-500 via-pink-500 to-amber-400" />
 
             <div className="grid grid-cols-1 md:grid-cols-2">
 
@@ -115,7 +118,7 @@ export default function Pricing() {
               </div>
 
               {/* ── Right column: benefits ── */}
-              <div className="flex flex-col justify-center p-6 sm:p-10 md:p-12 bg-surface-alt border-t md:border-t-0 border-border">
+              <div className="flex flex-col justify-center p-6 sm:p-10 md:p-12 bg-surface-alt/50 backdrop-blur-sm border-t md:border-t-0 border-border">
                 <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-text-subtle mb-7">
                   Everything you need to succeed, including:
                 </p>

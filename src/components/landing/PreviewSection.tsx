@@ -86,7 +86,7 @@ function IdeaCardPreview({ idea }: { idea: Idea }) {
   const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
 
   return (
-    <div className="group relative bg-surface border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200">
+    <div className="group relative glass-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200">
 
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -169,7 +169,7 @@ function LockedCard({ idea }: { idea: Idea }) {
   const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
 
   return (
-    <div className="relative bg-surface border border-border rounded-2xl overflow-hidden shadow-card">
+    <div className="relative glass-card rounded-2xl overflow-hidden shadow-card">
       <div className="p-5 select-none pointer-events-none" aria-hidden>
 
         <div className="flex items-center justify-between gap-3 mb-3">
@@ -218,7 +218,7 @@ function LockedCard({ idea }: { idea: Idea }) {
         </div>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/92 to-surface/10 flex flex-col items-center justify-end pb-8 gap-3">
+      <div className="absolute inset-0 bg-accent/40 from-surface via-surface/92 to-surface/10 flex flex-col items-center justify-end pb-8 gap-3">
         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-surface border border-border shadow-card">
           <Lock className="w-4 h-4 text-text-subtle" />
         </div>
@@ -236,8 +236,12 @@ export default function PreviewSection({ ideas, lockedIdeas }: PreviewSectionPro
   if (ideas.length === 0) return null
 
   return (
-    <section id="preview" className="py-14 sm:py-24 bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="preview" className="relative py-14 sm:py-24 bg-background section-glow overflow-hidden">
+      <div className="orb orb-purple top-[8%] left-[-3%] w-[450px] h-[450px]" />
+      <div className="orb orb-cyan bottom-[5%] right-[5%] w-[400px] h-[400px]" />
+      <div className="orb orb-violet top-[50%] right-[-5%] w-[350px] h-[350px]" />
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-8 sm:mb-14">
           <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Preview</p>
@@ -260,8 +264,8 @@ export default function PreviewSection({ ideas, lockedIdeas }: PreviewSectionPro
           ))}
         </div>
 
-        <div className="relative overflow-hidden bg-accent-subtle dark:bg-accent-light/20 border border-accent/20 rounded-2xl p-5 sm:p-8 text-center">
-          <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5 pointer-events-none" />
+        <div className="relative overflow-hidden rounded-2xl border border-accent/25 bg-accent-light p-5 sm:p-8 text-center dark:border-accent/30 dark:bg-accent-light/25">
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-accent/12 dark:from-accent/10 dark:via-transparent dark:to-accent/20" />
           <p className="font-heading text-lg sm:text-xl font-bold text-text-primary mb-1.5 relative">
             You&apos;re seeing {ideas.length} of 1,200+ ideas
           </p>

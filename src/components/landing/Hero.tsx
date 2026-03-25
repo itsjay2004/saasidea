@@ -43,27 +43,28 @@ export default function Hero() {
       />
 
       {/* Ambient glow orbs */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-accent/8 dark:bg-accent/12 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-40 right-[15%] w-[280px] h-[280px] bg-purple-400/8 dark:bg-purple-500/10 rounded-full blur-[80px] pointer-events-none" />
-      <div className="absolute top-60 left-[12%] w-[220px] h-[220px] bg-violet-400/6 dark:bg-violet-600/8 rounded-full blur-[70px] pointer-events-none" />
+      <div className="orb orb-violet top-[-5%] left-1/2 -translate-x-1/2 w-[800px] h-[500px]" />
+      <div className="orb orb-pink top-[15%] right-[5%] w-[400px] h-[400px]" />
+      <div className="orb orb-blue top-[25%] left-[5%] w-[350px] h-[350px]" />
+      <div className="orb orb-purple bottom-[10%] left-1/2 -translate-x-1/2 w-[600px] h-[300px]" />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-24 text-center">
+      <div className="relative mx-auto w-full min-w-0 max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-24 text-center">
 
         {/* Badge */}
-        <div className="animate-fade-in-up inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-accent-subtle dark:bg-accent-light/30 border border-accent/20 text-accent text-xs sm:text-sm font-medium mb-6 sm:mb-8">
+        <div className="animate-fade-in-up inline-flex max-w-full min-w-0 flex-wrap items-center justify-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white dark:bg-accent-light/30 border border-border text-accent text-xs sm:text-sm font-medium mb-6 sm:mb-8">
           <span className="w-2 h-2 rounded-full bg-success animate-pulse-dot" />
           1,200+ Validated Ideas &bull; Updated Monthly
         </div>
 
         {/* Headline */}
-        <h1 className="animate-fade-in-up delay-100 font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary leading-[1.08] tracking-tight mb-6 text-balance">
+        <h1 className="animate-fade-in-up delay-100 font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary leading-[1.08] tracking-tight mb-6 break-words text-balance">
           Stop Guessing.<br />
           Start Building Ideas<br />
           <span className="text-gradient">People Actually Want.</span>
         </h1>
 
         {/* Subheadline */}
-        <p className="animate-fade-in-up delay-200 max-w-xl mx-auto text-text-muted text-base leading-[1.6rem] sm:text-[1.2rem] sm:leading-[1.8rem] mb-10">
+        <p className="animate-fade-in-up delay-200 mx-auto mb-10 max-w-xl min-w-0 text-pretty break-words text-base leading-[1.6rem] text-text-muted sm:text-[1.2rem] sm:leading-[1.8rem]">
           1,200+ pain-driven SaaS ideas across 100s of niches.
           Each idea includes MRR potential, build time, competition level,
           and keyword data. One-time payment. Lifetime access.
@@ -108,12 +109,12 @@ export default function Hero() {
         <div className="animate-fade-in-up delay-500">
 
           {/* Mobile: continuous auto-scroll marquee */}
-          <div className="sm:hidden overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+          <div className="min-w-0 sm:hidden overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
             <div className="flex gap-4 animate-marquee hover:[animation-play-state:paused] w-max">
               {[...CARDS, ...CARDS].map((card, i) => (
                 <div
                   key={i}
-                  className="w-[72vw] max-w-[260px] flex-shrink-0 bg-surface border border-border rounded-card-lg p-5 text-left shadow-card-md"
+                  className="w-[72vw] max-w-[260px] flex-shrink-0 glass-card rounded-card-lg p-5 text-left shadow-card-md"
                 >
                   <div className="flex items-center gap-2 mb-3">
                     <span className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${card.industryColor}`}>
@@ -139,7 +140,7 @@ export default function Hero() {
             {CARDS.map((card, i) => (
               <div
                 key={i}
-                className={`${floatClasses[i]} bg-surface border border-border rounded-card-lg p-5 text-left shadow-card-md hover:shadow-card-lg hover:border-border-light transition-all duration-300`}
+                className={`${floatClasses[i]} glass-card rounded-card-lg p-5 text-left shadow-card-md hover:shadow-card-lg hover:border-border-light transition-all duration-300`}
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${card.industryColor}`}>

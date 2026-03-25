@@ -23,8 +23,11 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-14 sm:py-24 bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-14 sm:py-24 bg-background section-glow">
+      <div className="orb orb-violet top-[10%] left-[-5%] w-[500px] h-[500px]" />
+      <div className="orb orb-blue bottom-[5%] right-[-5%] w-[400px] h-[400px]" />
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="text-center mb-10 sm:mb-16">
@@ -42,7 +45,7 @@ export default function HowItWorks() {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="relative bg-surface border border-border rounded-card-lg p-5 sm:p-8 text-center shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200 z-10"
+              className="relative glass-card rounded-card-lg p-5 sm:p-8 text-center shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200 z-10"
             >
               {/* Step number top-right */}
               <span className="absolute top-4 right-5 text-[11px] font-mono font-semibold text-accent/50">

@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
 import {
   ArrowRight,
   CheckCircle,
@@ -55,6 +56,7 @@ export default async function DashboardPage({ searchParams }: PageProps) {
 
       {/* ─── Header ─── */}
       <div className="flex items-start justify-between gap-4 mb-10">
+        {/* Left side: Title */}
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-accent text-white flex items-center justify-center text-xl font-bold shadow-accent shrink-0">
             {initial}
@@ -66,8 +68,16 @@ export default async function DashboardPage({ searchParams }: PageProps) {
             <p className="text-sm text-text-muted mt-0.5">{user.email}</p>
           </div>
         </div>
-        <LogoutButton />
+
+        {/* Right Side: Action */}
+        <div className="flex items-center gap-3">
+          <ThemeSwitcher />
+          <LogoutButton />
+        </div>
+
       </div>
+
+
 
       {/* ─── Payment success banner ─── */}
       {justPaid && (

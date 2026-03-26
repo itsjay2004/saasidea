@@ -235,10 +235,33 @@ export default async function IdeaPage({ params }: PageProps) {
                     />
                   </div>
                 )}
+
+                {/* Entry Opportunity Keywords - List all keywords */}
+                <div className="bg-surface border border-border rounded-2xl p-6 mt-4">
+                  <p className="text-[14px] text-text-muted leading-relaxed mb-5">
+                    These are the search terms your target users are actively looking for.
+                    Use them as starting points for your landing page copy, content strategy, and SEO efforts.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {idea.keywords.map((kw) => (
+                      <span
+                        key={kw}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium bg-accent-subtle dark:bg-accent/10 text-accent border border-accent/20"
+                      >
+                        <Search className="w-3 h-3 shrink-0 opacity-60" />
+                        {kw}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-[12px] text-text-subtle flex items-center gap-1.5 border-t border-border/60 pt-4">
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0 opacity-70" />
+                    Do you know, SEO give the highest ROI of all marketing channels.
+                  </p>
+                </div>
               </section>
             )}
 
-            {/* Keywords — raw strings only (entry opportunities) */}
+            {/* Keywords — raw strings only (entry opportunities), list all keywords*/}
             {hasRawKeywords && (
               <section>
                 <SectionLabel icon={Target} label="Entry Opportunity Keywords" />
@@ -260,7 +283,7 @@ export default async function IdeaPage({ params }: PageProps) {
                   </div>
                   <p className="text-[12px] text-text-subtle flex items-center gap-1.5 border-t border-border/60 pt-4">
                     <AlertCircle className="w-3.5 h-3.5 shrink-0 opacity-70" />
-                    Search volume &amp; competition data not yet analyzed for this idea.
+                    Do you know, SEO give the highest ROI of all marketing channels.
                   </p>
                 </div>
               </section>

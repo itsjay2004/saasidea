@@ -42,11 +42,11 @@ export default function TrendChart({ data, trend }: TrendChartProps) {
           />
           <Tooltip
             contentStyle={{
-              backgroundColor: '#1F2937',
+              backgroundColor: '#f1fff1',
               border: '1px solid #374151',
               borderRadius: '8px',
               fontSize: '12px',
-              color: '#F9FAFB',
+              color: '#000000',
             }}
             formatter={(value) => [Number(value).toLocaleString(), 'Searches']}
           />

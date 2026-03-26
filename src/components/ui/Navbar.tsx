@@ -81,7 +81,7 @@ export default function Navbar() {
                 </Link>
               ) : (
                 <Button size="sm" onClick={handleCTA}>
-                  Get Lifetime Access
+                  Login / Signup
                 </Button>
               )}
             </div>

@@ -26,11 +26,11 @@ export default function SortDropdown() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full sm:w-auto">
       <select
         value={current}
         onChange={(e) => handleChange(e.target.value)}
-        className="appearance-none bg-surface-2 border border-border rounded-button px-4 py-2 pr-8 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/50"
+        className="w-full sm:w-auto appearance-none bg-surface-2 border border-border rounded-button px-4 py-2 pr-8 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/50"
       >
         {sortOptions.map((opt) => (
           <option key={opt.value} value={opt.value}>{opt.label}</option>

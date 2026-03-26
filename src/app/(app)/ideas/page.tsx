@@ -53,19 +53,21 @@ export default async function IdeasPage({ searchParams }: PageProps) {
   const industryNames = industriesData.map((i) => i.industry)
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="mb-6">
-        <h1 className="font-heading text-3xl font-bold text-text-primary mb-2">SaaS Idea Library</h1>
-        <p className="text-text-muted">Browse {total > 0 ? total.toLocaleString() : '1,200+'} validated ideas</p>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="font-heading text-2xl sm:text-3xl font-bold text-text-primary mb-2">SaaS Idea Library</h1>
+        <p className="text-sm sm:text-base text-text-muted">
+          Browse {total > 0 ? total.toLocaleString() : '1,200+'} validated ideas
+        </p>
       </div>
 
-      <div className="mb-6 max-w-md">
+      <div className="mb-5 sm:mb-6 max-w-full sm:max-w-md">
         <Suspense fallback={<div className="h-10 bg-surface-2 rounded-button animate-pulse" />}>
           <SearchBar />
         </Suspense>
       </div>
 
-      <div className="flex gap-8">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
         <Suspense fallback={<div className="hidden lg:block w-60 shrink-0" />}>
           <FilterBar
             industries={industryNames}
@@ -80,13 +82,15 @@ export default async function IdeasPage({ searchParams }: PageProps) {
         </Suspense>
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5 sm:mb-6">
             <p className="text-sm text-text-muted">
               {total > 0 ? `${total.toLocaleString()} ideas found` : 'No ideas found'}
             </p>
-            <Suspense fallback={<div className="w-32 h-9 bg-surface-2 rounded-button animate-pulse" />}>
-              <SortDropdown />
-            </Suspense>
+            <div className="w-full sm:w-auto">
+              <Suspense fallback={<div className="w-full sm:w-32 h-9 bg-surface-2 rounded-button animate-pulse" />}>
+                <SortDropdown />
+              </Suspense>
+            </div>
           </div>
 
           <IdeaGrid ideas={ideas} hasAccess={userHasAccess} />

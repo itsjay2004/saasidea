@@ -54,11 +54,13 @@ export default function FilterBar({ industries, currentFilters }: FilterBarProps
   const FilterContent = () => (
     <div className="space-y-6">
       <FilterSection title="Industry">
-        <FilterRadio
-          options={['All', ...industries]}
-          selected={currentFilters.industry || 'All'}
-          onChange={(v) => updateFilter('industry', v === 'All' ? undefined : v)}
-        />
+        <div className="max-h-56 overflow-y-auto pr-1">
+          <FilterRadio
+            options={['All', ...industries]}
+            selected={currentFilters.industry || 'All'}
+            onChange={(v) => updateFilter('industry', v === 'All' ? undefined : v)}
+          />
+        </div>
       </FilterSection>
 
       <FilterSection title="Difficulty">
@@ -128,7 +130,7 @@ export default function FilterBar({ industries, currentFilters }: FilterBarProps
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
-          <div className="absolute bottom-0 left-0 right-0 bg-surface border-t border-border rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto">
+          <div className="absolute bottom-0 left-0 right-0 bg-surface-alt border-t border-border rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <h3 className="font-bold text-text-primary">Filters</h3>
               <button onClick={() => setMobileOpen(false)}>
@@ -177,11 +179,10 @@ function FilterRadio({
         <button
           key={option}
           onClick={() => onChange(option)}
-          className={`block w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
-            selected === option
+          className={`block w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${selected === option
               ? 'bg-accent/10 text-accent font-medium'
               : 'text-text-muted hover:bg-surface-2'
-          }`}
+            }`}
         >
           {option}
         </button>

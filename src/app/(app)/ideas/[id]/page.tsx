@@ -49,7 +49,7 @@ export default async function IdeaPage({ params }: PageProps) {
 
   const TrendIcon =
     idea.primary_keyword?.search_trend === 'growing' ? TrendingUp :
-    idea.primary_keyword?.search_trend === 'declining' ? TrendingDown : Minus
+      idea.primary_keyword?.search_trend === 'declining' ? TrendingDown : Minus
 
   const compLabel = idea.competition_level === 'low' ? 'Low' : idea.competition_level === 'medium' ? 'Medium' : 'High'
   const compFilled = idea.competition_level === 'low' ? 1 : idea.competition_level === 'medium' ? 2 : 3
@@ -57,13 +57,13 @@ export default async function IdeaPage({ params }: PageProps) {
   const compTextColor = idea.competition_level === 'low'
     ? 'text-emerald-700 dark:text-emerald-400'
     : idea.competition_level === 'medium'
-    ? 'text-amber-700 dark:text-amber-400'
-    : 'text-red-700 dark:text-red-400'
+      ? 'text-amber-700 dark:text-amber-400'
+      : 'text-red-700 dark:text-red-400'
   const compDescription = idea.competition_level === 'low'
     ? 'Low competition — a good window to enter this market early.'
     : idea.competition_level === 'medium'
-    ? 'Moderate competition — differentiation will be key to success.'
-    : 'High competition — a strong niche or unique angle is essential.'
+      ? 'Moderate competition — differentiation will be key to success.'
+      : 'High competition — a strong niche or unique angle is essential.'
 
   const hasVolumeData = idea.all_keywords && idea.all_keywords.length > 0
   const hasRawKeywords = !hasVolumeData && idea.keywords && idea.keywords.length > 0
@@ -71,8 +71,8 @@ export default async function IdeaPage({ params }: PageProps) {
   const kwsWithCpc = hasVolumeData ? idea.all_keywords.filter(k => k.cpc != null) : []
   const bestEntry = hasVolumeData
     ? idea.all_keywords
-        .filter(k => k.competition_index != null)
-        .sort((a, b) => (a.competition_index || 999) - (b.competition_index || 999))[0]
+      .filter(k => k.competition_index != null)
+      .sort((a, b) => (a.competition_index || 999) - (b.competition_index || 999))[0]
     : null
 
   return (
@@ -202,7 +202,7 @@ export default async function IdeaPage({ params }: PageProps) {
                 <SectionLabel icon={Search} label="Keyword Opportunities" />
 
                 {/* Stats row */}
-                <div className="grid grid-cols-3 gap-3 mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
                   <StatTile
                     label="Total Search Pool"
                     value={formatNumber(idea.all_keywords.reduce((s, k) => s + (k.search_volume || 0), 0)) + '/mo'}
@@ -219,13 +219,13 @@ export default async function IdeaPage({ params }: PageProps) {
                 </div>
 
                 {/* Keyword table */}
-                <div className="bg-surface border border-border rounded-2xl overflow-hidden mb-4">
+                <div className="bg-surface border border-border rounded-2xl overflow-hidden mb-4 -mx-4 sm:mx-0">
                   <KeywordTable keywords={idea.all_keywords} />
                 </div>
 
                 {/* Trend chart */}
                 {idea.primary_keyword?.monthly_searches && idea.primary_keyword.monthly_searches.length > 0 && (
-                  <div className="bg-surface border border-border rounded-2xl p-5">
+                  <div className="bg-surface border border-border rounded-2xl p-4 sm:p-5 overflow-hidden">
                     <p className="text-sm font-semibold text-text-primary mb-4">
                       Search Trend: &ldquo;{idea.primary_keyword.keyword}&rdquo;
                     </p>
@@ -344,7 +344,7 @@ export default async function IdeaPage({ params }: PageProps) {
         <div className="mt-16 pt-10 border-t border-border">
           <div className="flex items-center justify-between mb-6">
             <h2 className="font-heading text-xl font-bold text-text-primary">
-              More in <span className="text-accent">{idea.niche}</span>
+              More in <span className="text-gradient">{idea.niche}</span>
             </h2>
             <Link
               href={`/ideas?industry=${encodeURIComponent(idea.industry)}`}
@@ -387,11 +387,10 @@ function MetricRow({
         <Icon className="w-3.5 h-3.5 text-text-subtle shrink-0" />
         <span className="text-[13px] text-text-muted truncate">{label}</span>
       </div>
-      <span className={`text-right shrink-0 ${
-        highlight
+      <span className={`text-right shrink-0 ${highlight
           ? 'text-[14px] font-bold text-accent'
           : 'text-[13px] font-semibold text-text-primary'
-      }`}>
+        }`}>
         {value}
       </span>
     </div>
@@ -400,9 +399,9 @@ function MetricRow({
 
 function StatTile({ label, value, small }: { label: string; value: string; small?: boolean }) {
   return (
-    <div className="bg-surface border border-border rounded-xl p-4">
-      <p className="text-[11px] text-text-subtle uppercase tracking-wider mb-1.5 font-medium leading-tight">{label}</p>
-      <p className={`font-bold text-text-primary truncate ${small ? 'text-[13px]' : 'text-base'}`}>{value}</p>
+    <div className="bg-surface border border-border rounded-xl p-3 sm:p-4">
+      <p className="text-[10px] sm:text-[11px] text-text-subtle uppercase tracking-wider mb-1.5 font-medium leading-tight">{label}</p>
+      <p className={`font-bold text-text-primary break-words ${small ? 'text-[13px]' : 'text-sm sm:text-base'}`}>{value}</p>
     </div>
   )
 }

@@ -28,7 +28,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!idea) return { title: 'Idea Not Found — SaaSIdea Pro' }
   return {
     title: `${idea.title} — SaaS Idea | SaaSIdea Pro`,
-    description: idea.tagline,
+    description: `${idea.tagline} View MRR potential, build time, competition, and keyword data.`,
+    alternates: {
+      canonical: `/ideas/${id}`,
+    },
+    openGraph: {
+      title: `${idea.title} — SaaS Idea | SaaSIdea Pro`,
+      description: `${idea.tagline} View MRR potential, build time, competition, and keyword data.`,
+      url: `/ideas/${id}`,
+      siteName: 'SaaSIdea Pro',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${idea.title} — SaaS Idea | SaaSIdea Pro`,
+      description: `${idea.tagline} View MRR potential, build time, competition, and keyword data.`,
+    },
   }
 }
 

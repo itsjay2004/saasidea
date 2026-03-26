@@ -9,9 +9,33 @@ import SortDropdown from '@/components/ideas/SortDropdown'
 import Pagination from '@/components/ideas/Pagination'
 import type { Filters } from '@/types'
 
-export const metadata: Metadata = {
-  title: 'Browse SaaS Ideas Library — SaaSIdea Pro',
-  description: 'Browse 1,200+ validated SaaS ideas. Filter by industry, difficulty, MRR potential, and competition level.',
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const sp = await searchParams
+  const hasFilters = Boolean(
+    sp.industry ||
+    sp.difficulty ||
+    sp.competition ||
+    sp.mrr_range ||
+    sp.pricing_model ||
+    sp.search ||
+    sp.sort ||
+    (sp.page && sp.page !== '1')
+  )
+
+  return {
+    title: hasFilters
+      ? 'Filtered SaaS Ideas Library — SaaSIdea Pro'
+      : 'Browse SaaS Ideas Library — SaaSIdea Pro',
+    description: hasFilters
+      ? 'Explore validated SaaS ideas filtered by industry, difficulty, MRR potential, pricing model, and competition level.'
+      : 'Browse 1,200+ validated SaaS ideas. Filter by industry, difficulty, MRR potential, pricing model, and competition level.',
+    alternates: {
+      canonical: '/ideas',
+    },
+    robots: hasFilters
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
+  }
 }
 
 interface PageProps {

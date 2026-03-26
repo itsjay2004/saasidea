@@ -25,6 +25,10 @@ import Footer from '@/components/landing/Footer'
 
 export const metadata: Metadata = {
   title: 'Dashboard — SaaSIdea Pro',
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 interface PageProps {

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Newsreader, DM_Sans } from 'next/font/google'
 import './globals.css'
+import RouteTransitionLoader from '@/components/ui/RouteTransitionLoader'
 
 const newsreader = Newsreader({
   subsets: ['latin'],
@@ -17,12 +18,15 @@ const dmSans = DM_Sans({
 const themeInitScript = `(function(){try{var s=localStorage.getItem('theme');var d=document.documentElement;if(s==='light')d.classList.remove('dark');else d.classList.add('dark');}catch(e){}})();`
 
 export const metadata: Metadata = {
-  title: 'SaaSIdea Pro — 1,200+ Validated SaaS Ideas for Founders',
+  title: '1,200+ Validated SaaS Ideas for Founders | SaaSIdea Pro',
   description:
-    'Browse 1,200+ pain-driven SaaS ideas across 100+ niches. Each idea includes MRR potential, build time, competition data, and keyword research. All in One-time payment.',
+    'Browse 1,200+ pain-driven SaaS ideas across 100+ niches. Each idea includes MRR potential, build time, competition data, and keyword research. One-time payment, lifetime access.',
   metadataBase: new URL('https://saasidea.pro'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'SaaSIdea Pro — 1,200+ Validated SaaS Ideas for Founders',
+    title: '1,200+ Validated SaaS Ideas for Founders | SaaSIdea Pro',
     description:
       'Browse 1,200+ pain-driven SaaS ideas across 100+ niches. MRR potential, build time, competition data, and keyword research included.',
     url: 'https://saasidea.pro',
@@ -31,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SaaSIdea Pro — 1,200+ Validated SaaS Ideas for Founders',
+    title: '1,200+ Validated SaaS Ideas for Founders | SaaSIdea Pro',
     description: 'Browse 1,200+ pain-driven SaaS ideas across 100+ niches.',
   },
 }
@@ -47,6 +51,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className={`${newsreader.variable} ${dmSans.variable} antialiased`}>
+        <RouteTransitionLoader />
         {children}
       </body>
     </html>

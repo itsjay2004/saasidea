@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Lock, ArrowRight, Sparkles, Search } from 'lucide-react'
+import { Lock, ArrowRight, Sparkles, Search, Lightbulb } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import CrawlableLink from './CrawlableLink'
 import { INDUSTRY_COLORS, DIFFICULTY_STYLES, formatMrrShort, formatBuildTime, formatNumber } from '@/lib/utils'
@@ -12,16 +12,16 @@ interface PreviewSectionProps {
 
 function CompetitionSegments({ level }: { level: string }) {
   const filled = level === 'low' ? 1 : level === 'medium' ? 2 : 3
-  const color  = level === 'low'
+  const color = level === 'low'
     ? 'bg-emerald-500'
     : level === 'medium'
-    ? 'bg-amber-400'
-    : 'bg-red-500'
+      ? 'bg-amber-400'
+      : 'bg-red-500'
   const labelColor = level === 'low'
     ? 'text-emerald-700 dark:text-emerald-400'
     : level === 'medium'
-    ? 'text-amber-700 dark:text-amber-400'
-    : 'text-red-700 dark:text-red-400'
+      ? 'text-amber-700 dark:text-amber-400'
+      : 'text-red-700 dark:text-red-400'
   const label = level === 'low' ? 'Low' : level === 'medium' ? 'Medium' : 'High'
 
   return (
@@ -37,8 +37,10 @@ function CompetitionSegments({ level }: { level: string }) {
 }
 
 function KeywordDisplay({ idea }: { idea: Idea }) {
-  if (idea.primary_keyword) {
-    const vol = idea.primary_keyword.search_volume
+  const highestVolumeKeyword = idea.primary_keyword
+
+  if (highestVolumeKeyword) {
+    const vol = highestVolumeKeyword.search_volume
     return (
       <div className="flex items-start gap-2">
         <Search className="w-3.5 h-3.5 text-text-subtle mt-0.5 shrink-0" />
@@ -48,12 +50,12 @@ function KeywordDisplay({ idea }: { idea: Idea }) {
               <span className="text-[13px] font-bold text-text-primary">{formatNumber(vol)}/mo</span>
               <span className="text-[11px] text-text-subtle ml-1.5">searches</span>
               <div className="text-[11px] text-text-muted mt-0.5 truncate max-w-[160px]">
-                &ldquo;{idea.primary_keyword.keyword}&rdquo;
+                &ldquo;{highestVolumeKeyword.keyword}&rdquo;
               </div>
             </>
           ) : (
             <span className="text-[13px] font-semibold text-text-primary truncate max-w-[160px]">
-              &ldquo;{idea.primary_keyword.keyword}&rdquo;
+              &ldquo;{highestVolumeKeyword.keyword}&rdquo;
             </span>
           )}
         </div>
@@ -82,7 +84,7 @@ function KeywordDisplay({ idea }: { idea: Idea }) {
 }
 
 function IdeaCardPreview({ idea }: { idea: Idea }) {
-  const ind  = INDUSTRY_COLORS[idea.industry]          || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
+  const ind = INDUSTRY_COLORS[idea.industry] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
   const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
 
   return (
@@ -124,9 +126,9 @@ function IdeaCardPreview({ idea }: { idea: Idea }) {
         <div className="border-t border-border/60 pt-4">
           <div className="grid grid-cols-3 gap-3 mb-4">
             {[
-              { label: 'MRR Est.',  value: formatMrrShort(idea.mrr_potential.min, idea.mrr_potential.max) },
-              { label: 'Build',     value: formatBuildTime(idea.build_time_weeks.min, idea.build_time_weeks.max) },
-              { label: 'Price',     value: `$${idea.suggested_price.amount}/${idea.suggested_price.interval}` },
+              { label: 'MRR Est.', value: formatMrrShort(idea.mrr_potential.min, idea.mrr_potential.max) },
+              { label: 'Build', value: formatBuildTime(idea.build_time_weeks.min, idea.build_time_weeks.max) },
+              { label: 'Price', value: `$${idea.suggested_price.amount}/${idea.suggested_price.interval}` },
             ].map(({ label, value }) => (
               <div key={label}>
                 <div className="text-[10px] uppercase tracking-widest text-text-subtle mb-1 font-semibold">{label}</div>
@@ -165,7 +167,7 @@ function IdeaCardPreview({ idea }: { idea: Idea }) {
 }
 
 function LockedCard({ idea }: { idea: Idea }) {
-  const ind  = INDUSTRY_COLORS[idea.industry]          || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
+  const ind = INDUSTRY_COLORS[idea.industry] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
   const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
 
   return (
@@ -206,7 +208,7 @@ function LockedCard({ idea }: { idea: Idea }) {
               <div>
                 <div className="text-[10px] uppercase tracking-widest text-text-subtle mb-1.5 font-semibold">Competition</div>
                 <div className="flex gap-[3px]">
-                  {[1,2,3].map(i => <div key={i} className="w-5 h-[5px] rounded-sm bg-border" />)}
+                  {[1, 2, 3].map(i => <div key={i} className="w-5 h-[5px] rounded-sm bg-border" />)}
                 </div>
               </div>
               <div>
@@ -244,7 +246,10 @@ export default function PreviewSection({ ideas, lockedIdeas }: PreviewSectionPro
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-8 sm:mb-14">
-          <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Preview</p>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-subtle border border-accent/15 text-xs font-semibold text-accent tracking-wide uppercase mb-5">
+            <Lightbulb className="w-3.5 h-3.5" />
+            PREVIEW
+          </div>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary mb-4">
             A Glimpse of What&apos;s Inside
           </h2>

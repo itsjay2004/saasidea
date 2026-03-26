@@ -160,6 +160,10 @@ Join table between ideas and keywords.
 | `keyword_id` | int     |
 | `is_primary` | boolean |
 
+Keyword data display on idea cards show data of the highest search volume keyword for that idea. However, the idea details flow (`getIdeaById` in /ideas/[id] page) still uses `is_primary` to choose `primary_keyword` and drive trend-related UI (trend badge/chart) and sorting of the keywords list.  
+If multiple keywords are marked `is_primary=true` for one idea, behavior is ambiguous and sorting happens based on search volume/order.
+
+
 ### `purchases`
 Payment records created by the Dodo webhook.
 

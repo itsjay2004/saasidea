@@ -1,6 +1,6 @@
 'use client'
 
-import { Check, Zap, ShieldCheck, ArrowRight } from 'lucide-react'
+import { Check, Zap, ShieldCheck, ArrowRight, Leaf } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import { createClient } from '@/lib/supabase/client'
 import { getCheckoutUrl } from '@/lib/dodo'
@@ -11,17 +11,17 @@ import type { User } from '@supabase/supabase-js'
 
 const benefits = [
   '1,200+ pain-driven SaaS ideas',
-  '15 industries, 75 niches',
+  '15 industries, 100+ niches',
   'MRR potential + build time on every idea',
   'Competition level + difficulty rating',
   'Keyword data where available',
   'New ideas added regularly',
   'Lifetime access — no subscription',
-  '30-day money back guarantee',
+  '15-day money back guarantee',
 ]
 
 export default function Pricing() {
-  const [user, setUser]         = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [showAuth, setShowAuth] = useState(false)
 
   useEffect(() => {
@@ -48,7 +48,10 @@ export default function Pricing() {
 
           {/* Header */}
           <div className="text-center mb-8 sm:mb-14">
-            <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Simple Pricing</p>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-subtle border border-accent/50 dark:border-blue-800 text-xs font-semibold text-accent tracking-wide uppercase mb-5">
+              <Leaf className="w-3.5 h-3.5" />
+              SIMPLE PRICING
+            </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
               One Price. Everything Included. Forever.
             </h2>
@@ -110,9 +113,9 @@ export default function Pricing() {
                   </Button>
 
                   {/* Trust line */}
-                  <div className="flex items-center gap-2 mt-5 text-xs text-text-subtle">
-                    <ShieldCheck className="w-3.5 h-3.5 text-success flex-shrink-0" />
-                    Secure checkout · 30-day money-back guarantee
+                  <div className="flex items-center gap-2 mt-5 text-sm text-text-subtle">
+                    <ShieldCheck className="w-4 h-4 text-success flex-shrink-0" />
+                    Secure checkout · 15-day money-back guarantee
                   </div>
                 </div>
               </div>

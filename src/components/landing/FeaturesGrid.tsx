@@ -1,4 +1,4 @@
-import { Lightbulb, TrendingUp, LayoutGrid, BarChart2, Search, Infinity } from 'lucide-react'
+import { Lightbulb, TrendingUp, LayoutGrid, BarChart2, Search, Infinity, BadgeCheck } from 'lucide-react'
 
 const features = [
   {
@@ -43,7 +43,10 @@ export default function FeaturesGrid() {
 
         {/* Header */}
         <div className="text-center mb-8 sm:mb-16">
-          <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">What You Get</p>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-subtle border border-accent/15 text-xs font-semibold text-accent tracking-wide uppercase mb-5">
+            <BadgeCheck className="w-3.5 h-3.5" />
+            WHAT YOU GET
+          </div>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
             Everything You Need to Find Your Next SaaS
           </h2>

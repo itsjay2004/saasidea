@@ -40,6 +40,20 @@ function mapRawIdea(raw: any): Idea {
   }
 }
 
+function mapHighestVolumeKeyword(raw: any): Keyword | null {
+  const keywords = (raw.keyword_idea_mapping || [])
+    .map((mapping: any) => mapping?.keywords)
+    .filter(Boolean) as Keyword[]
+
+  if (keywords.length === 0) return null
+
+  return keywords.reduce((highest, current) => {
+    const highestVolume = highest.search_volume ?? -1
+    const currentVolume = current.search_volume ?? -1
+    return currentVolume > highestVolume ? current : highest
+  })
+}
+
 export async function getIdeas(filters: Filters): Promise<{
   ideas: Idea[]
   total: number
@@ -118,9 +132,9 @@ export async function getIdeas(filters: Filters): Promise<{
 
   const ideas = (data || []).map((raw: any) => {
     const idea = mapRawIdea(raw)
-    const primaryMapping = raw.keyword_idea_mapping?.find((m: any) => m.is_primary)
-    if (primaryMapping?.keywords) {
-      idea.primary_keyword = primaryMapping.keywords
+    const highestVolumeKeyword = mapHighestVolumeKeyword(raw)
+    if (highestVolumeKeyword) {
+      idea.primary_keyword = highestVolumeKeyword
     }
     return idea
   })
@@ -207,9 +221,9 @@ export async function getIdeasSimple(filters: Filters): Promise<{
 
   const ideas = (data || []).map((raw: any) => {
     const idea = mapRawIdea(raw)
-    const primaryMapping = raw.keyword_idea_mapping?.find((m: any) => m.is_primary)
-    if (primaryMapping?.keywords) {
-      idea.primary_keyword = primaryMapping.keywords
+    const highestVolumeKeyword = mapHighestVolumeKeyword(raw)
+    if (highestVolumeKeyword) {
+      idea.primary_keyword = highestVolumeKeyword
     }
     return idea
   })
@@ -283,13 +297,23 @@ export async function getFreeIdeas(limit: number = 6): Promise<Idea[]> {
       target_audience, "mrr_potential.min", "mrr_potential.max", "mrr_potential.currency",
       "build_time_weeks.min", "build_time_weeks.max", pricing_model,
       "suggested_price.amount", "suggested_price.interval", "suggested_price.currency",
-      complexity, difficulty_label, competition_level, validation_note, is_free, keywords, created_at
+      complexity, difficulty_label, competition_level, validation_note, is_free, keywords, created_at,
+      keyword_idea_mapping(
+        keywords(id, keyword, search_volume, competition, competition_index, cpc, search_trend)
+      )
     `)
     .eq('is_free', true)
     .limit(limit)
 
   if (error || !data) return []
-  return data.map(mapRawIdea)
+  return data.map((raw: any) => {
+    const idea = mapRawIdea(raw)
+    const highestVolumeKeyword = mapHighestVolumeKeyword(raw)
+    if (highestVolumeKeyword) {
+      idea.primary_keyword = highestVolumeKeyword
+    }
+    return idea
+  })
 }
 
 export async function getPaidPreviewIdeas(limit: number = 3): Promise<Idea[]> {
@@ -301,13 +325,23 @@ export async function getPaidPreviewIdeas(limit: number = 3): Promise<Idea[]> {
       target_audience, "mrr_potential.min", "mrr_potential.max", "mrr_potential.currency",
       "build_time_weeks.min", "build_time_weeks.max", pricing_model,
       "suggested_price.amount", "suggested_price.interval", "suggested_price.currency",
-      complexity, difficulty_label, competition_level, validation_note, is_free, keywords, created_at
+      complexity, difficulty_label, competition_level, validation_note, is_free, keywords, created_at,
+      keyword_idea_mapping(
+        keywords(id, keyword, search_volume, competition, competition_index, cpc, search_trend)
+      )
     `)
     .eq('is_free', false)
     .limit(limit)
 
   if (error || !data) return []
-  return data.map(mapRawIdea)
+  return data.map((raw: any) => {
+    const idea = mapRawIdea(raw)
+    const highestVolumeKeyword = mapHighestVolumeKeyword(raw)
+    if (highestVolumeKeyword) {
+      idea.primary_keyword = highestVolumeKeyword
+    }
+    return idea
+  })
 }
 
 export async function getRelatedIdeas(niche: string, excludeId: string, limit: number = 3): Promise<Idea[]> {

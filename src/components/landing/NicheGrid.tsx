@@ -11,57 +11,57 @@ interface NicheGridProps {
 }
 
 const ICON_MAP: Record<string, ElementType> = {
-  'Fintech':           Banknote,
-  'HR & Recruiting':   Users,
+  'Fintech': Banknote,
+  'HR & Recruiting': Users,
   'Health & Wellness': Heart,
-  'Education':         BookOpen,
-  'E-commerce':        ShoppingCart,
-  'B2B SaaS':          Layers,
-  'Legal':             Scale,
-  'Real Estate':       Home,
-  'Creator Economy':   Palette,
-  'Agency':            Briefcase,
-  'Food & Beverage':   UtensilsCrossed,
-  'Travel':            Plane,
-  'Developer Tools':   Code2,
-  'Marketing':         Megaphone,
-  'Productivity':      Zap,
+  'Education': BookOpen,
+  'E-commerce': ShoppingCart,
+  'B2B SaaS': Layers,
+  'Legal': Scale,
+  'Real Estate': Home,
+  'Creator Economy': Palette,
+  'Agency': Briefcase,
+  'Food & Beverage': UtensilsCrossed,
+  'Travel': Plane,
+  'Developer Tools': Code2,
+  'Marketing': Megaphone,
+  'Productivity': Zap,
 }
 
 const COLOR_MAP: Record<string, { icon: string; bg: string; ring: string; badge: string }> = {
-  'Fintech':           { icon: 'text-blue-600 dark:text-blue-400',    bg: 'bg-blue-500/10',    ring: 'group-hover:ring-blue-500/25',    badge: 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/15' },
-  'HR & Recruiting':   { icon: 'text-purple-600 dark:text-purple-400',bg: 'bg-purple-500/10',  ring: 'group-hover:ring-purple-500/25',  badge: 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/15' },
-  'Health & Wellness': { icon: 'text-green-600 dark:text-green-400',  bg: 'bg-green-500/10',   ring: 'group-hover:ring-green-500/25',   badge: 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/15' },
-  'Education':         { icon: 'text-indigo-600 dark:text-indigo-400',bg: 'bg-indigo-500/10',  ring: 'group-hover:ring-indigo-500/25',  badge: 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border-indigo-500/15' },
-  'E-commerce':        { icon: 'text-orange-600 dark:text-orange-400',bg: 'bg-orange-500/10',  ring: 'group-hover:ring-orange-500/25',  badge: 'bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/15' },
-  'B2B SaaS':          { icon: 'text-cyan-600 dark:text-cyan-400',    bg: 'bg-cyan-500/10',    ring: 'group-hover:ring-cyan-500/25',    badge: 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/15' },
-  'Legal':             { icon: 'text-amber-600 dark:text-amber-400',  bg: 'bg-amber-500/10',   ring: 'group-hover:ring-amber-500/25',   badge: 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/15' },
-  'Real Estate':       { icon: 'text-teal-600 dark:text-teal-400',    bg: 'bg-teal-500/10',    ring: 'group-hover:ring-teal-500/25',    badge: 'bg-teal-500/10 text-teal-700 dark:text-teal-300 border-teal-500/15' },
-  'Creator Economy':   { icon: 'text-pink-600 dark:text-pink-400',    bg: 'bg-pink-500/10',    ring: 'group-hover:ring-pink-500/25',    badge: 'bg-pink-500/10 text-pink-700 dark:text-pink-300 border-pink-500/15' },
-  'Agency':            { icon: 'text-violet-600 dark:text-violet-400',bg: 'bg-violet-500/10',  ring: 'group-hover:ring-violet-500/25',  badge: 'bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-500/15' },
-  'Food & Beverage':   { icon: 'text-rose-600 dark:text-rose-400',    bg: 'bg-rose-500/10',    ring: 'group-hover:ring-rose-500/25',    badge: 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/15' },
-  'Travel':            { icon: 'text-sky-600 dark:text-sky-400',      bg: 'bg-sky-500/10',     ring: 'group-hover:ring-sky-500/25',     badge: 'bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-500/15' },
-  'Developer Tools':   { icon: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-500/10', ring: 'group-hover:ring-emerald-500/25', badge: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/15' },
-  'Marketing':         { icon: 'text-fuchsia-600 dark:text-fuchsia-400', bg: 'bg-fuchsia-500/10', ring: 'group-hover:ring-fuchsia-500/25', badge: 'bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300 border-fuchsia-500/15' },
-  'Productivity':      { icon: 'text-lime-600 dark:text-lime-500',    bg: 'bg-lime-500/10',    ring: 'group-hover:ring-lime-500/25',    badge: 'bg-lime-500/10 text-lime-700 dark:text-lime-300 border-lime-500/15' },
+  'Fintech': { icon: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-500/10', ring: 'group-hover:ring-blue-500/25', badge: 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/15' },
+  'HR & Recruiting': { icon: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-500/10', ring: 'group-hover:ring-purple-500/25', badge: 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/15' },
+  'Health & Wellness': { icon: 'text-green-600 dark:text-green-400', bg: 'bg-green-500/10', ring: 'group-hover:ring-green-500/25', badge: 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/15' },
+  'Education': { icon: 'text-indigo-600 dark:text-indigo-400', bg: 'bg-indigo-500/10', ring: 'group-hover:ring-indigo-500/25', badge: 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border-indigo-500/15' },
+  'E-commerce': { icon: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-500/10', ring: 'group-hover:ring-orange-500/25', badge: 'bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/15' },
+  'B2B SaaS': { icon: 'text-cyan-600 dark:text-cyan-400', bg: 'bg-cyan-500/10', ring: 'group-hover:ring-cyan-500/25', badge: 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/15' },
+  'Legal': { icon: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-500/10', ring: 'group-hover:ring-amber-500/25', badge: 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/15' },
+  'Real Estate': { icon: 'text-teal-600 dark:text-teal-400', bg: 'bg-teal-500/10', ring: 'group-hover:ring-teal-500/25', badge: 'bg-teal-500/10 text-teal-700 dark:text-teal-300 border-teal-500/15' },
+  'Creator Economy': { icon: 'text-pink-600 dark:text-pink-400', bg: 'bg-pink-500/10', ring: 'group-hover:ring-pink-500/25', badge: 'bg-pink-500/10 text-pink-700 dark:text-pink-300 border-pink-500/15' },
+  'Agency': { icon: 'text-violet-600 dark:text-violet-400', bg: 'bg-violet-500/10', ring: 'group-hover:ring-violet-500/25', badge: 'bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-500/15' },
+  'Food & Beverage': { icon: 'text-rose-600 dark:text-rose-400', bg: 'bg-rose-500/10', ring: 'group-hover:ring-rose-500/25', badge: 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/15' },
+  'Travel': { icon: 'text-sky-600 dark:text-sky-400', bg: 'bg-sky-500/10', ring: 'group-hover:ring-sky-500/25', badge: 'bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-500/15' },
+  'Developer Tools': { icon: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-500/10', ring: 'group-hover:ring-emerald-500/25', badge: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/15' },
+  'Marketing': { icon: 'text-fuchsia-600 dark:text-fuchsia-400', bg: 'bg-fuchsia-500/10', ring: 'group-hover:ring-fuchsia-500/25', badge: 'bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300 border-fuchsia-500/15' },
+  'Productivity': { icon: 'text-lime-600 dark:text-lime-500', bg: 'bg-lime-500/10', ring: 'group-hover:ring-lime-500/25', badge: 'bg-lime-500/10 text-lime-700 dark:text-lime-300 border-lime-500/15' },
 }
 
 const NICHE_MAP: Record<string, string[]> = {
-  'Fintech':          ['Payments', 'Invoicing', 'Budgeting'],
-  'HR & Recruiting':  ['Hiring', 'Onboarding', 'Payroll'],
-  'Health & Wellness':['Telehealth', 'Fitness', 'Mental Health'],
-  'Education':        ['E-learning', 'Tutoring', 'LMS'],
-  'E-commerce':       ['Dropshipping', 'Returns', 'Analytics'],
-  'B2B SaaS':         ['CRM', 'Project Mgmt', 'Automation'],
-  'Legal':            ['Contracts', 'Compliance', 'Billing'],
-  'Real Estate':      ['Property Mgmt', 'Listings', 'Mortgages'],
-  'Creator Economy':  ['Monetization', 'Scheduling', 'Analytics'],
-  'Agency':           ['Client Mgmt', 'Reporting', 'Proposals'],
-  'Food & Beverage':  ['Ordering', 'Inventory', 'Delivery'],
-  'Travel':           ['Booking', 'Itineraries', 'Reviews'],
-  'Developer Tools':  ['APIs', 'Testing', 'Monitoring'],
-  'Marketing':        ['SEO', 'Email', 'Social Media'],
-  'Productivity':     ['Tasks', 'Notes', 'Automation'],
+  'Fintech': ['Payments', 'Invoicing', 'Budgeting'],
+  'HR & Recruiting': ['Hiring', 'Onboarding', 'Payroll'],
+  'Health & Wellness': ['Telehealth', 'Fitness', 'Mental Health'],
+  'Education': ['E-learning', 'Tutoring', 'LMS'],
+  'E-commerce': ['Dropshipping', 'Returns', 'Analytics'],
+  'B2B SaaS': ['CRM', 'Project Mgmt', 'Automation'],
+  'Legal': ['Contracts', 'Compliance', 'Billing'],
+  'Real Estate': ['Property Mgmt', 'Listings', 'Mortgages'],
+  'Creator Economy': ['Monetization', 'Scheduling', 'Analytics'],
+  'Agency': ['Client Mgmt', 'Reporting', 'Proposals'],
+  'Food & Beverage': ['Ordering', 'Inventory', 'Delivery'],
+  'Travel': ['Booking', 'Itineraries', 'Reviews'],
+  'Developer Tools': ['APIs', 'Testing', 'Monitoring'],
+  'Marketing': ['SEO', 'Email', 'Social Media'],
+  'Productivity': ['Tasks', 'Notes', 'Automation'],
 }
 
 const ALL_INDUSTRIES = Object.keys(NICHE_MAP)
@@ -108,7 +108,7 @@ export default function NicheGrid({ industries }: NicheGridProps) {
             </div>
             <div className="w-px h-8 bg-border" />
             <div className="text-center">
-              <p className="text-2xl sm:text-3xl font-bold font-heading text-text-primary tracking-tight">75+</p>
+              <p className="text-2xl sm:text-3xl font-bold font-heading text-text-primary tracking-tight">100+</p>
               <p className="text-xs text-text-muted mt-0.5">Niches</p>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function NicheGrid({ industries }: NicheGridProps) {
                       {industry}
                     </h3>
                     {count > 0 && (
-                      <span className={`shrink-0 text-[11px] font-bold px-1.5 py-0.5 rounded-md border ${colors.badge} tabular-nums`}>
+                      <span className={`shrink-0 text-[18px] font-extrabold px-1.5 py-0.5 rounded-md border ${colors.badge} tabular-nums shadow-card-md`}>
                         {count}
                       </span>
                     )}

@@ -19,12 +19,12 @@ const themeInitScript = `(function(){try{var s=localStorage.getItem('theme');var
 export const metadata: Metadata = {
   title: 'SaaSIdea Pro — 1,200+ Validated SaaS Ideas for Founders',
   description:
-    'Browse 1,200+ pain-driven SaaS ideas across 15 industries. Each idea includes MRR potential, build time, competition data, and keyword research. One-time payment.',
+    'Browse 1,200+ pain-driven SaaS ideas across 100+ niches. Each idea includes MRR potential, build time, competition data, and keyword research. All in One-time payment.',
   metadataBase: new URL('https://saasidea.pro'),
   openGraph: {
     title: 'SaaSIdea Pro — 1,200+ Validated SaaS Ideas for Founders',
     description:
-      'Browse 1,200+ pain-driven SaaS ideas across 15 industries. MRR potential, build time, competition data, and keyword research included.',
+      'Browse 1,200+ pain-driven SaaS ideas across 100+ niches. MRR potential, build time, competition data, and keyword research included.',
     url: 'https://saasidea.pro',
     siteName: 'SaaSIdea Pro',
     type: 'website',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'SaaSIdea Pro — 1,200+ Validated SaaS Ideas for Founders',
-    description: 'Browse 1,200+ pain-driven SaaS ideas across 15 industries.',
+    description: 'Browse 1,200+ pain-driven SaaS ideas across 100+ niches.',
   },
 }
 

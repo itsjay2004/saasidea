@@ -1,4 +1,4 @@
-import { Search, BarChart3, Rocket } from 'lucide-react'
+import { Search, BarChart3, Rocket, Sparkle } from 'lucide-react'
 
 const steps = [
   {
@@ -31,7 +31,10 @@ export default function HowItWorks() {
 
         {/* Header */}
         <div className="text-center mb-10 sm:mb-16">
-          <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Simple Process</p>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-subtle border border-accent/15 text-xs font-semibold text-accent tracking-wide uppercase mb-5">
+            <Sparkle className="w-3.5 h-3.5" />
+            SIMPLE PROCESS
+          </div>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
             From Idea to Launch-Ready in Minutes
           </h2>

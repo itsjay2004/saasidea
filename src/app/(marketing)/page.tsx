@@ -34,7 +34,6 @@ export default async function HomePage() {
       <NicheGrid industries={industries} />
       <Pricing />
       <FAQ />
-      <Footer />
     </>
   )
 }

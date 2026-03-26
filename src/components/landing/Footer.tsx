@@ -5,6 +5,8 @@ import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
 const links = [
   { label: 'Pricing',      href: '/#pricing'   },
   { label: 'FAQ',          href: '/#faq'       },
+  { label: 'Privacy',      href: '/privacy'    },
+  { label: 'Terms',        href: '/terms'      },
   { label: 'Contact',      href: 'mailto:hello@saasidea.pro' },
 ]
 

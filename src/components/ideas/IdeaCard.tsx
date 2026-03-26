@@ -37,8 +37,10 @@ function CompetitionSegments({ level }: { level: string }) {
 
 /* ─── Keyword display ───────────────────────────────────────────────────── */
 function KeywordDisplay({ idea }: { idea: Idea }) {
-  if (idea.primary_keyword) {
-    const vol = idea.primary_keyword.search_volume
+  const highestVolumeKeyword = idea.primary_keyword
+
+  if (highestVolumeKeyword) {
+    const vol = highestVolumeKeyword.search_volume
     return (
       <div className="flex items-start gap-2">
         <Search className="w-3.5 h-3.5 text-text-subtle mt-0.5 shrink-0" />
@@ -48,12 +50,12 @@ function KeywordDisplay({ idea }: { idea: Idea }) {
               <span className="text-[13px] font-bold text-text-primary">{formatNumber(vol)}/mo</span>
               <span className="text-[11px] text-text-subtle ml-1.5">searches</span>
               <div className="text-[11px] text-text-muted mt-0.5 truncate max-w-[140px]">
-                &ldquo;{idea.primary_keyword.keyword}&rdquo;
+                &ldquo;{highestVolumeKeyword.keyword}&rdquo;
               </div>
             </>
           ) : (
             <span className="text-[13px] font-semibold text-text-primary truncate max-w-[140px]">
-              &ldquo;{idea.primary_keyword.keyword}&rdquo;
+              &ldquo;{highestVolumeKeyword.keyword}&rdquo;
             </span>
           )}
         </div>

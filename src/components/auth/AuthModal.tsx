@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import Link from 'next/link'
 import { X, ArrowRight, RotateCcw, ChevronLeft, Mail, User, Zap, CheckCircle2, Rocket } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { getCheckoutUrl } from '@/lib/dodo'
@@ -274,13 +275,13 @@ export default function AuthModal({ onClose }: AuthModalProps) {
 
                 <p className="text-center text-[11px] text-text-subtle mt-5 leading-relaxed">
                   By continuing you agree to our{' '}
-                  <span className="text-text-muted hover:text-accent cursor-pointer transition-colors underline underline-offset-2 decoration-dashed">
+                  <Link href="/terms" className="text-text-muted hover:text-accent transition-colors underline underline-offset-2 decoration-dashed">
                     Terms
-                  </span>
+                  </Link>
                   {' '}and{' '}
-                  <span className="text-text-muted hover:text-accent cursor-pointer transition-colors underline underline-offset-2 decoration-dashed">
+                  <Link href="/privacy" className="text-text-muted hover:text-accent transition-colors underline underline-offset-2 decoration-dashed">
                     Privacy Policy
-                  </span>
+                  </Link>
                 </p>
               </div>
             )}

@@ -7,7 +7,9 @@ import NicheGrid from '@/components/landing/NicheGrid'
 import Pricing from '@/components/landing/Pricing'
 import FAQ from '@/components/landing/FAQ'
 import Footer from '@/components/landing/Footer'
+import JsonLd from '@/components/seo/JsonLd'
 import { getFreeIdeas, getPaidPreviewIdeas, getIndustries } from '@/lib/supabase/queries'
+import { getHomeJsonLd } from '@/lib/structured-data'
 
 export default async function HomePage() {
   let freeIdeas: Awaited<ReturnType<typeof getFreeIdeas>> = []
@@ -26,6 +28,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <JsonLd data={getHomeJsonLd()} />
       <Hero />
       <Stats />
       <HowItWorks />

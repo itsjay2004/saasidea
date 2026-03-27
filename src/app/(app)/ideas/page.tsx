@@ -7,7 +7,9 @@ import FilterBar from '@/components/ideas/FilterBar'
 import SearchBar from '@/components/ideas/SearchBar'
 import SortDropdown from '@/components/ideas/SortDropdown'
 import Pagination from '@/components/ideas/Pagination'
+import JsonLd from '@/components/seo/JsonLd'
 import type { Filters } from '@/types'
+import { getIdeasPageJsonLd } from '@/lib/structured-data'
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
   const sp = await searchParams
@@ -78,6 +80,17 @@ export default async function IdeasPage({ searchParams }: PageProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      {!(
+        filters.industry ||
+        filters.difficulty ||
+        filters.competition ||
+        filters.mrr_range ||
+        filters.pricing_model ||
+        filters.search ||
+        filters.sort ||
+        filters.page > 1
+      ) && <JsonLd data={getIdeasPageJsonLd(ideas, total)} />}
+
       <div className="mb-6 sm:mb-8">
         <h1 className="font-heading text-2xl sm:text-3xl font-bold text-text-primary mb-2">SaaS Idea Library</h1>
         <p className="text-sm sm:text-base text-text-muted">

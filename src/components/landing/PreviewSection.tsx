@@ -88,7 +88,7 @@ function IdeaCardPreview({ idea }: { idea: Idea }) {
   const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
 
   return (
-    <div className="group relative glass-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200">
+    <div className="group relative w-full glass-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-md hover:-translate-y-0.5 hover:border-border-light transition-all duration-200">
 
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -171,7 +171,7 @@ function LockedCard({ idea }: { idea: Idea }) {
   const diff = DIFFICULTY_STYLES[idea.difficulty_label] || { bg: 'bg-gray-500/10', text: 'text-gray-600 dark:text-gray-400' }
 
   return (
-    <div className="relative glass-card rounded-2xl overflow-hidden shadow-card">
+    <div className="relative w-full max-w-[360px] mx-auto glass-card rounded-2xl overflow-hidden shadow-card">
       <div className="p-5 select-none pointer-events-none" aria-hidden>
 
         <div className="flex items-center justify-between gap-3 mb-3">
@@ -258,9 +258,9 @@ export default function PreviewSection({ ideas, lockedIdeas }: PreviewSectionPro
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+        <div className="grid grid-cols-1 justify-items-center md:justify-items-stretch md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {ideas.map((idea) => (
-            <CrawlableLink key={idea.id} href={`/ideas/${idea.id}`} className="block">
+            <CrawlableLink key={idea.id} href={`/ideas/${idea.id}`} className="block w-full max-w-[360px] md:max-w-none">
               <IdeaCardPreview idea={idea} />
             </CrawlableLink>
           ))}

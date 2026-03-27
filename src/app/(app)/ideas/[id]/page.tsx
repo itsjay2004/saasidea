@@ -17,6 +17,8 @@ import KeywordTable from '@/components/ideas/KeywordTable'
 import TrendChart from '@/components/ideas/TrendChart'
 import IdeaCard from '@/components/ideas/IdeaCard'
 import PaywallBlur from '@/components/ideas/PaywallBlur'
+import JsonLd from '@/components/seo/JsonLd'
+import { getIdeaPageJsonLd } from '@/lib/structured-data'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -92,6 +94,7 @@ export default async function IdeaPage({ params }: PageProps) {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <JsonLd data={getIdeaPageJsonLd(idea)} />
 
       {/* Back nav */}
       <Link

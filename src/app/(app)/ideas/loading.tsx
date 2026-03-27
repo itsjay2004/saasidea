@@ -3,8 +3,8 @@ import LoaderScreen from '@/components/ui/LoaderScreen'
 export default function IdeasLoading() {
   return (
     <LoaderScreen
-      title="Loading idea library"
-      subtitle="Filtering the best opportunities and preparing your next browse"
+      title="Loading..."
+      subtitle="Please wait while we prepare your library."
     />
   )
 }

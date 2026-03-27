@@ -6,7 +6,7 @@ interface LoaderScreenProps {
 const dots = [0, 1, 2, 3, 4]
 
 export default function LoaderScreen({
-  title = 'Loading',
+  title = 'Loading...',
   subtitle = 'Please wait a moment',
 }: LoaderScreenProps) {
   return (

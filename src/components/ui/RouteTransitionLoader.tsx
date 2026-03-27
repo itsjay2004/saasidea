@@ -29,7 +29,7 @@ export default function RouteTransitionLoader() {
       timeoutRef.current = window.setTimeout(() => {
         setVisible(false)
         timeoutRef.current = null
-      }, 2400)
+      }, 1500)
     }
   }, [transitionKey])
 
@@ -45,8 +45,8 @@ export default function RouteTransitionLoader() {
 
   return (
     <LoaderScreen
-      title="Just a moment..."
-      subtitle="Loading in progress."
+      title="Loading..."
+      subtitle="Please wait a moment."
     />
   )
 }

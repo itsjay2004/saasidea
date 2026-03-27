@@ -64,7 +64,7 @@ export async function POST(request: Request) {
 
       const email = data.customer?.email || ''
       const orderId = data.payment_id || ''
-      const amount = data.total_amount || 4900
+      const amount = data.total_amount || 2900
       const currency = data.currency || 'USD'
 
       const supabase = createClient(

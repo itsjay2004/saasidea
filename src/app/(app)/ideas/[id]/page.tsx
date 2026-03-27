@@ -92,6 +92,69 @@ export default async function IdeaPage({ params }: PageProps) {
       .sort((a, b) => (a.competition_index || 999) - (b.competition_index || 999))[0]
     : null
 
+  const lockedDetailsPreview = (
+    <div className="grid lg:grid-cols-[1fr_296px] gap-8 items-start">
+      <div className="space-y-6 min-w-0">
+        <section>
+          <SectionLabel icon={Search} label="Keyword Opportunities" />
+          <div className="bg-surface border border-border rounded-2xl p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+              {['Total Search Pool', 'CPC Range', 'Easiest Entry'].map((l) => (
+                <div key={l} className="bg-surface border border-border rounded-xl p-3 sm:p-4">
+                  <p className="text-[10px] sm:text-[11px] text-text-subtle uppercase tracking-wider mb-1.5 font-medium leading-tight">{l}</p>
+                  <div className="h-4 w-24 bg-surface-2 rounded animate-pulse" />
+                </div>
+              ))}
+            </div>
+            <div className="h-40 sm:h-48 bg-surface-2 border border-border/50 rounded-2xl animate-pulse" />
+          </div>
+        </section>
+
+        <section>
+          <SectionLabel icon={Target} label="Entry Opportunity Keywords" />
+          <div className="bg-surface border border-border rounded-2xl p-6">
+            <p className="text-[14px] text-text-muted leading-relaxed mb-5">
+              You’ll get the full keyword list and a clear entry angle.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                'w-16', 'w-20', 'w-24', 'w-28', 'w-14', 'w-24', 'w-20', 'w-28', 'w-16', 'w-24', 'w-20', 'w-14',
+              ].map((w, i) => (
+                <span
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={i}
+                  className={`h-8 ${w} rounded-full bg-surface-2 border border-border/50 animate-pulse`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside className="lg:sticky lg:top-8 space-y-4">
+        <div className="bg-surface border border-border rounded-2xl overflow-hidden shadow-card">
+          <div className="px-5 py-3.5 border-b border-border bg-surface-alt">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-text-subtle">Quick Metrics</p>
+          </div>
+          <div className="divide-y divide-border/50">
+            {['MRR Potential', 'Build Time', 'Price Point', 'Complexity', 'Target Audience'].map((l) => (
+              <div key={l} className="flex items-center justify-between gap-3 px-5 py-3.5">
+                <span className="text-[13px] text-text-muted truncate">{l}</span>
+                <div className="h-4 w-20 bg-surface-2 rounded animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-surface border border-border rounded-2xl p-5 shadow-card">
+          <p className="text-[11px] font-bold uppercase tracking-widest text-text-subtle mb-3">Market Competition</p>
+          <div className="h-4 w-28 bg-surface-2 rounded animate-pulse mb-3" />
+          <div className="h-14 bg-surface-2 rounded-xl border border-border/50 animate-pulse" />
+        </div>
+      </aside>
+    </div>
+  )
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <JsonLd data={getIdeaPageJsonLd(idea)} />
@@ -187,32 +250,44 @@ export default async function IdeaPage({ params }: PageProps) {
       </header>
 
       {/* ── Main grid ───────────────────────────────────────────────────── */}
-      <PaywallBlur locked={!unlocked}>
-        <div className="grid lg:grid-cols-[1fr_296px] gap-8 items-start">
+      {/* Public teaser (search visitors should see this) */}
+      <div className="mt-10 space-y-6">
+        <section>
+          <SectionLabel icon={AlertCircle} label="The Problem" />
+          <div className="bg-surface border border-border rounded-2xl p-6">
+            <p className="text-text-primary text-[15px] leading-[1.85]">{idea.pain_point}</p>
+          </div>
+        </section>
 
-          {/* Left column — main content */}
+        {idea.validation_note && (
+          <section>
+            <SectionLabel icon={Sparkles} label="Why It Works" accent />
+            <div className="relative bg-accent-subtle dark:bg-accent/8 border border-accent/20 rounded-2xl p-6 overflow-hidden">
+              <div className="absolute top-0 left-0 w-[3px] h-full bg-accent rounded-l-2xl" />
+              <p className="text-text-primary text-[15px] leading-[1.9] italic pl-1">
+                &ldquo;{idea.validation_note}&rdquo;
+              </p>
+            </div>
+          </section>
+        )}
+      </div>
+
+      {/* Locked details (everything else stays under the overlay) */}
+      <div className="mt-10">
+        <PaywallBlur
+          locked={!unlocked}
+          title="Unlock the full idea breakdown"
+          subtitle="1,000+ validated SaaS ideas across 100+ niches."
+          note="Researched from real customer pain points."
+          highlights={['Build time', 'SEO keywords', 'Competition', 'MRR range', 'Pricing angle']}
+          secondaryHref="/#preview"
+          secondaryLabel="See 50+ free sample ideas"
+        >
+          {unlocked ? (
+            <div className="grid lg:grid-cols-[1fr_296px] gap-8 items-start">
+
+          {/* Left column - main content */}
           <div className="space-y-6 min-w-0">
-
-            {/* The Problem */}
-            <section>
-              <SectionLabel icon={AlertCircle} label="The Problem" />
-              <div className="bg-surface border border-border rounded-2xl p-6">
-                <p className="text-text-primary text-[15px] leading-[1.85]">{idea.pain_point}</p>
-              </div>
-            </section>
-
-            {/* Why It Works */}
-            {idea.validation_note && (
-              <section>
-                <SectionLabel icon={Sparkles} label="Why It Works" accent />
-                <div className="relative bg-accent-subtle dark:bg-accent/8 border border-accent/20 rounded-2xl p-6 overflow-hidden">
-                  <div className="absolute top-0 left-0 w-[3px] h-full bg-accent rounded-l-2xl" />
-                  <p className="text-text-primary text-[15px] leading-[1.9] italic pl-1">
-                    &ldquo;{idea.validation_note}&rdquo;
-                  </p>
-                </div>
-              </section>
-            )}
 
             {/* Keywords — with full volume data */}
             {hasVolumeData && (
@@ -354,8 +429,10 @@ export default async function IdeaPage({ params }: PageProps) {
 
 
           </aside>
-        </div>
-      </PaywallBlur>
+            </div>
+          ) : lockedDetailsPreview}
+        </PaywallBlur>
+      </div>
 
       {/* ── More Ideas ──────────────────────────────────────────────────── */}
       {relatedIdeas.length > 0 && (

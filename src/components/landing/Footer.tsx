@@ -1,5 +1,5 @@
-﻿import Link from 'next/link'
-import { Zap } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
 
 const links = [
@@ -17,11 +17,23 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6 mb-8">
           <div className="flex items-start sm:items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent text-white shadow-accent shrink-0">
-              <Zap className="w-4 h-4" />
-            </div>
             <div className="min-w-0">
-              <span className="font-bold text-text-primary text-sm sm:text-base">SaaSIdea Pro</span>
+              <Link href="/" className="inline-flex items-center">
+                <Image
+                  src="/logo-light.png"
+                  alt="SaaSIdea Pro"
+                  width={140}
+                  height={35}
+                  className="h-7 sm:h-8 w-auto dark:hidden"
+                />
+                <Image
+                  src="/logo-dark.png"
+                  alt="SaaSIdea Pro"
+                  width={140}
+                  height={35}
+                  className="hidden h-7 sm:h-8 w-auto dark:block"
+                />
+              </Link>
               <p className="text-xs text-text-subtle leading-tight mt-0.5 max-w-[18rem]">
                 Find your next SaaS idea.
               </p>

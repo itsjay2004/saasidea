@@ -4,20 +4,20 @@ const steps = [
   {
     num: '01',
     icon: Search,
-    title: 'Browse by Industry or Niche',
-    desc: 'Filter 1,200+ ideas by industry, difficulty, MRR potential, and competition level to find your perfect match.',
+    title: 'Browse 1000+ Ideas & 100+ Niche',
+    desc: 'Filter across industry & niches by complixity, Build Time, competition etc.',
   },
   {
     num: '02',
     icon: BarChart3,
-    title: 'Evaluate with Real Data',
-    desc: 'Every idea shows MRR potential, build time estimate, target audience, pain point, and keyword search data.',
+    title: 'Evaluate Every Idea with Real Data',
+    desc: 'MRR potential, build time estimate, target audience, pain point, and keyword data.',
   },
   {
     num: '03',
     icon: Rocket,
-    title: 'Build with Confidence',
-    desc: 'Know your market before you write a single line of code. Validate demand, understand competition, start building.',
+    title: 'Build What People Already Want',
+    desc: 'Every idea is derived from pain points of real users. Demand is already there. Just build.',
   },
 ]
 
@@ -33,11 +33,14 @@ export default function HowItWorks() {
         <div className="text-center mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-subtle border border-accent/15 text-xs font-semibold text-accent tracking-wide uppercase mb-5">
             <Sparkle className="w-3.5 h-3.5" />
-            SIMPLE PROCESS
+            READY TO BUILD IDEAS
           </div>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
-            From Idea to Launch-Ready in Minutes
+            Pick an Idea. Know the Market. <span className='text-gradient'>Start Building</span>
           </h2>
+          <p className="text-text-muted max-w-md mx-auto text-base leading-relaxed">
+            Everything You Need to Launch a Profitable SaaS Business
+          </p>
         </div>
 
         {/* Steps */}

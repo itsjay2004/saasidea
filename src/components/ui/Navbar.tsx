@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Zap, Menu, X } from 'lucide-react'
+import Image from 'next/image'
+import { Menu, X, LogIn } from 'lucide-react'
 import Button from './Button'
 import { createClient } from '@/lib/supabase/client'
 import AuthModal from '@/components/auth/AuthModal'
@@ -28,14 +29,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleCTA = () => {
-    if (!user) { setShowAuth(true); return }
-    window.location.href = '/ideas'
-  }
+  const openLoginModal = () => setShowAuth(true)
 
   const navLinks = [
-    { label: 'Features', href: '/#features' },
     { label: 'Preview Ideas', href: '/#preview' },
+    { label: 'Features', href: '/#features' },
     { label: 'Pricing', href: '/#pricing' },
     { label: 'FAQ', href: '/#faq' },
   ]
@@ -53,10 +51,22 @@ export default function Navbar() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-accent text-white shadow-accent transition-all duration-200 group-hover:scale-105">
-                <Zap className="w-4 h-4" />
-              </div>
-              <span className="font-bold text-base text-text-primary tracking-tight">SaaSIdea Pro</span>
+              <Image
+                src="/logo-light.png"
+                alt="SaaSIdea Pro"
+                width={140}
+                height={35}
+                priority
+                className="h-8 w-auto dark:hidden transition-transform duration-200 group-hover:scale-[1.02]"
+              />
+              <Image
+                src="/logo-dark.png"
+                alt="SaaSIdea Pro"
+                width={140}
+                height={35}
+                priority
+                className="hidden h-8 w-auto dark:block transition-transform duration-200 group-hover:scale-[1.02]"
+              />
             </Link>
 
             {/* Desktop nav */}
@@ -79,8 +89,9 @@ export default function Navbar() {
                   <Button size="sm">Dashboard</Button>
                 </Link>
               ) : (
-                <Button size="sm" onClick={handleCTA}>
-                  Login / Sign Up
+                <Button size="sm" onClick={openLoginModal} className="gap-1.5">
+                  <LogIn className="w-3.5 h-3.5" />
+                  Sign in
                 </Button>
               )}
             </div>
@@ -116,8 +127,16 @@ export default function Navbar() {
                     <Button size="sm" className="w-full">Dashboard</Button>
                   </Link>
                 ) : (
-                  <Button size="sm" className="w-full" onClick={handleCTA}>
-                    Get Lifetime Access
+                  <Button
+                    size="sm"
+                    className="w-full gap-1.5"
+                    onClick={() => {
+                      setMobileOpen(false)
+                      openLoginModal()
+                    }}
+                  >
+                    <LogIn className="w-3.5 h-3.5" />
+                    Sign in
                   </Button>
                 )}
               </div>
@@ -126,7 +145,7 @@ export default function Navbar() {
         )}
       </nav>
 
-      {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} initialMode="login" />}
     </>
   )
 }

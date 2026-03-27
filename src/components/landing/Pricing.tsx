@@ -11,13 +11,13 @@ import type { User } from '@supabase/supabase-js'
 
 const benefits = [
   '1,200+ pain-driven SaaS ideas',
-  '15 industries, 100+ niches',
-  'MRR potential + build time on every idea',
-  'Competition level + difficulty rating',
-  'Keyword data where available',
+  '15 industries & 100+ niches',
+  'MRR potential, Pricing Strategy & build time — every idea',
+  'Competition, difficulty & Complexity rating',
+  'Keyword data — search volume, CPC, bid range',
   'New ideas added regularly',
-  'Lifetime access — no subscription',
-  '15-day money back guarantee',
+  'Lifetime access — pay once, own forever',
+  '15-day money-back guarantee — no questions asked',
 ]
 
 export default function Pricing() {
@@ -114,7 +114,7 @@ export default function Pricing() {
 
                   {/* Trust line */}
                   <div className="flex items-center gap-2 mt-5 text-sm text-text-subtle">
-                    <ShieldCheck className="w-4 h-4 text-success flex-shrink-0" />
+                    <ShieldCheck className="w-5 h-5 text-success flex-shrink-0" />
                     Secure checkout · 15-day money-back guarantee
                   </div>
                 </div>

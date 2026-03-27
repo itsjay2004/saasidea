@@ -87,10 +87,10 @@ export default function NicheGrid({ industries }: NicheGridProps) {
           </div>
           <h2 className="font-heading text-3xl sm:text-[2.75rem] font-bold text-text-primary leading-[1.15] mb-4">
             <span className="text-gradient">15 industries.</span>{' '}
-            Hundreds of niches.
+            100+ Niches. One Collection
           </h2>
-          <p className="text-text-muted text-[15px] sm:text-base max-w-xl mx-auto leading-relaxed">
-            From fintech to food delivery — every idea is validated, niche-specific, and ready to build.
+          <p className="text-text-muted text-[15px] sm:text-base max-w-xl mx-auto leading-relaxed mt-2">
+            From AI to food delivery — every idea is validated, niche-specific, and ready to build.
           </p>
         </div>
 
@@ -138,13 +138,13 @@ export default function NicheGrid({ industries }: NicheGridProps) {
                   </div>
 
                   {/* Name + count */}
-                  <div className="flex items-baseline justify-between gap-1.5 mb-2.5">
-                    <h3 className="font-semibold text-text-primary text-sm leading-snug">
+                  <div className="flex flex-col items-start gap-1.5 mb-2.5">
+                    <h3 className="font-semibold text-text-primary text-[13px] sm:text-sm leading-snug break-words">
                       {industry}
                     </h3>
                     {count > 0 && (
-                      <span className={`shrink-0 text-[18px] font-extrabold px-1.5 py-0.5 rounded-md border ${colors.badge} tabular-nums shadow-card-md`}>
-                        {count}
+                      <span className={`text-[10px] sm:text-[11px] font-medium px-2 py-0.5 rounded-md border ${colors.badge} tabular-nums opacity-85`}>
+                        {count} {count === 1 ? 'idea' : 'ideas'}
                       </span>
                     )}
                   </div>

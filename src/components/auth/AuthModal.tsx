@@ -8,6 +8,7 @@ import { getCheckoutUrl } from '@/lib/dodo'
 
 interface AuthModalProps {
   onClose: () => void
+  initialMode?: Mode
 }
 
 const OTP_LENGTH = 6
@@ -15,9 +16,9 @@ const OTP_LENGTH = 6
 type Step = 'form' | 'otp' | 'success'
 type Mode = 'signup' | 'login'
 
-export default function AuthModal({ onClose }: AuthModalProps) {
+export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModalProps) {
   const [step, setStep] = useState<Step>('form')
-  const [mode, setMode] = useState<Mode>('signup')
+  const [mode, setMode] = useState<Mode>(initialMode)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(''))

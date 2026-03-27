@@ -151,23 +151,21 @@ export default function Hero() {
         <div className="relative mx-auto w-full min-w-0 max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-24 text-center">
 
           {/* Badge */}
-          <div className="animate-fade-in-up inline-flex max-w-full min-w-0 flex-wrap items-center justify-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white dark:bg-accent-subtle border border-border text-accent text-xs sm:text-sm font-medium mb-6 sm:mb-8">
+          <div className="animate-fade-in-up inline-flex max-w-full min-w-0 flex-wrap items-center justify-center gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white dark:bg-accent-subtle border border-border text-accent text-[11px] sm:text-[13px] font-semibold tracking-[0.06em] mb-6 sm:mb-8">
             <span className="w-2 h-2 rounded-full bg-success animate-pulse-dot" />
-            1,200+ Validated Ideas &bull; Updated Monthly
+            1000+ Validated SaaS Ideas
           </div>
 
           {/* Headline */}
-          <h1 className="animate-fade-in-up delay-100 font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary leading-[1.08] tracking-tight mb-6 break-words text-balance">
-            Stop Guessing.<br />
-            Start Building Ideas<br />
-            <span className="text-gradient">People Actually Want.</span>
+          <h1 className="animate-fade-in-up delay-100 font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold sm:font-extrabold text-text-primary leading-[1.04] sm:leading-[1.05] tracking-[-0.015em] mb-5 sm:mb-6 break-words text-balance">
+            Hit
+            <span className="text-gradient"> $1K MRR </span>
+            Faster With The Right Idea<br />
           </h1>
 
           {/* Subheadline */}
-          <p className="animate-fade-in-up delay-200 mx-auto mb-10 max-w-xl min-w-0 text-pretty break-words text-base leading-[1.6rem] text-text-muted sm:text-[1.2rem] sm:leading-[1.8rem]">
-            1,200+ pain-driven SaaS ideas across 100s of niches.
-            Each idea includes MRR potential, build time, competition level,
-            and keyword data. One-time payment. Lifetime access.
+          <p className="animate-fade-in-up delay-200 mx-auto mb-10 max-w-2xl min-w-0 text-pretty break-words text-[1.02rem] sm:text-[1.2rem] leading-[1.7] sm:leading-[1.75] font-medium text-text-muted">
+            Stop building the wrong thing. Find validated SaaS ideas based on real demand and pain points—so you build something people would pay for.
           </p>
 
           {/* CTAs */}
@@ -185,7 +183,10 @@ export default function Hero() {
           {/* Money-back guarantee */}
           <div className="animate-fade-in-up delay-350 flex items-center justify-center gap-1.5 mb-10 text-text-subtle text-sm">
             <ShieldCheck className="w-4 h-4 text-success shrink-0" />
-            <span>15-day money-back guarantee &mdash; no questions asked</span>
+            <span>
+              15-day money-back guarantee
+              <span className="hidden sm:inline"> &mdash; no questions asked</span>
+            </span>
           </div>
 
           {/* Social proof */}
@@ -198,7 +199,7 @@ export default function Hero() {
               className="h-9 w-auto object-contain"
             />
             <div className="flex flex-col items-center sm:items-start">
-              <span className="text-sm font-semibold text-text-primary leading-tight text-center sm:text-left">Trusted by 500+ solopreneurs &amp; indie hackers</span>
+              <span className="text-sm font-semibold text-text-primary leading-tight text-center sm:text-left">Trusted by 500+ founders &amp; indie hackers</span>
               <span className="text-xs text-text-muted leading-tight text-center sm:text-left">already building with these ideas</span>
             </div>
           </div>

@@ -225,9 +225,9 @@ function LockedCard({ idea }: { idea: Idea }) {
           <Lock className="w-4 h-4 text-text-subtle" />
         </div>
         <p className="text-sm font-semibold text-text-primary">This idea is locked</p>
-        <p className="text-xs text-text-muted -mt-1 text-center px-6">Unlock all 1,200+ ideas with one payment</p>
+        <p className="text-xs text-text-muted -mt-1 text-center px-6">One-time $29 unlocks all 1,200+ ideas — no subscription.</p>
         <Link href="/#pricing">
-          <Button size="sm" className="mt-1">Get Access</Button>
+          <Button size="sm" className="mt-1">Unlock for $29 →</Button>
         </Link>
       </div>
     </div>
@@ -248,13 +248,13 @@ export default function PreviewSection({ ideas, lockedIdeas }: PreviewSectionPro
         <div className="text-center mb-8 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-subtle border border-accent/15 text-xs font-semibold text-accent tracking-wide uppercase mb-5">
             <Lightbulb className="w-3.5 h-3.5" />
-            PREVIEW
+            What You Get
           </div>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary mb-4">
-            A Glimpse of What&apos;s Inside
+            See What&apos;s  <span className='text-gradient'>Inside</span>
           </h2>
           <p className="text-text-muted max-w-md mx-auto text-base leading-relaxed">
-            Browse a small sample of the 1,200+ ideas waiting for you
+            A small sample of the 1000+ ideas waiting for you
           </p>
         </div>
 
@@ -272,12 +272,12 @@ export default function PreviewSection({ ideas, lockedIdeas }: PreviewSectionPro
         <div className="relative overflow-hidden rounded-2xl border border-accent/25 bg-accent-light p-5 sm:p-8 text-center dark:border-accent/30 dark:bg-accent-light/25">
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-accent/12 dark:from-accent/10 dark:via-transparent dark:to-accent/20" />
           <p className="font-heading text-lg sm:text-xl font-bold text-text-primary mb-1.5 relative">
-            You&apos;re seeing {ideas.length} of 1,200+ ideas
+            You&apos;re only seeing {ideas.length} ideas, but there are over 1000+
           </p>
-          <p className="text-text-muted text-sm sm:text-base mb-5 sm:mb-6 relative">Get instant access to the full library</p>
+          <p className="text-text-muted text-sm sm:text-base mb-5 sm:mb-6 relative">One-time $29 unlocks the full library — every idea, every niche, forever. Build Anytime</p>
           <Link href="/#pricing" className="block sm:inline-block">
             <Button size="lg" className="gap-2 relative w-full sm:w-auto">
-              Unlock All Ideas <ArrowRight className="w-4 h-4" />
+              Get Full Access<strong>NOW</strong> <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
         </div>

@@ -4,22 +4,22 @@ const features = [
   {
     icon: Lightbulb,
     title: '1,200+ Pain-Driven Ideas',
-    desc: 'Every idea is built around a real, specific frustration — not generic concepts. Real pain = real paying customers.',
+    desc: 'Every idea is built around a real, specific frustration & complaints — not generic assumption. If people are frustrated, they pay for a fix.',
   },
   {
     icon: TrendingUp,
     title: 'MRR & Build Time Estimates',
-    desc: "Know your revenue potential and how long it'll take to build before you commit. No more guessing.",
+    desc: "Know your revenue potential and how long it'll take to build before you commit— so you know if it's worth your next 4 weeks.",
   },
   {
     icon: LayoutGrid,
     title: 'Industry & Niche Taxonomy',
-    desc: 'Browse 15 industries, 75 niches, and 375 sub-niches. Find ideas in your area of expertise or interest.',
+    desc: 'Browse across 15 industries and 100+ niches. Filter to what matches your skills — Find ideas in your area of expertise or interest.',
   },
   {
     icon: BarChart2,
     title: 'Difficulty & Competition Data',
-    desc: 'Easy, Medium, Hard difficulty ratings plus low/medium/high competition levels so you know where to start.',
+    desc: "Each ideas have competition and complexity rating. — Know exactly what you're walking into before you write a line of code.",
   },
   {
     icon: Search,
@@ -29,7 +29,7 @@ const features = [
   {
     icon: Infinity,
     title: 'One-Time Payment, Forever Access',
-    desc: 'No subscriptions. No monthly fees. Pay once and access everything including all future ideas added.',
+    desc: 'No subscription. No renewals. Pay $29 once and access everything — including every idea added in the future.',
   },
 ]
 
@@ -48,8 +48,11 @@ export default function FeaturesGrid() {
             WHAT YOU GET
           </div>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
-            Everything You Need to Find Your Next SaaS
+            Everything You Need to <span className='text-gradient'> Find Your Next SaaS</span>
           </h2>
+          <p className="text-text-muted mt-2 text-base leading-relaxed">
+            Every idea comes pre-researched with the data that actually matters — so you spend time building, not validating.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">

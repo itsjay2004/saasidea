@@ -1,10 +1,10 @@
 import { Lightbulb, Building2, Layers, DollarSign } from 'lucide-react'
 
 const stats = [
-  { value: '1,200+', label: 'Validated Ideas',         icon: Lightbulb },
-  { value: '15',     label: 'Industries',               icon: Building2 },
-  { value: '75+',    label: 'Niches & Sub-niches',      icon: Layers    },
-  { value: '$0/mo',  label: 'No subscription ever',     icon: DollarSign },
+  { value: '1000+', label: 'Validated Ideas', icon: Lightbulb },
+  { value: '15', label: 'Industries', icon: Building2 },
+  { value: '100+', label: 'Niches', icon: Layers },
+  { value: '$0/mo', label: 'No subscription ever', icon: DollarSign },
 ]
 
 export default function Stats() {

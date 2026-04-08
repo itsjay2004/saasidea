@@ -222,28 +222,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@keyframes loaderDot {
-  0%, 80%, 100% {
-    transform: translateY(0) scale(0.78);
-    opacity: 0.45;
-  }
-  40% {
-    transform: translateY(-8px) scale(1.15);
-    opacity: 1;
-  }
-}
-
-@keyframes loaderSweep {
-  0% {
-    transform: translateX(-120%);
-  }
-  100% {
-    transform: translateX(260%);
-  }
-}
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar        { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track  { background: transparent; }
 ::-webkit-scrollbar-thumb  { background: var(--border-light); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-subtle); }
+

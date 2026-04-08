@@ -53,7 +53,10 @@ export default function Pricing() {
               SIMPLE PRICING
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary">
-              One Price. Everything Included. Forever.
+              One Price. Everything Included.{' '}
+              <span className='text-gradient'>
+                Forever.
+              </span>
             </h2>
           </div>
 

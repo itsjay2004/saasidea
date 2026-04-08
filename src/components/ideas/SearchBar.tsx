@@ -1,13 +1,14 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useTransition } from 'react'
 import { Search, X } from 'lucide-react'
 
 export default function SearchBar() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [value, setValue] = useState(searchParams.get('search') || '')
+  const [isPending, startTransition] = useTransition()
 
   useEffect(() => {
     setValue(searchParams.get('search') || '')
@@ -22,7 +23,9 @@ export default function SearchBar() {
         params.delete('search')
       }
       params.delete('page')
-      router.push(`/ideas?${params.toString()}`)
+      startTransition(() => {
+        router.push(`/ideas?${params.toString()}`)
+      })
     },
     [router, searchParams]
   )
@@ -33,23 +36,35 @@ export default function SearchBar() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="relative">
-      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-subtle" />
-      <input
-        type="text"
-        placeholder="Search ideas..."
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        className="w-full pl-10 pr-10 py-2.5 bg-surface-2 border border-border rounded-button text-sm text-text-primary placeholder:text-text-subtle focus:outline-none focus:ring-2 focus:ring-accent/50"
-      />
-      {value && (
-        <button
-          type="button"
-          onClick={() => { setValue(''); handleSearch('') }}
-          className="absolute right-3 top-1/2 -translate-y-1/2"
-        >
-          <X className="w-4 h-4 text-text-subtle hover:text-text-muted" />
-        </button>
+    <form onSubmit={handleSubmit}>
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-subtle" />
+        <input
+          type="text"
+          placeholder="Search ideas..."
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          className="w-full pl-10 pr-10 py-2.5 bg-surface-2 border border-border rounded-button text-sm text-text-primary placeholder:text-text-subtle focus:outline-none focus:ring-2 focus:ring-accent/50"
+        />
+        {isPending ? (
+          <span aria-hidden="true" className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2">
+            <span className="ideas-pending-spinner block h-full w-full rounded-full border-2 border-border-light border-t-accent" />
+          </span>
+        ) : value && (
+          <button
+            type="button"
+            onClick={() => { setValue(''); handleSearch('') }}
+            className="absolute right-3 top-1/2 -translate-y-1/2"
+          >
+            <X className="w-4 h-4 text-text-subtle hover:text-text-muted" />
+          </button>
+        )}
+      </div>
+      {isPending && (
+        <div role="status" aria-live="polite" className="mt-2 flex items-center gap-2 text-xs text-text-muted">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+          Searching...
+        </div>
       )}
     </form>
   )

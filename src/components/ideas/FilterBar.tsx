@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useTransition } from 'react'
 import { SlidersHorizontal, X, ChevronDown } from 'lucide-react'
 import Button from '@/components/ui/Button'
 
@@ -30,6 +30,7 @@ export default function FilterBar({ industries, currentFilters }: FilterBarProps
   const router = useRouter()
   const searchParams = useSearchParams()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [isPending, startTransition] = useTransition()
 
   const updateFilter = useCallback(
     (key: string, value: string | undefined) => {
@@ -40,19 +41,33 @@ export default function FilterBar({ industries, currentFilters }: FilterBarProps
         params.delete(key)
       }
       params.delete('page')
-      router.push(`/ideas?${params.toString()}`)
+      startTransition(() => {
+        router.push(`/ideas?${params.toString()}`)
+      })
     },
     [router, searchParams]
   )
 
   const clearAll = () => {
-    router.push('/ideas')
+    startTransition(() => {
+      router.push('/ideas')
+    })
   }
 
   const hasFilters = Object.values(currentFilters).some(Boolean)
 
   const FilterContent = () => (
     <div className="space-y-6">
+      {isPending && (
+        <div role="status" aria-live="polite" className="flex items-center gap-2 text-xs text-text-muted">
+          <span
+            aria-hidden="true"
+            className="ideas-pending-spinner h-3.5 w-3.5 rounded-full border border-border-light border-t-accent"
+          />
+          Applying filters...
+        </div>
+      )}
+
       <FilterSection title="Industry">
         <div className="max-h-56 overflow-y-auto pr-1">
           <FilterRadio
@@ -108,6 +123,10 @@ export default function FilterBar({ industries, currentFilters }: FilterBarProps
 
   return (
     <>
+      {isPending && (
+        <div className="ideas-filter-loading-bar fixed left-0 right-0 top-16 z-[90] h-0.5 bg-accent/15" aria-hidden="true" />
+      )}
+
       {/* Desktop sidebar */}
       <aside className="hidden lg:block w-60 shrink-0">
         <div className="sticky top-20 space-y-4">

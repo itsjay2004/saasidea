@@ -157,7 +157,7 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="animate-fade-in-up delay-100 font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold sm:font-extrabold text-text-primary leading-[1.04] sm:leading-[1.05] tracking-[-0.015em] mb-5 sm:mb-6 break-words text-balance">
+          <h1 className="animate-fade-in-up delay-100 font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold sm:font-bold text-text-primary leading-[1.12] sm:leading-[1.1] tracking-[0.005em] mb-5 sm:mb-6 break-words text-balance">
             Hit
             <span className="text-gradient"> $1K MRR </span>
             Faster With The Right Idea<br />

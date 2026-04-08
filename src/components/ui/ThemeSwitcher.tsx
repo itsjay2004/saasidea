@@ -7,7 +7,7 @@ const STORAGE_KEY = 'theme'
 
 export default function ThemeSwitcher() {
   const [ready, setReady] = useState(false)
-  const [isDark, setIsDark] = useState(true)
+  const [isDark, setIsDark] = useState(false)
 
   useLayoutEffect(() => {
     setIsDark(document.documentElement.classList.contains('dark'))

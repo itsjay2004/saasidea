@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Newsreader, DM_Sans } from 'next/font/google'
+import { Suspense } from 'react'
 import './globals.css'
 import RouteTransitionLoader from '@/components/ui/RouteTransitionLoader'
 
@@ -15,7 +16,7 @@ const dmSans = DM_Sans({
   display: 'swap',
 })
 
-const themeInitScript = `(function(){try{var s=localStorage.getItem('theme');var d=document.documentElement;if(s==='light')d.classList.remove('dark');else d.classList.add('dark');}catch(e){}})();`
+const themeInitScript = `(function(){try{var s=localStorage.getItem('theme');var d=document.documentElement;if(s==='dark')d.classList.add('dark');else d.classList.remove('dark');}catch(e){document.documentElement.classList.remove('dark');}})();`
 
 export const metadata: Metadata = {
   title: '1,200+ Validated SaaS Ideas for Founders | SaaSIdea Pro',
@@ -51,7 +52,9 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className={`${newsreader.variable} ${dmSans.variable} antialiased`}>
-        <RouteTransitionLoader />
+        <Suspense fallback={null}>
+          <RouteTransitionLoader />
+        </Suspense>
         {children}
       </body>
     </html>

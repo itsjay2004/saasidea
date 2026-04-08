@@ -208,6 +208,42 @@ h1, h2, h3, h4, h5, h6 {
 .delay-600 { animation-delay: 600ms; }
 .delay-700 { animation-delay: 700ms; }
 
+/* Pending state indicators */
+.ideas-pending-spinner {
+  display: inline-block;
+  animation: ideasPendingSpin 0.7s linear infinite;
+}
+
+.ideas-filter-loading-bar {
+  overflow: hidden;
+}
+
+.ideas-filter-loading-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 40%;
+  background: var(--accent);
+  transform: translateX(-100%);
+  animation: ideasLoadingBar 1s ease-in-out infinite;
+}
+
+@keyframes ideasPendingSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ideasLoadingBar {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(250%);
+  }
+}
+
 /* ─── Gradient Text ──────────────────────────────────────────────────────── */
 @layer utilities {
   .text-balance {

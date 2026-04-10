@@ -13,7 +13,16 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border/50 bg-background/80 backdrop-blur-sm">
+    <footer className="relative bg-background/80 backdrop-blur-sm">
+      {/* Gradient top border — text-gradient colors, fades from center to sides */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 50%, #F59E0B 100%)',
+          maskImage: 'linear-gradient(to right, transparent, black 30%, black 70%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 30%, black 70%, transparent)',
+        }}
+      />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6 mb-8">
           <div className="flex items-start sm:items-center gap-3">

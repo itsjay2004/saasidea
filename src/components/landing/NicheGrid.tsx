@@ -28,22 +28,27 @@ const ICON_MAP: Record<string, ElementType> = {
   'Productivity': Zap,
 }
 
-const COLOR_MAP: Record<string, { icon: string; bg: string; ring: string; badge: string }> = {
-  'Fintech': { icon: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-500/10', ring: 'group-hover:ring-blue-500/25', badge: 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/15' },
-  'HR & Recruiting': { icon: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-500/10', ring: 'group-hover:ring-purple-500/25', badge: 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/15' },
-  'Health & Wellness': { icon: 'text-green-600 dark:text-green-400', bg: 'bg-green-500/10', ring: 'group-hover:ring-green-500/25', badge: 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/15' },
-  'Education': { icon: 'text-indigo-600 dark:text-indigo-400', bg: 'bg-indigo-500/10', ring: 'group-hover:ring-indigo-500/25', badge: 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border-indigo-500/15' },
-  'E-commerce': { icon: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-500/10', ring: 'group-hover:ring-orange-500/25', badge: 'bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/15' },
-  'B2B SaaS': { icon: 'text-cyan-600 dark:text-cyan-400', bg: 'bg-cyan-500/10', ring: 'group-hover:ring-cyan-500/25', badge: 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/15' },
-  'Legal': { icon: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-500/10', ring: 'group-hover:ring-amber-500/25', badge: 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/15' },
-  'Real Estate': { icon: 'text-teal-600 dark:text-teal-400', bg: 'bg-teal-500/10', ring: 'group-hover:ring-teal-500/25', badge: 'bg-teal-500/10 text-teal-700 dark:text-teal-300 border-teal-500/15' },
-  'Creator Economy': { icon: 'text-pink-600 dark:text-pink-400', bg: 'bg-pink-500/10', ring: 'group-hover:ring-pink-500/25', badge: 'bg-pink-500/10 text-pink-700 dark:text-pink-300 border-pink-500/15' },
-  'Agency': { icon: 'text-violet-600 dark:text-violet-400', bg: 'bg-violet-500/10', ring: 'group-hover:ring-violet-500/25', badge: 'bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-500/15' },
-  'Food & Beverage': { icon: 'text-rose-600 dark:text-rose-400', bg: 'bg-rose-500/10', ring: 'group-hover:ring-rose-500/25', badge: 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/15' },
-  'Travel': { icon: 'text-sky-600 dark:text-sky-400', bg: 'bg-sky-500/10', ring: 'group-hover:ring-sky-500/25', badge: 'bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-500/15' },
-  'Developer Tools': { icon: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-500/10', ring: 'group-hover:ring-emerald-500/25', badge: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/15' },
-  'Marketing': { icon: 'text-fuchsia-600 dark:text-fuchsia-400', bg: 'bg-fuchsia-500/10', ring: 'group-hover:ring-fuchsia-500/25', badge: 'bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300 border-fuchsia-500/15' },
-  'Productivity': { icon: 'text-lime-600 dark:text-lime-500', bg: 'bg-lime-500/10', ring: 'group-hover:ring-lime-500/25', badge: 'bg-lime-500/10 text-lime-700 dark:text-lime-300 border-lime-500/15' },
+const COLOR_MAP: Record<string, {
+  icon: string
+  bg: string
+  bar: string
+  glow: string
+}> = {
+  'Fintech':          { icon: 'text-blue-600 dark:text-blue-400',    bg: 'bg-blue-500/10',    bar: 'bg-blue-500',    glow: 'rgba(59,130,246,0.12)' },
+  'HR & Recruiting':  { icon: 'text-purple-600 dark:text-purple-400',bg: 'bg-purple-500/10',  bar: 'bg-purple-500',  glow: 'rgba(168,85,247,0.12)' },
+  'Health & Wellness':{ icon: 'text-green-600 dark:text-green-400',  bg: 'bg-green-500/10',   bar: 'bg-green-500',   glow: 'rgba(34,197,94,0.12)' },
+  'Education':        { icon: 'text-indigo-600 dark:text-indigo-400',bg: 'bg-indigo-500/10',  bar: 'bg-indigo-500',  glow: 'rgba(99,102,241,0.12)' },
+  'E-commerce':       { icon: 'text-orange-600 dark:text-orange-400',bg: 'bg-orange-500/10',  bar: 'bg-orange-500',  glow: 'rgba(249,115,22,0.12)' },
+  'B2B SaaS':         { icon: 'text-cyan-600 dark:text-cyan-400',    bg: 'bg-cyan-500/10',    bar: 'bg-cyan-500',    glow: 'rgba(6,182,212,0.12)' },
+  'Legal':            { icon: 'text-amber-600 dark:text-amber-400',  bg: 'bg-amber-500/10',   bar: 'bg-amber-500',   glow: 'rgba(245,158,11,0.12)' },
+  'Real Estate':      { icon: 'text-teal-600 dark:text-teal-400',    bg: 'bg-teal-500/10',    bar: 'bg-teal-500',    glow: 'rgba(20,184,166,0.12)' },
+  'Creator Economy':  { icon: 'text-pink-600 dark:text-pink-400',    bg: 'bg-pink-500/10',    bar: 'bg-pink-500',    glow: 'rgba(236,72,153,0.12)' },
+  'Agency':           { icon: 'text-violet-600 dark:text-violet-400',bg: 'bg-violet-500/10',  bar: 'bg-violet-500',  glow: 'rgba(139,92,246,0.12)' },
+  'Food & Beverage':  { icon: 'text-rose-600 dark:text-rose-400',    bg: 'bg-rose-500/10',    bar: 'bg-rose-500',    glow: 'rgba(244,63,94,0.12)' },
+  'Travel':           { icon: 'text-sky-600 dark:text-sky-400',      bg: 'bg-sky-500/10',     bar: 'bg-sky-500',     glow: 'rgba(14,165,233,0.12)' },
+  'Developer Tools':  { icon: 'text-emerald-600 dark:text-emerald-400',bg:'bg-emerald-500/10', bar: 'bg-emerald-500', glow: 'rgba(16,185,129,0.12)' },
+  'Marketing':        { icon: 'text-fuchsia-600 dark:text-fuchsia-400',bg:'bg-fuchsia-500/10', bar: 'bg-fuchsia-500', glow: 'rgba(217,70,239,0.12)' },
+  'Productivity':     { icon: 'text-lime-600 dark:text-lime-500',    bg: 'bg-lime-500/10',    bar: 'bg-lime-500',    glow: 'rgba(132,204,22,0.12)' },
 }
 
 const NICHE_MAP: Record<string, string[]> = {
@@ -66,7 +71,7 @@ const NICHE_MAP: Record<string, string[]> = {
 
 const ALL_INDUSTRIES = Object.keys(NICHE_MAP)
 
-const fallbackColor = { icon: 'text-gray-500', bg: 'bg-gray-500/10', ring: 'group-hover:ring-gray-500/25', badge: 'bg-gray-500/10 text-gray-600 border-gray-500/15' }
+const fallbackColor = { icon: 'text-gray-500', bg: 'bg-gray-500/10', bar: 'bg-gray-400', glow: 'rgba(156,163,175,0.12)' }
 
 export default function NicheGrid({ industries }: NicheGridProps) {
   const industriesMap = new Map(industries.map(i => [i.industry, i.count]))
@@ -86,36 +91,16 @@ export default function NicheGrid({ industries }: NicheGridProps) {
             Browse by Industry
           </div>
           <h2 className="font-heading text-3xl sm:text-[2.75rem] font-bold text-text-primary leading-[1.15] mb-4">
-            <span className="text-gradient">15 industries.</span>{' '}
-            100+ Niches. One Collection
+            <span className="text-gradient">{totalIdeas.toLocaleString()}+ ideas</span>{' '}
+            across 15 industries
           </h2>
           <p className="text-text-muted text-[15px] sm:text-base max-w-xl mx-auto leading-relaxed mt-2">
             From AI to food delivery — every idea is validated, niche-specific, and ready to build.
           </p>
         </div>
 
-        {/* Headline stat */}
-        <div className="flex justify-center mb-10">
-          <div className="inline-flex items-center gap-6 sm:gap-10 px-7 py-4 glass-card rounded-2xl shadow-card">
-            <div className="text-center">
-              <p className="text-2xl sm:text-3xl font-bold font-heading text-text-primary tracking-tight">{totalIdeas.toLocaleString()}+</p>
-              <p className="text-xs text-text-muted mt-0.5">Total ideas</p>
-            </div>
-            <div className="w-px h-8 bg-border" />
-            <div className="text-center">
-              <p className="text-2xl sm:text-3xl font-bold font-heading text-text-primary tracking-tight">15</p>
-              <p className="text-xs text-text-muted mt-0.5">Industries</p>
-            </div>
-            <div className="w-px h-8 bg-border" />
-            <div className="text-center">
-              <p className="text-2xl sm:text-3xl font-bold font-heading text-text-primary tracking-tight">100+</p>
-              <p className="text-xs text-text-muted mt-0.5">Niches</p>
-            </div>
-          </div>
-        </div>
-
         {/* Industry grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {ALL_INDUSTRIES.map(industry => {
             const count = industriesMap.get(industry) || 0
             const niches = NICHE_MAP[industry] || []
@@ -126,44 +111,56 @@ export default function NicheGrid({ industries }: NicheGridProps) {
               <CrawlableLink
                 key={industry}
                 href={`/ideas?industry=${encodeURIComponent(industry)}`}
-                className={`group relative flex flex-col glass-card rounded-2xl p-4 sm:p-5 ring-2 ring-transparent ${colors.ring} hover:shadow-card-md hover:-translate-y-1 transition-all duration-250 overflow-hidden`}
+                className="group relative glass-card rounded-2xl overflow-hidden hover:shadow-card-lg hover:-translate-y-1 transition-all duration-300"
               >
-                {/* Hover glow */}
-                <div className={`absolute -top-8 -right-8 w-24 h-24 ${colors.bg} rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
+                {/* Colored accent bar at top */}
+                <div className={`h-1 w-full ${colors.bar} opacity-60 group-hover:opacity-100 transition-opacity duration-300`} />
 
-                <div className="relative">
+                {/* Hover glow */}
+                <div
+                  className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ background: colors.glow }}
+                />
+
+                <div className="relative px-5 py-5 sm:px-6 sm:py-5 flex items-start gap-4">
                   {/* Icon */}
-                  <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl ${colors.bg} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200`}>
-                    {Icon && <Icon className={`w-5 h-5 ${colors.icon}`} />}
+                  <div className={`shrink-0 w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center group-hover:scale-110 transition-transform duration-250`}>
+                    {Icon && <Icon className={`w-5.5 h-5.5 ${colors.icon}`} strokeWidth={1.75} />}
                   </div>
 
-                  {/* Name + count */}
-                  <div className="flex flex-col items-start gap-1.5 mb-2.5">
-                    <h3 className="font-semibold text-text-primary text-[13px] sm:text-sm leading-snug break-words">
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    {/* Industry name */}
+                    <h3 className="font-bold text-text-primary text-[15px] leading-snug truncate mb-2">
                       {industry}
                     </h3>
-                    {count > 0 && (
-                      <span className={`text-[10px] sm:text-[11px] font-medium px-2 py-0.5 rounded-md border ${colors.badge} tabular-nums opacity-85`}>
-                        {count} {count === 1 ? 'idea' : 'ideas'}
-                      </span>
-                    )}
-                  </div>
 
-                  {/* Niche tags */}
-                  <div className="flex flex-wrap gap-1">
-                    {niches.map(n => (
-                      <span
-                        key={n}
-                        className="px-2 py-[3px] rounded-md text-[10px] font-medium bg-surface-2 text-text-subtle leading-none"
-                      >
-                        {n}
-                      </span>
-                    ))}
-                  </div>
+                    {/* Niche tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-3.5">
+                      {niches.map(n => (
+                        <span
+                          key={n}
+                          className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-surface-2 text-text-subtle leading-none"
+                        >
+                          {n}
+                        </span>
+                      ))}
+                    </div>
 
-                  {/* Explore CTA */}
-                  <div className="flex items-center gap-1 text-[11px] font-semibold text-accent mt-3 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
-                    Explore ideas <ArrowRight className="w-3 h-3" />
+                    {/* Idea count — prominent */}
+                    <div className="flex items-center justify-between border-t border-border/40 pt-3">
+                      {count > 0 ? (
+                        <div className="flex items-baseline gap-1.5">
+                          <span className={`text-xl font-extrabold tabular-nums ${colors.icon}`}>{count}</span>
+                          <span className="text-xs font-medium text-text-muted">{count === 1 ? 'idea' : 'ideas'} ready</span>
+                        </div>
+                      ) : (
+                        <span className="text-xs text-text-subtle">Coming soon</span>
+                      )}
+                      <div className="flex items-center gap-1 text-xs font-semibold text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-250">
+                        Explore <ArrowRight className="w-3.5 h-3.5" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CrawlableLink>

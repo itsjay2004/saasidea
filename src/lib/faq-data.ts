@@ -20,7 +20,7 @@ export const faqItems = [
     a: "There is a 30-day money-back guarantee, no questions asked. Email support and you'll get a full refund.",
   },
   {
-    q: 'How often are new ideas added?',
+    q: 'How often are new ideas added-v1?',
     a: 'New batches of ideas are added regularly. All future additions are included in your one-time purchase.',
   },
   {

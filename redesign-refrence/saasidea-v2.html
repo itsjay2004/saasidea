@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaaSIdea Pro — 1,200+ SaaS Ideas From Real Complaints</title>
+<meta name="description" content="1,200+ SaaS ideas sourced from real Reddit complaints. MRR estimates, build time, competition data, and keyword research on every idea. One-time $29.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0a09;--bg2:#111009;--bg3:#181611;--bg4:#201d15;--bg5:#28241a;
+  --t:#f0ebe1;--t2:#9e9680;--t3:#5a5444;--t4:#302e26;
+  --a:#e06328;--ad:rgba(224,99,40,.11);--ab:rgba(224,99,40,.28);--ah:rgba(224,99,40,.06);
+  --g:#4aad72;--gd:rgba(74,173,114,.1);--gb:rgba(74,173,114,.22);
+  --y:#c09e35;--yd:rgba(192,158,53,.1);--yb:rgba(192,158,53,.22);
+  --b:#5080d4;--bd:rgba(80,128,212,.1);--bb:rgba(80,128,212,.22);
+  --br:rgba(255,255,255,.065);--br2:rgba(255,255,255,.038);
+  --r:8px;--rl:14px;--rxl:20px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--t);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* grain */
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.022;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px}
+
+/* layout */
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.wrap--sm{max-width:760px;margin:0 auto;padding:0 28px}
+
+/* type */
+.display{font-family:'Fraunces',serif;font-weight:400;letter-spacing:-.025em;line-height:1.05}
+.mono{font-family:'Geist Mono',monospace}
+.eyebrow{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:10px}
+.eyebrow--a{color:var(--a)}
+
+/* badges */
+.tag{display:inline-flex;align-items:center;gap:5px;font-family:'Geist Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.05em;padding:3px 9px;border-radius:5px;white-space:nowrap}
+.tag--cat{background:rgba(255,255,255,.05);color:var(--t2);border:1px solid var(--br)}
+.tag--easy{background:var(--gd);color:var(--g);border:1px solid var(--gb)}
+.tag--med{background:var(--yd);color:var(--y);border:1px solid var(--yb)}
+.tag--hard{background:var(--bd);color:var(--b);border:1px solid var(--bb)}
+.tag--low{background:var(--gd);color:var(--g);border:1px solid var(--gb)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;padding:11px 22px;border-radius:8px;border:1.5px solid transparent;cursor:pointer;transition:all .17s;white-space:nowrap;letter-spacing:.01em}
+.btn--primary{background:var(--a);color:#fff;border-color:var(--a)}
+.btn--primary:hover{background:#c8561e;transform:translateY(-1px)}
+.btn--outline{background:transparent;color:var(--t);border-color:var(--br)}
+.btn--outline:hover{border-color:rgba(255,255,255,.17);background:rgba(255,255,255,.03)}
+.btn--ghost{background:transparent;color:var(--t2);border-color:transparent;gap:6px;padding-left:0}
+.btn--ghost:hover{color:var(--t)}
+.btn--ghost .arr{transition:transform .2s}
+.btn--ghost:hover .arr{transform:translateX(4px)}
+.btn--sm{padding:8px 16px;font-size:12.5px}
+
+/* ─── NAV ─── */
+.nav{position:sticky;top:0;z-index:200;height:58px;
+  background:rgba(11,10,9,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--br)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.nav-logo-mark{width:28px;height:28px;background:var(--a);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:15px;color:#fff;flex-shrink:0}
+.nav-brand{font-family:'Fraunces',serif;font-size:16px;color:var(--t);letter-spacing:-.02em}
+.nav-brand em{font-style:normal;color:var(--a)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:13px;color:var(--t3);transition:color .15s}
+.nav-links a:hover{color:var(--t)}
+.nav-actions{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-signin{font-size:13px;color:var(--t3);transition:color .15s}
+.nav-signin:hover{color:var(--t)}
+.nav-cta{background:var(--a);color:#fff;font-size:12.5px;font-weight:500;padding:7px 16px;border-radius:7px;transition:all .17s}
+.nav-cta:hover{background:#c8561e}
+.nav-bar{position:absolute;bottom:0;left:0;height:1.5px;background:var(--a);width:0;transition:width .08s linear}
+
+/* ─── HERO ─── */
+.hero{padding:88px 0 72px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(224,99,40,.08) 0%,transparent 68%);pointer-events:none}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.07em;color:var(--a);border:1px solid var(--ab);background:var(--ad);padding:5px 14px;border-radius:40px;margin-bottom:28px}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--a);animation:blink 2s ease-in-out infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.hero-h1{font-family:'Fraunces',serif;font-size:clamp(50px,7.8vw,90px);font-weight:400;line-height:1.02;letter-spacing:-.03em;color:var(--t);max-width:780px;margin-bottom:20px}
+.hero-h1 em{font-style:italic;color:var(--a)}
+.hero-sub{font-size:16px;color:var(--t2);max-width:520px;margin-bottom:36px;font-weight:300;line-height:1.65}
+.hero-sub strong{color:var(--t);font-weight:500}
+.hero-ctas{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:32px}
+.hero-trust{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.trust-avs{display:flex}
+.trust-av{width:30px;height:30px;border-radius:50%;border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:12px;color:#fff;font-weight:600;flex-shrink:0}
+.trust-av:not(:first-child){margin-left:-8px}
+.trust-txt{font-size:12.5px;color:var(--t3)}
+.trust-sep{width:3px;height:3px;border-radius:50%;background:var(--t4);flex-shrink:0}
+.trust-mono{font-family:'Geist Mono',monospace;font-size:11px;color:var(--t3);letter-spacing:.04em}
+
+/* ─── PROOF VISUAL ─── */
+.proof-visual{margin-top:56px;display:grid;grid-template-columns:1fr 44px 1fr;align-items:center;gap:0;max-width:860px}
+.proof-arrow{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 4px}
+.proof-arrow-line{width:2px;flex:1;min-height:40px;background:linear-gradient(to bottom,transparent,var(--a),transparent)}
+.proof-arrow-icon{color:var(--a);font-size:22px;line-height:1}
+.proof-label{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--a);margin-top:4px;white-space:nowrap}
+
+/* reddit card */
+.reddit-card{background:var(--bg3);border:1px solid var(--br);border-left:3px solid #ff4500;border-radius:var(--rl);padding:20px 22px;position:relative}
+.rc-head{display:flex;align-items:center;gap:8px;margin-bottom:13px}
+.rc-icon{width:20px;height:20px;background:#ff4500;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Geist Mono',monospace;font-size:9px;color:#fff;font-weight:700;flex-shrink:0}
+.rc-sub{font-family:'Geist Mono',monospace;font-size:11px;color:var(--t2);letter-spacing:.04em}
+.rc-votes{font-family:'Geist Mono',monospace;font-size:11px;color:#ff4500;margin-left:auto}
+.rc-text{font-size:13.5px;color:var(--t);line-height:1.65;font-style:italic;font-weight:300;margin-bottom:14px}
+.rc-meta{font-family:'Geist Mono',monospace;font-size:10.5px;color:var(--t3);letter-spacing:.03em}
+
+/* idea card (proof right) */
+.idea-card-proof{background:var(--bg3);border:1px solid var(--ab);border-radius:var(--rl);overflow:hidden}
+.icp-head{padding:18px 22px 14px;border-bottom:1px solid var(--br2)}
+.icp-tags{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.icp-title{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--t);letter-spacing:-.01em;line-height:1.25}
+.icp-why{padding:12px 22px;background:rgba(224,99,40,.05);border-bottom:1px solid var(--br2)}
+.icp-why-label{font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--a);display:block;margin-bottom:5px}
+.icp-why-text{font-size:12.5px;color:var(--t2);font-weight:300;line-height:1.6}
+.icp-data{padding:14px 22px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.icp-d-label{font-family:'Geist Mono',monospace;font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:4px}
+.icp-d-val{font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;color:var(--t);line-height:1.2}
+.icp-d-val--g{color:var(--g)}
+.icp-d-val--y{color:var(--y)}
+.icp-d-val--s{font-size:10.5px;color:var(--t3);display:block;margin-top:1px;font-weight:400}
+
+/* ─── SCROLLING STRIP ─── */
+.strip{padding:40px 0;overflow:hidden;border-top:1px solid var(--br2);border-bottom:1px solid var(--br2);background:linear-gradient(var(--bg),var(--bg2))}
+.strip-eyebrow{text-align:center;margin-bottom:18px}
+.strip-row{display:flex;gap:10px;width:max-content}
+.strip-row--a{animation:sa 42s linear infinite;margin-bottom:10px}
+.strip-row--b{animation:sb 55s linear infinite}
+.strip-row:hover{animation-play-state:paused}
+@keyframes sa{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sb{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.strip-wrap{position:relative}
+.strip-wrap::before,.strip-wrap::after{content:'';position:absolute;top:0;bottom:0;width:140px;z-index:2;pointer-events:none}
+.strip-wrap::before{left:0;background:linear-gradient(to right,var(--bg2),transparent)}
+.strip-wrap::after{right:0;background:linear-gradient(to left,var(--bg2),transparent)}
+.sc{background:var(--bg3);border:1px solid var(--br);border-radius:9px;padding:13px 18px;min-width:220px;flex-shrink:0;transition:border-color .18s,transform .18s}
+.sc:hover{border-color:rgba(255,255,255,.13);transform:translateY(-2px)}
+.sc-top{display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap}
+.sc-title{font-size:13px;font-weight:500;color:var(--t);line-height:1.3;margin-bottom:7px}
+.sc-mrr{font-family:'Geist Mono',monospace;font-size:11.5px;color:var(--g);font-weight:500}
+
+/* ─── SOURCE PIPELINE ─── */
+.source{padding:88px 0;background:var(--bg2);border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--br);border:1px solid var(--br);border-radius:var(--rl);overflow:hidden;margin-top:48px}
+.pipe-step{background:var(--bg2);padding:30px 26px;text-align:center;position:relative;transition:background .18s}
+.pipe-step:hover{background:var(--bg3)}
+.pipe-icon{font-size:32px;margin-bottom:14px;display:block;line-height:1}
+.pipe-stat{font-family:'Fraunces',serif;font-size:34px;font-weight:400;color:var(--t);letter-spacing:-.03em;line-height:1;margin-bottom:4px}
+.pipe-stat em{font-style:normal;color:var(--a)}
+.pipe-name{font-size:14px;font-weight:500;color:var(--t);margin-bottom:6px}
+.pipe-desc{font-size:12.5px;color:var(--t3);font-weight:300;line-height:1.5}
+/* connecting arrows between steps — CSS only */
+.pipe-step:not(:last-child)::after{
+  content:'→';
+  position:absolute;right:-14px;top:50%;transform:translateY(-50%);
+  color:var(--a);font-size:20px;z-index:2;
+  background:var(--bg2);padding:0 2px;
+}
+
+/* ─── WHO IT'S FOR ─── */
+.for{padding:88px 0}
+.profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.profile{background:var(--bg2);border:1px solid var(--br);border-radius:var(--rl);padding:28px 24px;transition:border-color .18s,transform .18s;position:relative;overflow:hidden}
+.profile:hover{border-color:rgba(255,255,255,.13);transform:translateY(-3px)}
+.profile--star{border-color:var(--ab);background:linear-gradient(145deg,var(--bg2),rgba(224,99,40,.04))}
+.profile--star::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--a),transparent)}
+.profile-icon{font-size:36px;margin-bottom:16px;display:block;line-height:1}
+.profile-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:8px;display:block}
+.profile-label--star{color:var(--a)}
+.profile-title{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:var(--t);letter-spacing:-.01em;line-height:1.2;margin-bottom:10px}
+.profile-pain{font-size:13px;color:var(--t2);font-weight:300;line-height:1.55}
+.profile-pain strong{color:var(--t);font-weight:500}
+.not-for{margin-top:28px;padding-top:20px;border-top:1px solid var(--br);font-size:12.5px;color:var(--t3);font-style:italic;line-height:1.5;text-align:center}
+
+/* ─── ANATOMY ─── */
+.anatomy{padding:88px 0;background:var(--bg2);border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.anatomy-layout{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:24px;align-items:start;margin-top:48px}
+.anatomy-card{background:var(--bg);border:1px solid var(--ab);border-radius:var(--rl);overflow:hidden;box-shadow:0 0 0 1px rgba(224,99,40,.08),0 32px 64px rgba(0,0,0,.5)}
+.ac-head{padding:20px 22px 16px;border-bottom:1px solid var(--br2)}
+.ac-tags{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.ac-title{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:var(--t);letter-spacing:-.01em;line-height:1.2}
+.ac-why{padding:14px 22px;background:rgba(224,99,40,.055);border-bottom:1px solid var(--br2)}
+.ac-why-lbl{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--a);display:block;margin-bottom:5px}
+.ac-why-txt{font-size:12.5px;color:var(--t2);font-weight:300;line-height:1.6}
+.ac-data{padding:16px 22px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.acd-label{font-family:'Geist Mono',monospace;font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:4px}
+.acd-val{font-family:'Geist Mono',monospace;font-size:11.5px;font-weight:500;color:var(--t);line-height:1.2}
+.acd-val--g{color:var(--g)}
+.acd-val--y{color:var(--y)}
+.acd-note{font-size:10px;color:var(--t3);display:block;margin-top:1px}
+
+/* dot numbers on anatomy card sections */
+.dot-num{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;font-family:'Geist Mono',monospace;font-size:9.5px;font-weight:500;flex-shrink:0;margin-right:5px;vertical-align:middle}
+.dot-1{background:rgba(74,173,114,.18);color:var(--g);border:1px solid var(--gb)}
+.dot-2{background:rgba(224,99,40,.15);color:var(--a);border:1px solid var(--ab)}
+.dot-3{background:rgba(80,128,212,.15);color:var(--b);border:1px solid var(--bb)}
+.dot-4{background:rgba(192,158,53,.15);color:var(--y);border:1px solid var(--yb)}
+.dot-5{background:rgba(255,255,255,.07);color:var(--t2);border:1px solid var(--br)}
+.dot-6{background:rgba(255,255,255,.07);color:var(--t2);border:1px solid var(--br)}
+
+/* anatomy annotations */
+.ann-col{display:flex;flex-direction:column;gap:0}
+.ann-col--l .ann-item{border-right:2px solid var(--br2)}
+.ann-col--r .ann-item{border-left:2px solid var(--br2)}
+.ann-item{padding:16px 16px;position:relative;transition:background .15s}
+.ann-item:hover{background:rgba(255,255,255,.02)}
+.ann-head{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.ann-title{font-size:13px;font-weight:500;color:var(--t);line-height:1.2}
+.ann-desc{font-size:12px;color:var(--t3);font-weight:300;line-height:1.45}
+
+/* ─── STATS ─── */
+.stats{border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--br)}
+.stat{background:var(--bg2);padding:32px 24px;text-align:center}
+.stat-n{font-family:'Fraunces',serif;font-size:48px;font-weight:400;color:var(--t);letter-spacing:-.04em;line-height:1}
+.stat-n em{font-style:normal;color:var(--a)}
+.stat-l{font-size:12.5px;color:var(--t3);margin-top:6px;font-weight:300}
+
+/* ─── INDUSTRIES ─── */
+.industries{padding:88px 0}
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:10px;margin-top:40px;margin-bottom:16px}
+.ind-card{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:20px 18px;transition:border-color .18s,transform .18s,background .18s;display:block}
+.ind-card:hover{border-color:rgba(255,255,255,.14);background:var(--bg3);transform:translateY(-2px)}
+.ind-name{font-family:'Fraunces',serif;font-size:17px;font-weight:400;color:var(--t);letter-spacing:-.01em;margin-bottom:7px;line-height:1.2}
+.ind-tags{font-size:11.5px;color:var(--t3);margin-bottom:12px;line-height:1.45}
+.ind-count{font-family:'Geist Mono',monospace;font-size:11px;color:var(--a);font-weight:500}
+.ind-note{font-size:12.5px;color:var(--t3);font-style:italic}
+
+/* ─── COMPARISON ─── */
+.compare{padding:88px 0;background:var(--bg2);border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.comp-table-wrap{overflow-x:auto;border:1px solid var(--br);border-radius:var(--rl);margin-top:40px}
+.comp-table{width:100%;border-collapse:collapse;min-width:640px}
+.comp-table th{padding:14px 18px;font-family:'Geist Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);background:var(--bg3);border-bottom:1px solid var(--br);text-align:left}
+.comp-table th.col-us{color:var(--a);background:rgba(224,99,40,.07);border-left:2px solid var(--a)}
+.comp-table td{padding:13px 18px;font-size:13px;color:var(--t2);border-bottom:1px solid var(--br2);vertical-align:middle}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table td:first-child{font-size:12.5px;color:var(--t3);font-weight:400;width:26%}
+.comp-table td.col-us{background:rgba(224,99,40,.04);border-left:2px solid rgba(224,99,40,.2);color:var(--t);font-weight:400}
+.comp-table tr:hover td{background:rgba(255,255,255,.012)}
+.comp-table tr:hover td.col-us{background:rgba(224,99,40,.07)}
+.chk{color:var(--g);font-size:15px}
+.crs{color:var(--t3);font-size:15px}
+.comp-note{margin-top:14px;font-size:12.5px;color:var(--t3);font-style:italic;text-align:center}
+
+/* ─── PRICING ─── */
+.pricing{padding:88px 0}
+.pricing-head{text-align:center;margin-bottom:48px}
+.pricing-comparison{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:20px}
+.pcomp{font-family:'Geist Mono',monospace;font-size:12px;color:var(--t3);background:var(--bg2);border:1px solid var(--br);padding:5px 12px;border-radius:6px}
+.pcomp strong{color:var(--t2);font-weight:500}
+.pcomp--us{border-color:var(--ab);color:var(--a);background:var(--ad)}
+.pcomp--us strong{color:var(--a)}
+.pv{font-family:'Geist Mono',monospace;font-size:10px;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+.pricing-card{max-width:520px;margin:0 auto;background:var(--bg2);border:1px solid var(--br);border-radius:var(--rxl);overflow:hidden;position:relative}
+.pricing-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent 10%,var(--a) 50%,transparent 90%)}
+.pc-top{padding:32px 32px 24px;border-bottom:1px solid var(--br)}
+.pc-plan{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:18px}
+.pc-price-row{display:flex;align-items:flex-end;gap:10px;margin-bottom:6px}
+.pc-dollar{font-family:'Fraunces',serif;font-size:28px;color:var(--t2);margin-bottom:6px}
+.pc-price{font-family:'Fraunces',serif;font-size:64px;color:var(--t);line-height:1;letter-spacing:-.04em}
+.pc-was{font-family:'Fraunces',serif;font-size:24px;color:var(--t3);text-decoration:line-through;margin-bottom:6px;font-weight:300}
+.pc-desc{font-size:13.5px;color:var(--t3);margin-bottom:24px;font-weight:300}
+.pc-cta{display:flex;flex-direction:column;gap:10px}
+.pc-cta .btn--primary{width:100%;justify-content:center;padding:14px 22px;font-size:15px}
+.pc-secure{text-align:center;font-family:'Geist Mono',monospace;font-size:11px;color:var(--t3);letter-spacing:.04em}
+.pc-features{padding:24px 32px 30px}
+.pc-feat-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:14px}
+.pc-feat-list{display:flex;flex-direction:column;gap:9px}
+.pc-feat-item{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--t2);font-weight:300;line-height:1.45}
+.pc-check{width:17px;height:17px;background:var(--gd);border:1px solid var(--gb);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;color:var(--g);font-size:10.5px}
+.pc-feat-item strong{color:var(--t);font-weight:500}
+.pricing-guarantee{max-width:520px;margin:20px auto 0;background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:16px 22px;font-size:13px;color:var(--t2);font-weight:300;line-height:1.6;text-align:center}
+.pricing-guarantee strong{color:var(--t);font-weight:500}
+
+/* ─── FAQ ─── */
+.faq{padding:88px 0;background:var(--bg2);border-top:1px solid var(--br)}
+.faq-list{border:1px solid var(--br);border-radius:var(--rl);overflow:hidden;margin-top:40px}
+.faq-item{border-bottom:1px solid var(--br2)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{width:100%;background:none;border:none;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;text-align:left;font-size:14.5px;font-weight:400;color:var(--t);transition:background .15s;font-family:'Geist',sans-serif}
+.faq-q:hover{background:rgba(255,255,255,.02)}
+.faq-q.open{background:var(--ah)}
+.faq-q-text{line-height:1.4}
+.faq-ico{width:20px;height:20px;border:1px solid var(--br);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:var(--t3);transition:transform .22s,background .15s,border-color .15s;font-family:monospace}
+.faq-q.open .faq-ico{transform:rotate(45deg);background:var(--ad);border-color:var(--ab);color:var(--a)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .28s ease}
+.faq-body-inner{padding:2px 24px 18px;font-size:13.5px;color:var(--t2);font-weight:300;line-height:1.75}
+.faq-body-inner strong{color:var(--t);font-weight:500}
+.faq-body-inner a{color:var(--a)}
+
+/* ─── FOOTER ─── */
+.footer{padding:48px 0 40px;border-top:1px solid var(--br)}
+.footer-inner{max-width:1120px;margin:0 auto;padding:0 28px}
+.footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;padding-bottom:32px;border-bottom:1px solid var(--br2);margin-bottom:24px;flex-wrap:wrap}
+.footer-tagline{font-size:13px;color:var(--t3);font-weight:300;max-width:260px;margin-top:10px;line-height:1.6}
+.footer-links{display:flex;gap:44px}
+.footer-col-title{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:12px}
+.footer-col a{display:block;font-size:13px;color:var(--t2);margin-bottom:7px;transition:color .14s;font-weight:300}
+.footer-col a:hover{color:var(--t)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-copy{font-size:12px;color:var(--t3);font-weight:300}
+.footer-badge{display:flex;align-items:center;gap:8px;font-family:'Geist Mono',monospace;font-size:11px;color:var(--t3);letter-spacing:.04em}
+.footer-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--g);flex-shrink:0}
+
+/* ─── REVEAL ANIMATIONS ─── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:980px){
+  .anatomy-layout{grid-template-columns:1fr}
+  .ann-col--l,.ann-col--r{display:none}
+  .profiles{grid-template-columns:1fr}
+  .pipeline{grid-template-columns:1fr 1fr}
+  .pipe-step:nth-child(2)::after{display:none}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:720px){
+  .nav-links{display:none}
+  .wrap,.wrap--sm{padding:0 18px}
+  .hero{padding:66px 0 56px}
+  .hero-h1{font-size:clamp(38px,11vw,58px)}
+  .proof-visual{display:none}
+  .profiles{grid-template-columns:1fr}
+  .pipeline{grid-template-columns:1fr 1fr}
+  .comp-table-wrap{border:none;border-radius:0}
+  .anatomy-layout{grid-template-columns:1fr}
+  .icp-data{grid-template-columns:repeat(3,1fr)}
+  .ac-data{grid-template-columns:repeat(3,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .ind-grid{grid-template-columns:1fr 1fr}
+  .pricing-comparison{flex-direction:column;align-items:center}
+  .hero-trust{flex-direction:column;align-items:flex-start}
+  .section{padding:64px 0}
+}
+@media(max-width:480px){
+  .ind-grid{grid-template-columns:1fr}
+  .pipeline{grid-template-columns:1fr}
+  .pipe-step::after{display:none!important}
+  .profiles{grid-template-columns:1fr}
+  .hero-ctas{flex-direction:column;align-items:flex-start}
+  .ac-data,.icp-data{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">S</div>
+      <span class="nav-brand">SaaSIdea<em>Pro</em></span>
+    </a>
+    <div class="nav-links">
+      <a href="#anatomy">What's Inside</a>
+      <a href="#industries">Industries</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <a href="/login" class="nav-signin">Sign in</a>
+      <a href="#pricing" class="nav-cta">Get Access — $29</a>
+    </div>
+  </div>
+  <div class="nav-bar" id="navBar"></div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="hero-pill rv">
+      <span class="hero-dot"></span>
+      Pain-sourced &nbsp;·&nbsp; Not AI-generated
+    </div>
+
+    <h1 class="hero-h1 display rv d1">
+      Every idea here<br>started as a<br><em>complaint.</em>
+    </h1>
+
+    <p class="hero-sub rv d2">
+      <strong>1,200+ SaaS ideas</strong> from real Reddit threads &amp; forum posts.<br>
+      MRR, build time, competition &amp; keyword data on every one. <strong>$29 once.</strong>
+    </p>
+
+    <div class="hero-ctas rv d3">
+      <a href="#pricing" class="btn btn--primary">Unlock the Library — $29</a>
+      <a href="/free-ideas" class="btn btn--ghost">
+        See 50 free ideas
+        <span class="arr">→</span>
+      </a>
+    </div>
+
+    <div class="hero-trust rv d4">
+      <div class="trust-avs">
+        <div class="trust-av" style="background:#5080d4">A</div>
+        <div class="trust-av" style="background:#4aad72">M</div>
+        <div class="trust-av" style="background:#e06328">J</div>
+        <div class="trust-av" style="background:#c09e35">S</div>
+        <div class="trust-av" style="background:#9b68d4">K</div>
+      </div>
+      <span class="trust-txt">500+ founders &amp; vibe coders</span>
+      <span class="trust-sep"></span>
+      <span class="trust-mono">15-day money-back</span>
+    </div>
+
+    <!-- THE PROOF VISUAL: Complaint → Idea card -->
+    <div class="proof-visual rv d4" style="margin-top:64px">
+
+      <!-- Left: Reddit complaint -->
+      <div class="reddit-card">
+        <div class="rc-head">
+          <div class="rc-icon">r/</div>
+          <span class="rc-sub">r/webdev</span>
+          <span class="rc-votes">▲ 847</span>
+        </div>
+        <p class="rc-text">"I've been looking for months. There's no decent webhook debugger that isn't massive overkill for solo devs. Hookdeck is great but starts at $25/mo for features I just don't need. Why doesn't a simpler version exist?"</p>
+        <span class="rc-meta">u/dev_solo___ · 3 days ago · 47 comments</span>
+      </div>
+
+      <!-- Arrow -->
+      <div class="proof-arrow">
+        <div class="proof-arrow-line"></div>
+        <div class="proof-arrow-icon">→</div>
+        <div class="proof-arrow-line"></div>
+        <span class="proof-label">Idea&nbsp;#389</span>
+      </div>
+
+      <!-- Right: Idea card -->
+      <div class="idea-card-proof">
+        <div class="icp-head">
+          <div class="icp-tags">
+            <span class="tag tag--cat">Developer Tools</span>
+            <span class="tag tag--easy">Easy</span>
+          </div>
+          <h3 class="icp-title display">Webhook Delivery Debugger</h3>
+        </div>
+        <div class="icp-why">
+          <span class="icp-why-label">Pain source</span>
+          <p class="icp-why-text">Solo devs cite Hookdeck as too expensive &amp; complex. Same complaint in 40+ threads across r/webdev, dev Discords, and GitHub issues.</p>
+        </div>
+        <div class="icp-data">
+          <div><span class="icp-d-label">MRR Est.</span><span class="icp-d-val icp-d-val--g">$1K–3K</span></div>
+          <div><span class="icp-d-label">Build</span><span class="icp-d-val">2–3 wks</span></div>
+          <div><span class="icp-d-label">Competition</span><span class="icp-d-val icp-d-val--y">Medium</span></div>
+          <div><span class="icp-d-label">Price</span><span class="icp-d-val">$19/mo</span></div>
+          <div><span class="icp-d-label">Keyword</span><span class="icp-d-val">8.2K<span class="icp-d-val--s">/mo</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCROLLING STRIP ═══ -->
+<div class="strip">
+  <div class="eyebrow strip-eyebrow">A taste of what's inside →</div>
+  <div class="strip-wrap">
+    <div class="strip-row strip-row--a">
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Dev Tools</span></div><div class="sc-title">AI API Cost Tracker</div><div class="sc-mrr">$1K–4K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">Health</span></div><div class="sc-title">Therapist SOAP Notes AI</div><div class="sc-mrr">$2K–8K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Fintech</span></div><div class="sc-title">Freelance Invoice Tracker</div><div class="sc-mrr">$800–3K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">E-comm</span></div><div class="sc-title">Returns Analytics Dashboard</div><div class="sc-mrr">$1K–5K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">HR</span></div><div class="sc-title">HR Onboarding Checklist</div><div class="sc-mrr">$800–3K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Creator</span></div><div class="sc-title">Newsletter Churn Analyzer</div><div class="sc-mrr">$500–2K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">B2B</span></div><div class="sc-title">QuickBooks KPI Dashboard</div><div class="sc-mrr">$2K–7K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Marketing</span></div><div class="sc-title">Cold Email Warmup Logger</div><div class="sc-mrr">$600–2K / mo</div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Dev Tools</span></div><div class="sc-title">AI API Cost Tracker</div><div class="sc-mrr">$1K–4K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">Health</span></div><div class="sc-title">Therapist SOAP Notes AI</div><div class="sc-mrr">$2K–8K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Fintech</span></div><div class="sc-title">Freelance Invoice Tracker</div><div class="sc-mrr">$800–3K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">E-comm</span></div><div class="sc-title">Returns Analytics Dashboard</div><div class="sc-mrr">$1K–5K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">HR</span></div><div class="sc-title">HR Onboarding Checklist</div><div class="sc-mrr">$800–3K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Creator</span></div><div class="sc-title">Newsletter Churn Analyzer</div><div class="sc-mrr">$500–2K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">B2B</span></div><div class="sc-title">QuickBooks KPI Dashboard</div><div class="sc-mrr">$2K–7K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Marketing</span></div><div class="sc-title">Cold Email Warmup Logger</div><div class="sc-mrr">$600–2K / mo</div></div>
+    </div>
+    <div class="strip-row strip-row--b">
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Agency</span></div><div class="sc-title">Brand Asset Organizer</div><div class="sc-mrr">$1K–5K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">Legal</span></div><div class="sc-title">Contract Red-Flag Scanner</div><div class="sc-mrr">$2K–6K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Dev Tools</span></div><div class="sc-title">GitHub PR Reviewer Bot</div><div class="sc-mrr">$1K–4K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Fintech</span></div><div class="sc-title">Crypto Tax Lot Tracker</div><div class="sc-mrr">$800–3K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">EdTech</span></div><div class="sc-title">Cohort Progress Dashboard</div><div class="sc-mrr">$1K–5K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Food</span></div><div class="sc-title">Restaurant Staff Scheduler</div><div class="sc-mrr">$600–2K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">Health</span></div><div class="sc-title">Fitness Coach Client Portal</div><div class="sc-mrr">$1K–4K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Marketing</span></div><div class="sc-title">Landing Page A/B Logger</div><div class="sc-mrr">$500–2K / mo</div></div>
+      <!-- duplicate -->
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Agency</span></div><div class="sc-title">Brand Asset Organizer</div><div class="sc-mrr">$1K–5K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">Legal</span></div><div class="sc-title">Contract Red-Flag Scanner</div><div class="sc-mrr">$2K–6K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Dev Tools</span></div><div class="sc-title">GitHub PR Reviewer Bot</div><div class="sc-mrr">$1K–4K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Fintech</span></div><div class="sc-title">Crypto Tax Lot Tracker</div><div class="sc-mrr">$800–3K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">EdTech</span></div><div class="sc-title">Cohort Progress Dashboard</div><div class="sc-mrr">$1K–5K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Food</span></div><div class="sc-title">Restaurant Staff Scheduler</div><div class="sc-mrr">$600–2K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--med">Med</span><span class="tag tag--cat">Health</span></div><div class="sc-title">Fitness Coach Client Portal</div><div class="sc-mrr">$1K–4K / mo</div></div>
+      <div class="sc"><div class="sc-top"><span class="tag tag--easy">Easy</span><span class="tag tag--cat">Marketing</span></div><div class="sc-title">Landing Page A/B Logger</div><div class="sc-mrr">$500–2K / mo</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HOW WE SOURCE ═══ -->
+<section class="source">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow eyebrow--a">How every idea gets in</span>
+      <h2 class="display" style="font-size:clamp(32px,4.5vw,50px);color:var(--t);margin-bottom:8px">We find pain.<br>Not ideas.</h2>
+      <p style="font-size:15px;color:var(--t2);font-weight:300;max-width:440px">Every card traces back to a real post. Here's the exact process.</p>
+    </div>
+
+    <div class="pipeline rv">
+      <div class="pipe-step">
+        <span class="pipe-icon">🔍</span>
+        <div class="pipe-stat">40<em>+</em></div>
+        <div class="pipe-name">Found</div>
+        <div class="pipe-desc">Community complaints across Reddit, Discord &amp; forums</div>
+      </div>
+      <div class="pipe-step">
+        <span class="pipe-icon">🔁</span>
+        <div class="pipe-stat">3<em>×</em></div>
+        <div class="pipe-name">Confirmed</div>
+        <div class="pipe-desc">Same pain across 3+ different communities = real demand</div>
+      </div>
+      <div class="pipe-step">
+        <span class="pipe-icon">📊</span>
+        <div class="pipe-stat">8</div>
+        <div class="pipe-name">Researched</div>
+        <div class="pipe-desc">Data points checked: MRR, build time, competition, keywords…</div>
+      </div>
+      <div class="pipe-step">
+        <span class="pipe-icon">✓</span>
+        <div class="pipe-stat" style="color:var(--a)">1.2K</div>
+        <div class="pipe-name">Published</div>
+        <div class="pipe-desc">Added to the library. Full data attached. Ready to browse.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHO IT'S FOR ═══ -->
+<section class="for">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Who this is for</span>
+      <h2 class="display" style="font-size:clamp(30px,4.5vw,48px);color:var(--t)">Sound familiar?</h2>
+    </div>
+
+    <div class="profiles">
+      <div class="profile rv d1">
+        <span class="profile-icon">💻</span>
+        <span class="profile-label">Profile 01</span>
+        <h3 class="profile-title display">The developer with no clear direction</h3>
+        <p class="profile-pain">You can ship in 3 weeks. The problem isn't the building — <strong>it's picking the right thing to build.</strong></p>
+      </div>
+
+      <div class="profile profile--star rv d2">
+        <span class="profile-icon">⚡</span>
+        <span class="profile-label profile-label--star">Profile 02 · Most common</span>
+        <h3 class="profile-title display">The vibe coder who needs a domain</h3>
+        <p class="profile-pain">Cursor, Lovable, Bolt — you've shipped. But without domain knowledge, <strong>you're guessing what to build.</strong> This is the domain expertise you borrow.</p>
+      </div>
+
+      <div class="profile rv d3">
+        <span class="profile-icon">📐</span>
+        <span class="profile-label">Profile 03</span>
+        <h3 class="profile-title display">The founder who won't commit without data</h3>
+        <p class="profile-pain">Six ideas in Notion. Months of "validating." You need the data before committing. <strong>Every card here has it pre-attached.</strong></p>
+      </div>
+    </div>
+
+    <p class="not-for rv">Not for: no-code templates, e-commerce, or content business ideas. This is strictly for SaaS product builders.</p>
+  </div>
+</section>
+
+<!-- ═══ ANATOMY ═══ -->
+<section class="anatomy" id="anatomy">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow eyebrow--a">What's in every card</span>
+      <h2 class="display" style="font-size:clamp(30px,4.5vw,48px);color:var(--t);margin-bottom:8px">Everything you need to decide.</h2>
+      <p style="font-size:15px;color:var(--t2);font-weight:300">Nothing gets added without all 8 data points.</p>
+    </div>
+
+    <div class="anatomy-layout rv">
+
+      <!-- Left annotations -->
+      <div class="ann-col ann-col--l">
+        <div class="ann-item">
+          <div class="ann-head">
+            <span class="dot-num dot-1">1</span>
+            <span class="ann-title">Pain Source</span>
+          </div>
+          <p class="ann-desc">The exact forum thread that triggered this idea. Real people, real words.</p>
+        </div>
+        <div class="ann-item" style="margin-top:40px">
+          <div class="ann-head">
+            <span class="dot-num dot-2">2</span>
+            <span class="ann-title">Target Customer</span>
+          </div>
+          <p class="ann-desc">Who's frustrated. Who'll pay. No guessing.</p>
+        </div>
+      </div>
+
+      <!-- Center: The Annotated Card -->
+      <div class="anatomy-card">
+        <div class="ac-head">
+          <div class="ac-tags">
+            <span class="tag tag--cat">Developer Tools</span>
+            <span class="tag tag--easy">Easy</span>
+          </div>
+          <h3 class="ac-title display">Webhook Delivery Debugger</h3>
+        </div>
+        <div class="ac-why">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+            <span class="dot-num dot-1">1</span>
+            <span class="ac-why-lbl" style="margin-bottom:0">Pain Source · Target Customer</span>
+            <span class="dot-num dot-2" style="margin-left:auto">2</span>
+          </div>
+          <p class="ac-why-txt">Solo devs &amp; small teams cite Hookdeck as too expensive for their needs. Same complaint documented in 40+ Reddit threads, dev Discords, and GitHub issues. No affordable alternative exists.</p>
+        </div>
+        <div class="ac-data">
+          <div>
+            <span class="acd-label"><span class="dot-num dot-3" style="font-size:8px;width:14px;height:14px;margin-right:3px">3</span>MRR</span>
+            <span class="acd-val" style="color:var(--g)">$1K–3K</span>
+          </div>
+          <div>
+            <span class="acd-label"><span class="dot-num dot-4" style="font-size:8px;width:14px;height:14px;margin-right:3px">4</span>Build</span>
+            <span class="acd-val">2–3 wks</span>
+          </div>
+          <div>
+            <span class="acd-label"><span class="dot-num dot-5" style="font-size:8px;width:14px;height:14px;margin-right:3px">5</span>Competition</span>
+            <span class="acd-val" style="color:var(--y)">Medium</span>
+          </div>
+          <div>
+            <span class="acd-label"><span class="dot-num dot-6" style="font-size:8px;width:14px;height:14px;margin-right:3px">6</span>Price</span>
+            <span class="acd-val">$19/mo</span>
+          </div>
+          <div>
+            <span class="acd-label">Keyword</span>
+            <span class="acd-val">8.2K<span class="acd-note">/mo search vol.</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right annotations -->
+      <div class="ann-col ann-col--r">
+        <div class="ann-item">
+          <div class="ann-head">
+            <span class="dot-num dot-3">3</span>
+            <span class="ann-title">MRR Estimate</span>
+          </div>
+          <p class="ann-desc">Based on competitor pricing &amp; market size. Know the ceiling before you commit.</p>
+        </div>
+        <div class="ann-item" style="margin-top:16px">
+          <div class="ann-head">
+            <span class="dot-num dot-4">4</span>
+            <span class="ann-title">Build Time</span>
+          </div>
+          <p class="ann-desc">Realistic for a solo builder. Not a 6-month bet if you want revenue in 6 weeks.</p>
+        </div>
+        <div class="ann-item" style="margin-top:16px">
+          <div class="ann-head">
+            <span class="dot-num dot-5">5</span>
+            <span class="ann-title">Competition Level</span>
+          </div>
+          <p class="ann-desc">Low / Medium / High — know what you're walking into.</p>
+        </div>
+        <div class="ann-item" style="margin-top:16px">
+          <div class="ann-head">
+            <span class="dot-num dot-6">6</span>
+            <span class="ann-title">Keyword Volume</span>
+          </div>
+          <p class="ann-desc">Search volume + CPC. Demand you can measure before you build.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mobile legend (shown when annotations hidden) -->
+    <div style="display:none" id="mobileLegend" class="rv" style="margin-top:24px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">
+        <div style="background:var(--bg3);border:1px solid var(--br);border-radius:var(--r);padding:14px 16px">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span class="dot-num dot-1">1</span><strong style="font-size:13px">Pain Source</strong></div>
+          <p style="font-size:12px;color:var(--t3)">Exact forum thread. Real people.</p>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--br);border-radius:var(--r);padding:14px 16px">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span class="dot-num dot-2">2</span><strong style="font-size:13px">Target Customer</strong></div>
+          <p style="font-size:12px;color:var(--t3)">Who's frustrated. Who'll pay.</p>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--br);border-radius:var(--r);padding:14px 16px">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span class="dot-num dot-3">3</span><strong style="font-size:13px">MRR Estimate</strong></div>
+          <p style="font-size:12px;color:var(--t3)">Revenue ceiling before you commit.</p>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--br);border-radius:var(--r);padding:14px 16px">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span class="dot-num dot-4">4</span><strong style="font-size:13px">Build Time</strong></div>
+          <p style="font-size:12px;color:var(--t3)">Realistic, for a solo builder.</p>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--br);border-radius:var(--r);padding:14px 16px">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span class="dot-num dot-5">5</span><strong style="font-size:13px">Competition</strong></div>
+          <p style="font-size:12px;color:var(--t3)">Low / Med / High — no surprises.</p>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--br);border-radius:var(--r);padding:14px 16px">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span class="dot-num dot-6">6</span><strong style="font-size:13px">Keyword Volume</strong></div>
+          <p style="font-size:12px;color:var(--t3)">Search vol + CPC. Measurable demand.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Free sample CTA -->
+    <div style="margin-top:40px;background:var(--bg3);border:1px solid var(--ab);border-radius:var(--rl);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap" class="rv">
+      <div>
+        <p style="font-family:'Fraunces',serif;font-size:20px;color:var(--t);margin-bottom:4px">See 50 complete cards before buying.</p>
+        <p style="font-size:13px;color:var(--t2);font-weight:300">No paywall. Every data field included.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="/free-ideas" class="btn btn--outline">Browse 50 free samples →</a>
+        <a href="#pricing" class="btn btn--primary">Unlock all 1,200+ — $29</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat rv"><div class="stat-n display">1,200<em>+</em></div><div class="stat-l">Validated ideas</div></div>
+    <div class="stat rv d1"><div class="stat-n display">9</div><div class="stat-l">Live industries</div></div>
+    <div class="stat rv d2"><div class="stat-n display">100<em>+</em></div><div class="stat-l">Niche categories</div></div>
+    <div class="stat rv d3"><div class="stat-n display"><em>$</em>29</div><div class="stat-l">One-time · No subscription</div></div>
+  </div>
+</div>
+
+<!-- ═══ INDUSTRIES ═══ -->
+<section class="industries" id="industries">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Industries</span>
+      <h2 class="display" style="font-size:clamp(30px,4.2vw,46px);color:var(--t);margin-bottom:8px">9 industries. 100+ niches.</h2>
+      <p style="font-size:15px;color:var(--t2);font-weight:300;max-width:480px">Niche-specific ideas — not "SaaS for X" concepts but exact tools people are asking for.</p>
+    </div>
+    <div class="ind-grid">
+      <a href="/ideas?industry=devtools" class="ind-card rv"><div class="ind-name display">Developer Tools</div><div class="ind-tags">APIs · Debugging · Monitoring</div><div class="ind-count">207 ideas</div></a>
+      <a href="/ideas?industry=ecommerce" class="ind-card rv d1"><div class="ind-name display">E-commerce</div><div class="ind-tags">Returns · Analytics · Inventory</div><div class="ind-count">77 ideas</div></a>
+      <a href="/ideas?industry=b2b" class="ind-card rv d2"><div class="ind-name display">B2B SaaS</div><div class="ind-tags">CRM · Reporting · Automation</div><div class="ind-count">71 ideas</div></a>
+      <a href="/ideas?industry=fintech" class="ind-card rv"><div class="ind-name display">Fintech</div><div class="ind-tags">Invoicing · Budgeting · Payments</div><div class="ind-count">68 ideas</div></a>
+      <a href="/ideas?industry=creator" class="ind-card rv d1"><div class="ind-name display">Creator Economy</div><div class="ind-tags">Monetization · Analytics · Tools</div><div class="ind-count">65 ideas</div></a>
+      <a href="/ideas?industry=health" class="ind-card rv d2"><div class="ind-name display">Health &amp; Wellness</div><div class="ind-tags">Telehealth · Fitness · Notes</div><div class="ind-count">55 ideas</div></a>
+      <a href="/ideas?industry=hr" class="ind-card rv"><div class="ind-name display">HR &amp; Recruiting</div><div class="ind-tags">Hiring · Onboarding · Payroll</div><div class="ind-count">55 ideas</div></a>
+      <a href="/ideas?industry=food" class="ind-card rv d1"><div class="ind-name display">Food &amp; Beverage</div><div class="ind-tags">Ordering · Scheduling · Waste</div><div class="ind-count">50 ideas</div></a>
+      <a href="/ideas?industry=marketing" class="ind-card rv d2"><div class="ind-name display">Marketing</div><div class="ind-tags">SEO · Email · Attribution</div><div class="ind-count">37 ideas</div></a>
+    </div>
+    <p class="ind-note rv">Coming soon: <span>Education, Legal, Real Estate, Agency, Travel, Productivity</span> — auto-included in your lifetime access when live.</p>
+  </div>
+</section>
+
+<!-- ═══ COMPARISON ═══ -->
+<section class="compare">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">vs the alternatives</span>
+      <h2 class="display" style="font-size:clamp(30px,4.2vw,46px);color:var(--t);margin-bottom:6px">Better than asking AI.</h2>
+      <p style="font-size:15px;color:var(--t2);font-weight:300">Here's why.</p>
+    </div>
+    <div class="comp-table-wrap rv">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="col-us">SaaSIdea Pro</th>
+            <th>Ask AI</th>
+            <th>Free lists</th>
+            <th>DIY research</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Idea source</td>
+            <td class="col-us">Real forum complaints</td>
+            <td>Training patterns</td>
+            <td>Mostly AI-generated</td>
+            <td>Your own research</td>
+          </tr>
+          <tr>
+            <td>MRR estimates</td>
+            <td class="col-us"><span class="chk">✓</span> Every idea</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+          </tr>
+          <tr>
+            <td>Build time estimate</td>
+            <td class="col-us"><span class="chk">✓</span> Every idea</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+          </tr>
+          <tr>
+            <td>Competition data</td>
+            <td class="col-us"><span class="chk">✓</span> Every idea</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+          </tr>
+          <tr>
+            <td>Keyword search volume</td>
+            <td class="col-us"><span class="chk">✓</span> Where available</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+          </tr>
+          <tr>
+            <td>Time to access</td>
+            <td class="col-us">Instant</td>
+            <td>Instant</td>
+            <td>Instant</td>
+            <td>Weeks</td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td class="col-us" style="color:var(--a);font-weight:500">$29 · one-time</td>
+            <td>Free (but guesses)</td>
+            <td>Free (but generic)</td>
+            <td>Free + weeks of time</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="comp-note rv">AI patterns ≠ documented pain. The difference is whether someone actually asked for this.</p>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="pricing-head rv">
+      <span class="eyebrow eyebrow--a" style="display:block;text-align:center">Pricing</span>
+      <h2 class="display" style="font-size:clamp(28px,4vw,46px);color:var(--t);margin-bottom:12px">One wrong idea:<br><em style="font-style:italic">4–8 weeks of your life.</em></h2>
+      <p style="font-size:16px;color:var(--t2);font-weight:300">This costs $29.</p>
+      <div class="pricing-comparison">
+        <span class="pcomp">Cursor — <strong>$20/mo</strong></span>
+        <span class="pv">vs</span>
+        <span class="pcomp">Lovable — <strong>$25/mo</strong></span>
+        <span class="pv">vs</span>
+        <span class="pcomp">Failed SaaS — <strong>months of life</strong></span>
+        <span class="pv">vs</span>
+        <span class="pcomp pcomp--us">SaaSIdea Pro — <strong>$29 once</strong></span>
+      </div>
+    </div>
+
+    <div class="pricing-card rv">
+      <div class="pc-top">
+        <span class="pc-plan">Lifetime Access</span>
+        <div class="pc-price-row">
+          <span class="pc-dollar display">$</span>
+          <span class="pc-price display">29</span>
+          <span class="pc-was display">$99</span>
+        </div>
+        <p class="pc-desc">1,200+ ideas. All the data. Pay once, own forever.</p>
+        <div class="pc-cta">
+          <a href="/checkout" class="btn btn--primary">Unlock the Library — $29</a>
+          <p class="pc-secure">🔒 Secure checkout &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; No subscription</p>
+        </div>
+      </div>
+      <div class="pc-features">
+        <span class="pc-feat-label">What's included</span>
+        <div class="pc-feat-list">
+          <div class="pc-feat-item"><div class="pc-check">✓</div><span><strong>1,200+ ideas sourced from real complaints</strong></span></div>
+          <div class="pc-feat-item"><div class="pc-check">✓</div><span>MRR range + build time — every idea</span></div>
+          <div class="pc-feat-item"><div class="pc-check">✓</div><span>Competition level + difficulty — every idea</span></div>
+          <div class="pc-feat-item"><div class="pc-check">✓</div><span>Keyword data: search volume, CPC, bid range</span></div>
+          <div class="pc-feat-item"><div class="pc-check">✓</div><span>Suggested pricing model per idea</span></div>
+          <div class="pc-feat-item"><div class="pc-check">✓</div><span>9 industries, 100+ niches — more added monthly</span></div>
+          <div class="pc-feat-item"><div class="pc-check">✓</div><span><strong>Lifetime access — every future idea included free</strong></span></div>
+          <div class="pc-feat-item"><div class="pc-check">✓</div><span>15-day money-back — full refund, no questions</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-guarantee rv">
+      <strong>15-day money-back guarantee.</strong> Browse everything. Don't find a single idea worth building? Email <a href="mailto:hello@saasidea.pro" style="color:var(--a)">hello@saasidea.pro</a> within 15 days — full refund. No forms.
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq" id="faq">
+  <div class="wrap--sm">
+    <div class="rv">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="display" style="font-size:clamp(28px,4vw,44px);color:var(--t)">Quick answers.</h2>
+    </div>
+    <div class="faq-list rv">
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">How is this different from asking AI for ideas?</span>
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">AI generates from patterns. Every idea here starts from a <strong>real post</strong> — a forum thread where someone said "there's no good tool for this." You're starting from documented pain, not a guess.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Are these ideas actually validated?</span>
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Every idea comes with MRR potential, build time, competition level, and keyword data so you can evaluate it yourself. <strong>We don't guarantee revenue</strong> — we give you the data to make an informed decision before committing.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Is this for vibe coders / non-engineers?</span>
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Yes. Especially vibe coders. If you can ship with Cursor, Lovable, or Bolt but struggle to find ideas with real demand — this library is the domain expertise you borrow. Difficulty ratings help you find ideas that match your build speed.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">What does the $29 include, exactly?</span>
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Full lifetime access to all 1,200+ ideas. Every idea has: pain source, target customer, MRR range, build time, difficulty, competition level, pricing model suggestion, and keyword data. Plus every idea added to the library in the future — <strong>no extra charge, ever.</strong></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Is this a subscription?</span>
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">No. $29 once. No monthly fees. No renewals. No upsells. One purchase = permanent access to everything, including future additions.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Why $29? What's the real value?</span>
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Sourcing and structuring 1,200+ pain points from real communities — with 8 data points researched per idea — took months. You're getting that work for less than one month of Cursor. <strong>If you build one profitable product from this library, the ROI is obvious.</strong> If not, refund within 15 days.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">What if I don't find an idea worth building?</span>
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">15-day full refund. Email <a href="mailto:hello@saasidea.pro">hello@saasidea.pro</a> — no forms, no questions. We want you to find an idea worth building, not just collect your $29.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">How often are new ideas added?</span>
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Monthly. New industries (Education, Legal, Real Estate, others) are in progress — all included in your existing lifetime access at no extra cost when they go live.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Can I use these ideas commercially?</span>
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Yes. Build it, launch it, profit from it. No royalties, no equity, no strings. The ideas are yours to act on.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div style="display:flex;align-items:center;gap:9px">
+          <div class="nav-logo-mark">S</div>
+          <span class="nav-brand">SaaSIdea<em>Pro</em></span>
+        </div>
+        <p class="footer-tagline">1,200+ SaaS ideas from real complaints. One-time $29.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <span class="footer-col-title">Product</span>
+          <a href="#anatomy">What's Inside</a>
+          <a href="#industries">Industries</a>
+          <a href="/free-ideas">50 Free Ideas</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Legal</span>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/refunds">Refunds</a>
+          <a href="mailto:hello@saasidea.pro">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 SaaSIdea Pro. All rights reserved.</p>
+      <div class="footer-badge">
+        <span class="footer-badge-dot"></span>
+        15-day guarantee &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; No subscription
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll progress bar
+const bar = document.getElementById('navBar');
+window.addEventListener('scroll', () => {
+  bar.style.width = (window.scrollY / (document.body.scrollHeight - innerHeight) * 100) + '%';
+}, {passive:true});
+
+// Reveal on scroll
+const rvEls = document.querySelectorAll('.rv');
+const ro = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold:.07, rootMargin:'0px 0px -32px 0px'});
+rvEls.forEach(el => ro.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const open = btn.classList.contains('open');
+    document.querySelectorAll('.faq-q').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.style.maxHeight = '0';
+    });
+    if (!open) {
+      btn.classList.add('open');
+      btn.nextElementSibling.style.maxHeight = btn.nextElementSibling.scrollHeight + 'px';
+    }
+  });
+});
+
+// Mobile legend toggle
+function checkMobile() {
+  const ml = document.getElementById('mobileLegend');
+  if(ml) ml.style.display = window.innerWidth <= 980 ? 'block' : 'none';
+}
+checkMobile();
+window.addEventListener('resize', checkMobile);
+
+// Nav bg on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.style.background = window.scrollY > 60 ? 'rgba(11,10,9,.96)' : 'rgba(11,10,9,.88)';
+}, {passive:true});
+</script>
+</body>
+</html>

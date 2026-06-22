@@ -44,7 +44,7 @@ function Meter({ filled }: { filled: number }) {
   )
 }
 
-function CardBody({ idea }: { idea: Idea }) {
+function CardBody({ idea, unlocked }: { idea: Idea; unlocked?: boolean }) {
   const filled = DIFF_METER[idea.difficulty_label] ?? 3
   return (
     <>
@@ -101,6 +101,14 @@ function CardBody({ idea }: { idea: Idea }) {
           ))}
         </footer>
       )}
+      {unlocked && (
+        <span className="icard-open" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14" />
+            <path d="M13 6l6 6-6 6" />
+          </svg>
+        </span>
+      )}
     </>
   )
 }
@@ -112,7 +120,7 @@ export default function IdeaCard({ idea, hasAccess, lockedConfig, className = ''
   if (unlocked) {
     return (
       <Link href={`/ideas/${idea.id}`} className={`icard ${className}`}>
-        <CardBody idea={idea} />
+        <CardBody idea={idea} unlocked />
       </Link>
     )
   }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { X, ArrowRight, RotateCcw, ChevronLeft, Mail, User, Zap, CheckCircle2, Rocket } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
@@ -28,6 +29,9 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
   const [redirectCountdown, setRedirectCountdown] = useState(3)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const supabase = createClient()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
 
   useEffect(() => {
     if (resendTimer <= 0) return
@@ -145,7 +149,9 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
 
   const stepIndex = step === 'form' ? 0 : step === 'otp' ? 1 : 2
 
-  return (
+  if (!mounted) return null
+
+  return createPortal(
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md animate-fade-in p-4"
       onClick={step === 'success' ? undefined : onClose}
@@ -418,7 +424,8 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
           <div className="h-px w-full bg-gradient-to-r from-transparent via-border/50 to-transparent" />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 

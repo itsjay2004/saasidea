@@ -1,10 +1,10 @@
-import Navbar from '@/components/ui/Navbar'
+import Nav from '@/components/landing/v3/Nav'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <Navbar />
-      <main className="pt-16 min-h-screen">{children}</main>
-    </>
-  )
+    return (
+        <div className="v3">
+            <Nav />
+            <main className="min-h-screen">{children}</main>
+        </div>
+    )
 }

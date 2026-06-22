@@ -481,13 +481,15 @@ body::before {
 .v3 .preview-intro p{font-size:16px;color:var(--t2);font-weight:300;line-height:1.75;margin-top:12px}
 .v3 .preview-intro p em{color:var(--t);font-style:italic;font-family:var(--font-fraunces),serif}
 .v3 .idea-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(348px,1fr));gap:16px;margin-bottom:24px}
-.icard{background:var(--bg2);border:1px solid var(--br);border-radius:16px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 16px 38px -26px rgba(0,0,0,.85)}
+.icard{position:relative;background:var(--bg2);border:1px solid var(--br);border-radius:16px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 16px 38px -26px rgba(0,0,0,.85)}
 .icard:hover{border-color:rgba(255,255,255,.14);transform:translateY(-3px);box-shadow:0 24px 52px -20px rgba(0,0,0,.6)}
 .icard-head{padding:20px 22px 4px}
 .icard-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}
 .icard-industry{font-family:var(--font-geist-mono),monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--a)}
 .icard-model{font-family:var(--font-geist-mono),monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--t2);background:rgba(255,255,255,.05);border:1px solid var(--br);padding:3px 8px;border-radius:5px;white-space:nowrap}
 .icard-title{font-family:var(--font-fraunces),serif;font-size:20px;font-weight:400;color:var(--t);letter-spacing:-.01em;line-height:1.22;margin-bottom:7px}
+.icard-open{position:absolute;right:18px;bottom:18px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:9px;color:var(--t2);background:rgba(255,255,255,.05);border:1px solid var(--br);transition:color .18s,background .18s,border-color .18s,transform .18s}
+.icard:hover .icard-open{color:#fff;background:var(--a);border-color:var(--a);transform:translateX(2px)}
 .icard-tagline{font-size:13px;color:var(--t2);font-weight:300;line-height:1.55}
 .icard-blocks{padding:16px 22px 0;display:flex;flex-direction:column;gap:8px}
 .icard-block{border-radius:10px;padding:11px 13px;border:1px solid}
@@ -508,7 +510,7 @@ body::before {
 .icard-meter{display:inline-flex;gap:3px}
 .icard-meter i{width:5px;height:5px;border-radius:50%;background:var(--t4)}
 .icard-meter i.on{background:currentColor}
-.icard-tags{margin-top:auto;padding:16px 22px 18px;display:flex;flex-wrap:wrap;gap:6px}
+.icard-tags{margin-top:auto;padding:16px 60px 18px 22px;display:flex;flex-wrap:wrap;gap:6px}
 .icard-tag{font-family:var(--font-geist-mono),monospace;font-size:10px;letter-spacing:.02em;color:var(--t2);background:rgba(255,255,255,.04);border:1px solid var(--br);padding:3px 9px;border-radius:5px}
 .icard--locked{position:relative}
 .icard--locked>*:not(.icard-lock){filter:blur(5px);user-select:none;pointer-events:none}
@@ -663,6 +665,9 @@ body::before {
   .v3.rv-ready .rv{opacity:1;transform:none;transition:none}
   .v3 .srow--a,.v3 .srow--b,.v3 .pill-dot{animation:none}
 }
+
+/* Offset hash-target sections so the sticky nav (58px) doesn't cover them. */
+.v3 section[id]{scroll-margin-top:72px}
 
 /* ═══ MODERN ELEVATION ═══ */
 .v3 .ind-card,.v3 .for-resolution,.v3 .preview-bridge,.v3 .founder-inner,.v3 .comp-table-wrap{

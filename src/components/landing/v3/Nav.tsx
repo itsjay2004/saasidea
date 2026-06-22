@@ -44,10 +44,10 @@ export default function Nav() {
             </span>
           </Link>
           <div className="nav-links">
-            <a href="#how">How it works</a>
-            <a href="#samples">Sample ideas</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#faq">FAQ</a>
+            <a href="/#how">How it works</a>
+            <a href="/#samples">Sample ideas</a>
+            <a href="/#pricing">Pricing</a>
+            <a href="/#faq">FAQ</a>
           </div>
           <div className="nav-actions">
             {user ? (
@@ -59,7 +59,7 @@ export default function Nav() {
                 <button type="button" className="nav-signin" onClick={() => setShowAuth(true)}>
                   Sign in
                 </button>
-                <a href="#pricing" className="nav-cta">
+                <a href="/#pricing" className="nav-cta">
                   Get access — $29
                 </a>
               </>

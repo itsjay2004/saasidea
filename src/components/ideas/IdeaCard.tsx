@@ -19,6 +19,8 @@ interface IdeaCardProps {
   /** Pass this to replace the AuthModal lock with a plain link (e.g. on the landing page). */
   lockedConfig?: LockedConfig
   className?: string
+  /** When false, the unlocked card renders as a static element (no navigation). */
+  clickable?: boolean
 }
 
 const DIFF_METER: Record<string, number> = { Easy: 2, Medium: 3, Hard: 4 }
@@ -62,7 +64,7 @@ function CardBody({ idea, unlocked }: { idea: Idea; unlocked?: boolean }) {
           <p className="icard-block-text">{idea.pain_point}</p>
         </div>
         <div className="icard-block icard-block--why">
-          <span className="icard-block-label">Why it works</span>
+          <span className="icard-block-label">Source · Evidence</span>
           <p className="icard-block-text">{idea.validation_note}</p>
         </div>
       </div>
@@ -113,11 +115,18 @@ function CardBody({ idea, unlocked }: { idea: Idea; unlocked?: boolean }) {
   )
 }
 
-export default function IdeaCard({ idea, hasAccess, lockedConfig, className = '' }: IdeaCardProps) {
+export default function IdeaCard({ idea, hasAccess, lockedConfig, className = '', clickable = true }: IdeaCardProps) {
   const [showAuth, setShowAuth] = useState(false)
   const unlocked = idea.is_free || hasAccess
 
   if (unlocked) {
+    if (!clickable) {
+      return (
+        <div className={`icard icard--static ${className}`}>
+          <CardBody idea={idea} />
+        </div>
+      )
+    }
     return (
       <Link href={`/ideas/${idea.id}`} className={`icard ${className}`}>
         <CardBody idea={idea} unlocked />

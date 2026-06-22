@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 import AuthModal from '@/components/auth/AuthModal'
 import type { User } from '@supabase/supabase-js'
@@ -38,7 +39,7 @@ export default function Nav() {
       <nav className="nav">
         <div className="nav-inner">
           <Link href="/" className="nav-logo">
-            <div className="nav-mark display">S</div>
+            <Image src="/logo-icon.png" alt="SaaSIdea Pro" width={160} height={160} priority className="nav-mark-img" />
             <span className="nav-brand display">
               SaaSIdea<em>Pro</em>
             </span>

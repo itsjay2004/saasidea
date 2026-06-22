@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
         <div className="footer-top">
           <div>
             <div className="footer-logo">
-              <div className="nav-mark display">S</div>
+              <Image src="/logo-icon.png" alt="SaaSIdea Pro" width={160} height={160} className="nav-mark-img" />
               <span className="nav-brand display">
                 SaaSIdea<em>Pro</em>
               </span>

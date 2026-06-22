@@ -5,7 +5,9 @@ export default function Hero() {
       <div className="wrap">
         <div className="hero-pill rv">
           <span className="pill-dot" />
-          1,200+ SaaS ideas &nbsp;·&nbsp; Each one traced back to a real complaint
+          <span>1,200+ SaaS ideas</span>
+          <span className="pill-sep">&nbsp;·&nbsp;</span>
+          <span className="pill-extra">Real demand</span>
         </div>
 
         <h1 className="hero-h1 rv d1">

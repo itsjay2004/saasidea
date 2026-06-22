@@ -43,7 +43,7 @@ export default function Hero() {
           <a href="#pricing" className="btn btn--primary btn--lg">
             Get lifetime access — $29
           </a>
-          <a href="/ideas" className="btn btn--ghost">
+          <a href="/free-ideas" className="btn btn--ghost">
             Or browse the free ideas, no signup <span className="arr">→</span>
           </a>
         </div>

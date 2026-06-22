@@ -6,11 +6,11 @@ interface SampleIdeasProps {
   lockedIdeas: Idea[]
 }
 
-const delays = ['', 'd1', 'd2', '', 'd1']
+const delays = ['', 'd1', 'd2', '', 'd1', '', 'd2', 'd1', '', 'd2', 'd1', '', 'd1', 'd2', '', 'd1']
 
 export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
-  const sample = ideas.slice(0, 5)
-  const locked = lockedIdeas[0]
+  const sample = ideas.slice(0, 16)
+  const locked = lockedIdeas.slice(0, 2)
 
   return (
     <section className="section" id="samples">
@@ -25,7 +25,7 @@ export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
           <p>
             <em>None of this is made up.</em> Every card traces back to a documented complaint — a
             Reddit thread, a forum post, an app review — and carries the research you&apos;d
-            otherwise spend weeks doing yourself. Five of them, in full:
+            otherwise spend weeks doing yourself. Sixteen of them, in full:
           </p>
         </div>
 
@@ -39,11 +39,12 @@ export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
             />
           ))}
 
-          {locked && (
+          {locked.map((idea, i) => (
             <IdeaCard
-              idea={locked}
+              key={idea.id}
+              idea={idea}
               hasAccess={false}
-              className="rv d2"
+              className={`rv${i === 0 ? ' d1' : ' d2'}`}
               lockedConfig={{
                 href: '#pricing',
                 title: '+1,195 more, fully unlocked',
@@ -51,19 +52,19 @@ export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
                 cta: 'Unlock the library →',
               }}
             />
-          )}
+          ))}
         </div>
 
         <div className="preview-bridge rv">
           <div className="preview-bridge-text">
-            <h3>That&apos;s 5 of 1,200+.</h3>
+            <h3>That&apos;s 16 of 1,200+.</h3>
             <p>
               Want to read complete ideas across every industry before you decide? No signup, no
               card.
             </p>
           </div>
           <div className="preview-bridge-actions">
-            <a href="/ideas" className="btn btn--outline">
+            <a href="/free-ideas" className="btn btn--outline">
               Browse free samples →
             </a>
             <a href="#pricing" className="btn btn--primary">

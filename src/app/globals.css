@@ -316,7 +316,7 @@ body::before {
 
 /* ═══ OFFER BANNER ═══ */
 .v3 .offer-bar{display:flex;align-items:center;justify-content:center;gap:11px;min-height:38px;padding:6px 20px;background:#161311;border-bottom:1px solid var(--br);font-size:13px;text-align:center}
-.v3 .offer-tag{flex-shrink:0;font-family:var(--font-geist-mono),monospace;font-size:9.5px;font-weight:600;letter-spacing:.13em;color:#fff;background:var(--a);padding:3px 8px;border-radius:5px}
+.v3 .offer-tag{flex-shrink:0;font-family:var(--font-geist-mono),monospace;font-size:8px;font-weight:600;letter-spacing:.13em;color:#fff;background:var(--a);padding:3px 8px;border-radius:5px}
 .v3 .offer-txt{color:var(--t2)}
 .v3 .offer-txt strong{color:var(--t);font-weight:600}
 .v3 .offer-txt s{color:var(--t3);text-decoration-thickness:1px}
@@ -324,7 +324,7 @@ body::before {
 .v3 .offer-bar:hover .offer-cta{text-decoration:underline}
 
 /* ═══ NAV ═══ */
-.v3 .nav{height:58px;background:rgba(11,10,9,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--br);position:sticky;top:0;z-index:200}
+.v3 .nav{height:58px;background:rgba(11,10,9,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--br);position:sticky;top:0;z-index:200}
 .v3 .nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between}
 .v3 .nav-logo{display:flex;align-items:center;gap:9px}
 .v3 .nav-mark{width:28px;height:28px;background:var(--a);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:var(--font-fraunces),serif;font-size:14px;color:#fff}
@@ -503,11 +503,11 @@ body::before {
 .icard-metrics{margin:16px 22px 0;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--br);border:1px solid var(--br);border-radius:10px;overflow:hidden}
 .icard-metric{background:var(--bg);padding:11px 14px}
 .icard-m-label{font-family:var(--font-geist-mono),monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:5px}
-.icard-m-value{font-family:var(--font-geist-mono),monospace;font-size:13px;font-weight:500;color:var(--t);display:flex;align-items:center;gap:8px;line-height:1.2}
+.icard-m-value{font-family:var(--font-geist-mono),monospace;font-size:11.5px;font-weight:500;color:var(--t);display:flex;align-items:center;gap:7px;line-height:1.2}
 .icard-m-value--g{color:var(--g)}
 .icard-m-value--y{color:var(--y)}
 .icard-m-value--b{color:var(--b)}
-.icard-m-unit{font-size:10px;color:var(--t3);font-weight:400}
+.icard-m-unit{font-size:9px;color:var(--t3);font-weight:400}
 .icard-meter{display:inline-flex;gap:3px}
 .icard-meter i{width:5px;height:5px;border-radius:50%;background:var(--t4)}
 .icard-meter i.on{background:currentColor}
@@ -518,6 +518,66 @@ body::before {
 .icard-lock{position:absolute;inset:0;background:rgba(10,10,11,.74);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:2;text-align:center;padding:0 24px}
 .icard-lock-text{font-size:14px;color:var(--t2);line-height:1.5}
 .icard-lock-text strong{color:var(--t);display:block;font-weight:500;margin-bottom:2px}
+
+/* ── /free-ideas page — scoped compact styles ─────────────────────────────── */
+.free-ideas-page .fi-header{margin-bottom:40px}
+.free-ideas-page .fi-title{font-family:var(--font-fraunces),serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:var(--t2);letter-spacing:-.01em;line-height:1.2;margin-bottom:8px}
+.free-ideas-page .fi-subtitle{font-size:14px;color:var(--t3);font-weight:300;line-height:1.7;max-width:620px;margin-top:6px}
+.free-ideas-page .fi-subtitle strong{color:var(--t2);font-weight:500}
+/* industry filter pills */
+.free-ideas-page .fi-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.free-ideas-page .fi-pill{position:relative;font-family:var(--font-geist),sans-serif;font-size:12px;color:var(--t2);background:var(--bg2);border:1px solid var(--br);border-radius:999px;padding:6px 13px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;display:inline-flex;align-items:center;gap:7px;line-height:1}
+.free-ideas-page .fi-pill:hover{color:var(--t);border-color:rgba(255,255,255,.16)}
+.free-ideas-page .fi-pill.is-active{color:#fff;background:var(--a);border-color:var(--a)}
+/* dot marks industries that have free samples to browse */
+.free-ideas-page .fi-pill.has-free::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--g);flex-shrink:0}
+.free-ideas-page .fi-pill.has-free.is-active::before{background:#fff}
+.free-ideas-page .fi-pill-count{font-family:var(--font-geist-mono),monospace;font-size:10px;color:var(--t3);background:rgba(255,255,255,.05);border-radius:999px;padding:1px 6px;line-height:1.4}
+.free-ideas-page .fi-pill.is-active .fi-pill-count{color:#fff;background:rgba(255,255,255,.18)}
+
+/* adaptive insight / conversion line above the grid */
+.free-ideas-page .fi-insight{margin-bottom:22px;font-size:13.5px;line-height:1.6}
+.free-ideas-page .fi-insight strong{color:var(--t);font-weight:500}
+.free-ideas-page .fi-insight-dim{color:var(--t3)}
+.free-ideas-page .fi-insight-cta{color:var(--a);font-weight:500;white-space:nowrap}
+.free-ideas-page .fi-insight-cta:hover{text-decoration:underline}
+
+/* focused upsell shown when an industry has no free samples */
+.free-ideas-page .fi-upsell{border:1px solid var(--ab);background:linear-gradient(180deg,var(--ad),transparent);border-radius:16px;padding:48px 32px;text-align:center;max-width:560px;margin:0 auto}
+.free-ideas-page .fi-upsell-num{font-family:var(--font-fraunces),serif;font-size:56px;line-height:1;color:var(--a);display:block;margin-bottom:14px}
+.free-ideas-page .fi-upsell-title{font-family:var(--font-fraunces),serif;font-size:22px;font-weight:400;color:var(--t);letter-spacing:-.01em;line-height:1.25;margin-bottom:10px}
+.free-ideas-page .fi-upsell-text{font-size:13.5px;color:var(--t2);font-weight:300;line-height:1.7;max-width:440px;margin:0 auto 22px}
+.free-ideas-page .fi-upsell-sub{display:block;font-family:var(--font-geist-mono),monospace;font-size:10.5px;letter-spacing:.04em;color:var(--t3);margin-top:14px}
+.free-ideas-page .fi-grid{grid-template-columns:repeat(3,1fr);gap:18px}
+.free-ideas-page .icard{border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+/* static (non-navigating) sample cards — minimal hover, no lift */
+.free-ideas-page .icard--static{cursor:default}
+.free-ideas-page .icard--static:hover{transform:none;border-color:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.free-ideas-page .icard-head{padding:16px 18px 0}
+.free-ideas-page .icard-meta{margin-bottom:10px}
+/* quieter metadata row */
+.free-ideas-page .icard-industry{font-size:9px;letter-spacing:.1em;opacity:.85}
+.free-ideas-page .icard-model{font-size:8px;color:var(--t3);background:rgba(255,255,255,.03)}
+.free-ideas-page .icard-title{font-size:15.5px;line-height:1.3;margin-bottom:5px}
+.free-ideas-page .icard-tagline{font-size:12px;line-height:1.5}
+/* flatten the pain/source boxes into a clean left-rule treatment */
+.free-ideas-page .icard-blocks{padding:14px 18px 0;gap:14px}
+.free-ideas-page .icard-block{padding:0 0 0 11px;border:none!important;border-left:2px solid var(--br)!important;border-radius:0;background:none!important}
+.free-ideas-page .icard-block--pain{border-left-color:var(--red)!important}
+.free-ideas-page .icard-block--why{border-left-color:var(--a)!important}
+.free-ideas-page .icard-block-label{margin-bottom:4px}
+.free-ideas-page .icard-block-text{font-size:11.5px;line-height:1.55}
+.free-ideas-page .icard-metrics{margin:16px 18px 0;background:none;border:none;border-top:1px solid var(--br);border-radius:0;gap:0}
+.free-ideas-page .icard-metric{background:none;padding:10px 0}
+.free-ideas-page .icard-metric:nth-child(odd){padding-right:10px;border-right:1px solid var(--br);padding-left:12px}
+.free-ideas-page .icard-metric:nth-child(even){padding-left:12px}
+.free-ideas-page .icard-m-label{font-size:8px;margin-bottom:4px}
+.free-ideas-page .icard-m-value{font-size:11px;gap:6px}
+.free-ideas-page .icard-m-unit{font-size:8.5px}
+.free-ideas-page .icard-tags{padding:14px 18px 16px;gap:5px}
+@media(max-width:1024px){.free-ideas-page .fi-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.free-ideas-page .fi-grid{grid-template-columns:1fr}}
+
 .v3 .preview-bridge{background:var(--bg2);border:1px solid var(--br);border-radius:14px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:32px 0 0}
 .v3 .preview-bridge-text h3{font-family:var(--font-fraunces),serif;font-size:24px;font-weight:400;color:var(--t);letter-spacing:-.01em;margin-bottom:6px}
 .v3 .preview-bridge-text p{font-size:14px;color:var(--t2);font-weight:300}
@@ -691,6 +751,8 @@ body::before {
   .v3 .hero-illus{grid-template-columns:1fr}
   .v3 .illus-arrow{flex-direction:row;padding-bottom:60px}
   .v3 .ia-line,.v3 .ia-line2{width:40px;height:1.5px}
+  .v3 .ia-node{font-size:0}
+  .v3 .ia-node::after{content:'↓';font-size:18px}
   .v3 .illus-left,.v3 .illus-right{padding-right:0;padding-left:0;padding-bottom:60px}
   .v3 .founder-inner{padding:36px 28px 32px}
 }

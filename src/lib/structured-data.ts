@@ -6,8 +6,8 @@ const SITE_URL = 'https://saasidea.pro'
 const SITE_NAME = 'SaaSIdea Pro'
 const LOGO_URL = `${SITE_URL}/icon-logo.png`
 const SAME_AS = [
-  'https://x.com/saas_idea',
-  'https://www.producthunt.com/@placeholder',
+  'https://x.com/SaaS_Idea',
+  'https://www.producthunt.com/@saas_idea',
 ]
 
 export function getHomeJsonLd() {
@@ -38,6 +38,8 @@ export function getHomeJsonLd() {
       name: `${SITE_NAME} Idea Library`,
       description:
         'A curated library of validated SaaS ideas across 100+ niches with MRR potential, build time, competition data, and keyword research.',
+      image: `${SITE_URL}/opengraph-image`,
+      url: SITE_URL,
       brand: {
         '@type': 'Brand',
         name: SITE_NAME,
@@ -47,6 +49,7 @@ export function getHomeJsonLd() {
         '@type': 'Offer',
         price: PRICING.amount,
         priceCurrency: PRICING.currency,
+        priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
         availability: 'https://schema.org/InStock',
         url: SITE_URL,
         hasMerchantReturnPolicy: {

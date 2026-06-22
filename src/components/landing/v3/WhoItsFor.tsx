@@ -43,7 +43,7 @@ export default function WhoItsFor() {
             </p>
           </div>
           <div className="fr-right">
-            <a href="/ideas" className="btn btn--outline">
+            <a href="/free-ideas" className="btn btn--outline">
               Browse free ideas
             </a>
             <a href="#pricing" className="btn btn--primary">

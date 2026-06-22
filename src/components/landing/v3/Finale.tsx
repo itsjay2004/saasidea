@@ -14,7 +14,7 @@ export default function Finale() {
           build that,&rdquo; the rest are one $29 payment away.
         </p>
         <div className="finale-ctas rv d2">
-          <a href="/ideas" className="btn btn--primary btn--lg">
+          <a href="/free-ideas" className="btn btn--primary btn--lg">
             Browse free ideas →
           </a>
           <a href="#pricing" className="btn btn--outline btn--lg">

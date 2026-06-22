@@ -1,0 +1,147 @@
+'use client'
+
+import { useMemo, useState } from 'react'
+import IdeaCard from '@/components/ideas/IdeaCard'
+import type { Idea } from '@/types'
+
+interface LockedConfig {
+  href: string
+  title?: string
+  subtitle?: string
+  cta?: string
+}
+
+interface FreeIdeasExplorerProps {
+  ideas: Idea[]
+  lockedIdeas: Idea[]
+  industries: { industry: string; count: number }[]
+  libraryTotal: number
+  lockedConfig: LockedConfig
+}
+
+const ALL = 'All'
+
+export default function FreeIdeasExplorer({
+  ideas,
+  lockedIdeas,
+  industries,
+  libraryTotal,
+  lockedConfig,
+}: FreeIdeasExplorerProps) {
+  // How many free samples we actually have per industry.
+  const freeByIndustry = useMemo(() => {
+    const map: Record<string, number> = {}
+    for (const idea of ideas) {
+      if (idea.industry) map[idea.industry] = (map[idea.industry] ?? 0) + 1
+    }
+    return map
+  }, [ideas])
+
+  // Every industry in the library, free-sample ones first, then by library size.
+  const pills = useMemo(() => {
+    return industries
+      .filter((i) => i.count > 0)
+      .map((i) => ({ name: i.industry, total: i.count, free: freeByIndustry[i.industry] ?? 0 }))
+      .sort((a, b) => b.free - a.free || b.total - a.total || a.name.localeCompare(b.name))
+  }, [industries, freeByIndustry])
+
+  const [active, setActive] = useState<string>(ALL)
+
+  const selected = active === ALL ? null : pills.find((p) => p.name === active)
+  const filtered = active === ALL ? ideas : ideas.filter((idea) => idea.industry === active)
+  const hasFree = filtered.length > 0
+
+  return (
+    <>
+      <div className="fi-filters" role="tablist" aria-label="Filter ideas by industry">
+        <button
+          type="button"
+          className={`fi-pill${active === ALL ? ' is-active' : ''}`}
+          aria-pressed={active === ALL}
+          onClick={() => setActive(ALL)}
+        >
+          All
+          <span className="fi-pill-count">{ideas.length}</span>
+        </button>
+        {pills.map((p) => (
+          <button
+            key={p.name}
+            type="button"
+            className={`fi-pill${active === p.name ? ' is-active' : ''}${p.free > 0 ? ' has-free' : ''}`}
+            aria-pressed={active === p.name}
+            onClick={() => setActive(p.name)}
+          >
+            {p.name}
+            <span className="fi-pill-count">{p.total}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Conversion-focused status line — adapts to the selection. */}
+      <div className="fi-insight">
+        {active === ALL ? (
+          <p>
+            <strong>{ideas.length} free samples</strong> to browse —{' '}
+            <span className="fi-insight-dim">
+              a taste of {libraryTotal.toLocaleString()}+ validated ideas in the full library.
+            </span>
+          </p>
+        ) : selected && selected.free > 0 ? (
+          <p>
+            <strong>
+              {selected.free} free {selected.free === 1 ? 'idea' : 'ideas'}
+            </strong>{' '}
+            in {selected.name} —{' '}
+            <span className="fi-insight-dim">{selected.total} total in the library. </span>
+            <a href={lockedConfig.href} className="fi-insight-cta">
+              Unlock {selected.total - selected.free} more →
+            </a>
+          </p>
+        ) : selected ? (
+          <p>
+            <strong>No free samples in {selected.name} yet</strong> —{' '}
+            <span className="fi-insight-dim">
+              {selected.total} {selected.name} {selected.total === 1 ? 'idea is' : 'ideas are'} waiting
+              inside.
+            </span>
+          </p>
+        ) : null}
+      </div>
+
+      {hasFree ? (
+        <div className="idea-grid fi-grid">
+          {filtered.map((idea) => (
+            <IdeaCard key={idea.id} idea={idea} hasAccess={true} clickable={false} />
+          ))}
+          {lockedIdeas.map((idea, i) => (
+            <IdeaCard
+              key={idea.id}
+              idea={idea}
+              hasAccess={false}
+              className={i === 0 ? 'd1' : i === 1 ? 'd2' : ''}
+              lockedConfig={lockedConfig}
+            />
+          ))}
+        </div>
+      ) : (
+        // No free samples for this industry → focused upsell.
+        <div className="fi-upsell">
+          <span className="fi-upsell-num">{selected?.total ?? 0}</span>
+          <h3 className="fi-upsell-title">
+            {selected?.total} validated {selected?.name} {selected?.total === 1 ? 'idea is' : 'ideas are'}{' '}
+            locked inside.
+          </h3>
+          <p className="fi-upsell-text">
+            None are free yet — but every one comes with the same MRR potential, build time,
+            competition, and keyword research you see in the free cards. Unlock the whole library and
+            read them all today.
+          </p>
+          <a href={lockedConfig.href} className="btn btn--primary">
+            Unlock all {libraryTotal.toLocaleString()}+ — $29
+          </a>
+          <span className="fi-upsell-sub">One payment · lifetime access · no subscription</span>
+        </div>
+      )}
+    </>
+  )
+}

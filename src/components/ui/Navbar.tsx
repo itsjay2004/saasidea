@@ -20,6 +20,18 @@ export default function Navbar() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
     })
+
+    // Check for ?login=true query param to open AuthModal automatically
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      if (params.get('login') === 'true') {
+        setShowAuth(true)
+        // Clean up URL search params so the modal doesn't re-open on refresh
+        const newUrl = window.location.pathname
+        window.history.replaceState({}, '', newUrl)
+      }
+    }
+
     return () => subscription.unsubscribe()
   }, [])
 

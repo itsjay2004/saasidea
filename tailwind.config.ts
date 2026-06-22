@@ -30,8 +30,9 @@ const config: Config = {
         danger:  "var(--danger)",
       },
       fontFamily: {
-        heading: ['var(--font-newsreader)', 'serif'],
-        body:    ['var(--font-dm-sans)', 'sans-serif'],
+        heading: ['var(--font-fraunces)', 'serif'],
+        body:    ['var(--font-geist)', 'sans-serif'],
+        mono:    ['var(--font-geist-mono)', 'monospace'],
       },
       borderRadius: {
         card:    '8px',

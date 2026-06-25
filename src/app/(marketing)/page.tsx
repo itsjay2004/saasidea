@@ -23,8 +23,8 @@ export default async function HomePage() {
 
   try {
     ;[freeIdeas, lockedIdeas, industries] = await Promise.all([
-      getFreeIdeas(16),
-      getPaidPreviewIdeas(3),
+      getFreeIdeas(7),
+      getPaidPreviewIdeas(1),
       getIndustries(),
     ])
   } catch {

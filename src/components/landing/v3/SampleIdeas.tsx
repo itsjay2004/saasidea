@@ -9,8 +9,8 @@ interface SampleIdeasProps {
 const delays = ['', 'd1', 'd2', '', 'd1', '', 'd2', 'd1', '', 'd2', 'd1', '', 'd1', 'd2', '', 'd1']
 
 export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
-  const sample = ideas.slice(0, 16)
-  const locked = lockedIdeas.slice(0, 2)
+  const sample = ideas.slice(0, 7)
+  const locked = lockedIdeas.slice(0, 1)
 
   return (
     <section className="section" id="samples">
@@ -18,14 +18,14 @@ export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
         <div className="preview-intro rv">
           <span className="eyebrow">See the receipts</span>
           <h2 className="section-title">
-            This is one idea.
+            Seven real ideas.
             <br />
             All 1,200 go this deep.
           </h2>
           <p>
             <em>None of this is made up.</em> Every card traces back to a documented complaint — a
             Reddit thread, a forum post, an app review — and carries the research you&apos;d
-            otherwise spend weeks doing yourself. Sixteen of them, in full:
+            otherwise spend weeks doing yourself. Seven of them, in full:
           </p>
         </div>
 
@@ -35,6 +35,7 @@ export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
               key={idea.id}
               idea={idea}
               hasAccess={true}
+              clickable={false}
               className={`rv${delays[i] ? ` ${delays[i]}` : ''}`}
             />
           ))}
@@ -57,7 +58,7 @@ export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
 
         <div className="preview-bridge rv">
           <div className="preview-bridge-text">
-            <h3>That&apos;s 16 of 1,200+.</h3>
+            <h3>That&apos;s 7 of 1,200+.</h3>
             <p>
               Want to read complete ideas across every industry before you decide? No signup, no
               card.

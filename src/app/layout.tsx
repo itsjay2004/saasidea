@@ -3,6 +3,7 @@ import { Newsreader, DM_Sans, Fraunces, Geist, Geist_Mono } from 'next/font/goog
 import { Suspense } from 'react'
 import './globals.css'
 import RouteTransitionLoader from '@/components/ui/RouteTransitionLoader'
+import { Providers } from './providers'
 
 const newsreader = Newsreader({
   subsets: ['latin'],
@@ -77,7 +78,9 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <RouteTransitionLoader />
         </Suspense>
-        {children}
+        <Suspense fallback={null}>
+          <Providers>{children}</Providers>
+        </Suspense>
       </body>
     </html>
   )

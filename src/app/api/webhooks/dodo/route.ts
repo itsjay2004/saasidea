@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import crypto from 'crypto'
+import { getPostHogServer } from '@/lib/posthog/server'
 
 function verifyStandardWebhook(
   body: string,
@@ -89,6 +90,23 @@ export async function POST(request: Request) {
       if (error) {
         console.error('Error inserting purchase:', error)
         return NextResponse.json({ error: 'Database error' }, { status: 500 })
+      }
+
+      // Server-side conversion event. distinct_id = Supabase user id, which the
+      // client identifies against (see providers.tsx), so this joins the funnel.
+      const posthog = getPostHogServer()
+      if (posthog) {
+        posthog.capture({
+          distinctId: userId,
+          event: 'purchase_completed',
+          properties: {
+            amount,
+            currency,
+            dodo_order_id: orderId,
+            $set: { email },
+          },
+        })
+        await posthog.flush()
       }
 
       return NextResponse.json({ success: true })

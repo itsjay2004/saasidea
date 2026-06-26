@@ -3,6 +3,7 @@ import { Fraunces, Geist, Geist_Mono } from 'next/font/google'
 import { Suspense } from 'react'
 import './globals.css'
 import RouteTransitionLoader from '@/components/ui/RouteTransitionLoader'
+import { Providers } from './providers'
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -106,7 +107,9 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <RouteTransitionLoader />
         </Suspense>
-        {children}
+        <Suspense fallback={null}>
+          <Providers>{children}</Providers>
+        </Suspense>
       </body>
     </html>
   )

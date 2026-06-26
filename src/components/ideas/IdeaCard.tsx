@@ -7,10 +7,12 @@ import type { Idea } from '@/types'
 import AuthModal from '@/components/auth/AuthModal'
 
 interface LockedConfig {
-  href: string
+  href?: string
   title?: string
   subtitle?: string
   cta?: string
+  /** When provided, the CTA becomes a button that runs this instead of navigating to `href`. */
+  onUnlock?: () => void
 }
 
 interface IdeaCardProps {
@@ -146,7 +148,11 @@ export default function IdeaCard({ idea, hasAccess, lockedConfig, className = ''
           <strong>{lockedConfig?.title ?? 'Unlock full details'}</strong>
           {lockedConfig?.subtitle ?? 'One-time payment — lifetime access.'}
         </div>
-        {lockedConfig ? (
+        {lockedConfig?.onUnlock ? (
+          <button type="button" className="btn btn--primary btn--sm" onClick={lockedConfig.onUnlock}>
+            {lockedConfig.cta ?? 'Get access →'}
+          </button>
+        ) : lockedConfig?.href ? (
           <a href={lockedConfig.href} className="btn btn--primary btn--sm">
             {lockedConfig.cta ?? 'Get access →'}
           </a>

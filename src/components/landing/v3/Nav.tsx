@@ -10,6 +10,8 @@ import type { User } from '@supabase/supabase-js'
 export default function Nav() {
   const [user, setUser] = useState<User | null>(null)
   const [showAuth, setShowAuth] = useState(false)
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     const supabase = createClient()
@@ -34,19 +36,31 @@ export default function Nav() {
     return () => subscription.unsubscribe()
   }, [])
 
+  // Disable body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
+
   return (
     <>
-      <nav className="nav">
+      <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
         <div className="nav-inner">
-          <Link href="/" className="nav-logo">
+          <Link href="/" className="nav-logo" onClick={() => setIsMenuOpen(false)}>
             <Image src="/logo-icon.png" alt="SaaSIdea Pro" width={160} height={160} priority className="nav-mark-img" />
             <span className="nav-brand display">
-              SaaSIdea<em>Pro</em>
+              SaaS<em>Idea</em>
             </span>
           </Link>
           <div className="nav-links">
             <a href="/#how">How it works</a>
-            <a href="/#samples">Sample ideas</a>
+            <a href="/free-ideas">Free ideas</a>
             <a href="/#pricing">Pricing</a>
             <a href="/#faq">FAQ</a>
           </div>
@@ -57,19 +71,72 @@ export default function Nav() {
               </Link>
             ) : (
               <>
-                <button type="button" className="nav-signin" onClick={() => setShowAuth(true)}>
+                <button type="button" className="nav-signin" onClick={() => { setAuthMode('login'); setShowAuth(true) }}>
                   Sign in
                 </button>
-                <a href="/#pricing" className="nav-cta">
+                <button type="button" className="nav-cta" onClick={() => { setAuthMode('signup'); setShowAuth(true) }}>
                   Get access — $29
-                </a>
+                </button>
+              </>
+            )}
+          </div>
+          
+          <button
+            type="button"
+            className="nav-mobile-toggle"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+          >
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+          </button>
+        </div>
+
+        <div className={`nav-mobile-menu ${isMenuOpen ? 'is-active' : ''}`}>
+          <div className="nav-mobile-links">
+            <a href="/#how" onClick={() => setIsMenuOpen(false)}>How it works</a>
+            <a href="/free-ideas" onClick={() => setIsMenuOpen(false)}>Free ideas</a>
+            <a href="/#pricing" onClick={() => setIsMenuOpen(false)}>Pricing</a>
+            <a href="/#faq" onClick={() => setIsMenuOpen(false)}>FAQ</a>
+          </div>
+          <div className="nav-mobile-actions">
+            {user ? (
+              <Link href="/dashboard" className="nav-mobile-cta" onClick={() => setIsMenuOpen(false)}>
+                Dashboard
+              </Link>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="nav-mobile-signin"
+                  onClick={() => {
+                    setIsMenuOpen(false)
+                    setAuthMode('login')
+                    setShowAuth(true)
+                  }}
+                >
+                  Sign in
+                </button>
+                <button
+                  type="button"
+                  className="nav-mobile-cta"
+                  onClick={() => {
+                    setIsMenuOpen(false)
+                    setAuthMode('signup')
+                    setShowAuth(true)
+                  }}
+                >
+                  Get access — $29
+                </button>
               </>
             )}
           </div>
         </div>
       </nav>
 
-      {showAuth && <AuthModal onClose={() => setShowAuth(false)} initialMode="login" />}
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} initialMode={authMode} />}
     </>
   )
 }

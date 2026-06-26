@@ -2,10 +2,11 @@
 
 import { useMemo, useState } from 'react'
 import IdeaCard from '@/components/ideas/IdeaCard'
+import AuthModal from '@/components/auth/AuthModal'
 import type { Idea } from '@/types'
 
 interface LockedConfig {
-  href: string
+  href?: string
   title?: string
   subtitle?: string
   cta?: string
@@ -46,6 +47,11 @@ export default function FreeIdeasExplorer({
   }, [industries, freeByIndustry])
 
   const [active, setActive] = useState<string>(ALL)
+  const [showAuth, setShowAuth] = useState(false)
+  const openAuth = () => setShowAuth(true)
+
+  // All "unlock" CTAs on this page open the auth modal instead of jumping to pricing.
+  const lockedCardConfig = { ...lockedConfig, onUnlock: openAuth }
 
   const selected = active === ALL ? null : pills.find((p) => p.name === active)
   const filtered = active === ALL ? ideas : ideas.filter((idea) => idea.industry === active)
@@ -93,9 +99,9 @@ export default function FreeIdeasExplorer({
             </strong>{' '}
             in {selected.name} —{' '}
             <span className="fi-insight-dim">{selected.total} total in the library. </span>
-            <a href={lockedConfig.href} className="fi-insight-cta">
+            <button type="button" className="fi-insight-cta" onClick={openAuth}>
               Unlock {selected.total - selected.free} more →
-            </a>
+            </button>
           </p>
         ) : selected ? (
           <p>
@@ -119,7 +125,7 @@ export default function FreeIdeasExplorer({
               idea={idea}
               hasAccess={false}
               className={i === 0 ? 'd1' : i === 1 ? 'd2' : ''}
-              lockedConfig={lockedConfig}
+              lockedConfig={lockedCardConfig}
             />
           ))}
         </div>
@@ -136,12 +142,26 @@ export default function FreeIdeasExplorer({
             competition, and keyword research you see in the free cards. Unlock the whole library and
             read them all today.
           </p>
-          <a href={lockedConfig.href} className="btn btn--primary">
+          <button type="button" className="btn btn--primary" onClick={openAuth}>
             Unlock all {libraryTotal.toLocaleString()}+ — $29
-          </a>
+          </button>
           <span className="fi-upsell-sub">One payment · lifetime access · no subscription</span>
         </div>
       )}
+
+      <div className="preview-bridge rv">
+        <div className="preview-bridge-text">
+          <h3>This is 60 of 1,200+.</h3>
+          <p>Same depth on every single one. One payment, lifetime access — no subscription.</p>
+        </div>
+        <div className="preview-bridge-actions">
+          <button type="button" className="btn btn--primary" onClick={openAuth}>
+            Unlock all 1,200+ — $29
+          </button>
+        </div>
+      </div>
+
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} initialMode="signup" />}
     </>
   )
 }

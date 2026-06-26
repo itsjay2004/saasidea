@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 }
 
 const LOCKED_CONFIG = {
-  href: '/#pricing',
   title: '+1,195 more ideas inside',
   subtitle: 'One-time payment, lifetime access.',
   cta: 'Unlock the full library →',
@@ -55,16 +54,6 @@ export default async function FreeIdeasPage() {
             libraryTotal={libraryTotal}
             lockedConfig={LOCKED_CONFIG}
           />
-
-          <div className="preview-bridge rv">
-            <div className="preview-bridge-text">
-              <h3>This is 60 of 1,200+.</h3>
-              <p>Same depth on every single one. One payment, lifetime access — no subscription.</p>
-            </div>
-            <div className="preview-bridge-actions">
-              <a href="/#pricing" className="btn btn--primary">Unlock all 1,200+ — $29</a>
-            </div>
-          </div>
 
         </div>
       </section>

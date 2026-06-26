@@ -276,12 +276,12 @@ export default async function IdeaPage({ params }: PageProps) {
       <div className="mt-10">
         <PaywallBlur
           locked={!unlocked}
-          title="Unlock the full idea breakdown"
-          subtitle="1,000+ validated SaaS ideas across 100+ niches."
-          note="Researched from real customer pain points."
-          highlights={['Build time', 'SEO keywords', 'Competition', 'MRR range', 'Pricing angle']}
-          secondaryHref="/#preview"
-          secondaryLabel="See 50+ free sample ideas"
+          title="Unlock all 1,200+ validated SaaS ideas"
+          subtitle="Across 100+ niches — every idea traced back to a real complaint posted online, not pulled from thin air."
+          note="One-time payment. Lifetime access."
+          highlights={['MRR range', 'Build time', 'SEO keywords', 'Pricing angle']}
+          secondaryHref="/free-ideas"
+          secondaryLabel="See 60 free sample ideas"
         >
           {unlocked ? (
             <div className="grid lg:grid-cols-[1fr_296px] gap-8 items-start">
@@ -300,15 +300,15 @@ export default async function IdeaPage({ params }: PageProps) {
                     label="Total Search Pool"
                     value={formatNumber(idea.all_keywords.reduce((s, k) => s + (k.search_volume || 0), 0)) + '/mo'}
                   />
-                  {kwsWithCpc.length > 0 ? (
+                  {kwsWithCpc.length > 0 && (
                     <StatTile
                       label="CPC Range"
                       value={`$${Math.min(...kwsWithCpc.map(k => k.cpc!)).toFixed(2)} – $${Math.max(...kwsWithCpc.map(k => k.cpc!)).toFixed(2)}`}
                     />
-                  ) : <div />}
-                  {bestEntry ? (
+                  )}
+                  {bestEntry && (
                     <StatTile label="Easiest Entry" value={bestEntry.keyword} small />
-                  ) : <div />}
+                  )}
                 </div>
 
                 {/* Keyword table */}
@@ -348,7 +348,7 @@ export default async function IdeaPage({ params }: PageProps) {
                   </div>
                   <p className="text-[12px] text-text-subtle flex items-center gap-1.5 border-t border-border/60 pt-4">
                     <AlertCircle className="w-3.5 h-3.5 shrink-0 opacity-70" />
-                    Do you know, SEO give the highest ROI of all marketing channels.
+                    Did you know? SEO delivers the highest ROI of any marketing channel.
                   </p>
                 </div>
               </section>
@@ -376,7 +376,7 @@ export default async function IdeaPage({ params }: PageProps) {
                   </div>
                   <p className="text-[12px] text-text-subtle flex items-center gap-1.5 border-t border-border/60 pt-4">
                     <AlertCircle className="w-3.5 h-3.5 shrink-0 opacity-70" />
-                    Do you know, SEO give the highest ROI of all marketing channels.
+                    Did you know? SEO delivers the highest ROI of any marketing channel.
                   </p>
                 </div>
               </section>
@@ -397,13 +397,13 @@ export default async function IdeaPage({ params }: PageProps) {
                 <MetricRow icon={Clock} label="Build Time" value={formatBuildTime(idea.build_time_weeks.min, idea.build_time_weeks.max)} />
                 <MetricRow icon={CreditCard} label="Price Point" value={`$${idea.suggested_price.amount}/${idea.suggested_price.interval}`} />
                 <MetricRow icon={Gauge} label="Complexity" value={`${idea.complexity} / 5`} />
-                {/* Target audience — right-aligned value */}
-                <div className="flex items-start justify-between gap-4 px-5 py-3.5">
-                  <div className="flex items-center gap-2 shrink-0">
+                {/* Target audience — value stacked below the label so long text gets full width */}
+                <div className="flex flex-col gap-1.5 px-5 py-3.5">
+                  <div className="flex items-center gap-2">
                     <Users className="w-3.5 h-3.5 text-text-subtle shrink-0" />
-                    <span className="text-[13px] text-text-muted whitespace-nowrap">Target Audience</span>
+                    <span className="text-[13px] text-text-muted">Target Audience</span>
                   </div>
-                  <p className="text-[13px] font-semibold text-text-primary leading-snug text-right">
+                  <p className="text-[13px] font-semibold text-text-primary leading-relaxed">
                     {idea.target_audience}
                   </p>
                 </div>

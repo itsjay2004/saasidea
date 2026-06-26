@@ -217,7 +217,7 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
                 {mode === 'signup' ? (
                   <>
                     <h2 className="text-[1.55rem] font-bold font-heading text-text-primary leading-[1.2] tracking-tight mb-2">
-                    Get Instant Access to 1000+ Validated SaaS Ideas
+                    Get Instant Access to 1200+ Validated SaaS Ideas
                     </h2>
                     <p className="text-sm text-text-muted leading-relaxed mb-6">
                       Built products people actually need.

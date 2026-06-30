@@ -9,7 +9,7 @@ interface SampleIdeasProps {
 const delays = ['', 'd1', 'd2', '', 'd1', '', 'd2', 'd1', '', 'd2', 'd1', '', 'd1', 'd2', '', 'd1']
 
 export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
-  const sample = ideas.slice(0, 7)
+  const sample = ideas.slice(0, 3)
   const locked = lockedIdeas.slice(0, 1)
 
   return (
@@ -18,14 +18,16 @@ export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
         <div className="preview-intro rv">
           <span className="eyebrow">See the receipts</span>
           <h2 className="section-title">
-            Seven real ideas.
+            Less pitch.
             <br />
-            All 1,200 go this deep.
+            <em>More proof.</em>
           </h2>
           <p>
             <em>None of this is made up.</em> Every card traces back to a documented complaint — a
             Reddit thread, a forum post, an app review — and carries the research you&apos;d
-            otherwise spend weeks doing yourself. Seven of them, in full:
+            otherwise spend weeks doing yourself. And these three are just the opener:{' '}
+            <a href="/free-ideas" className="preview-intro-link">50 more are free to read</a>, no
+            signup.
           </p>
         </div>
 
@@ -58,18 +60,18 @@ export default function SampleIdeas({ ideas, lockedIdeas }: SampleIdeasProps) {
 
         <div className="preview-bridge rv">
           <div className="preview-bridge-text">
-            <h3>That&apos;s 7 of 1,200+.</h3>
+            <h3>That&apos;s 3 of 1,200+.</h3>
             <p>
-              Want to read complete ideas across every industry before you decide? No signup, no
-              card.
+              Don&apos;t decide yet — read 50 complete ideas across every industry first. No signup,
+              no card, no catch.
             </p>
           </div>
           <div className="preview-bridge-actions">
-            <a href="/free-ideas" className="btn btn--outline">
-              Browse free samples →
+            <a href="/free-ideas" className="btn btn--primary">
+              Read 50 free ideas →
             </a>
-            <a href="#pricing" className="btn btn--primary">
-              Unlock all 1,200+ — $29
+            <a href="#pricing" className="btn btn--outline">
+              Or unlock all 1,200+ — $29
             </a>
           </div>
         </div>

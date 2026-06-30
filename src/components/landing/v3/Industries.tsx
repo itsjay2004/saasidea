@@ -67,7 +67,7 @@ export default function Industries({ industries }: IndustriesProps) {
           {list.map((ind, i) => (
             <CrawlableLink
               key={ind.industry}
-              href={`/ideas?industry=${encodeURIComponent(ind.industry)}`}
+              href={`/free-ideas?industry=${encodeURIComponent(ind.industry)}`}
               className={`ind-card rv${i % 3 === 1 ? ' d1' : i % 3 === 2 ? ' d2' : ''}`}
             >
               <div className="ind-name display">{ind.industry}</div>
@@ -75,6 +75,12 @@ export default function Industries({ industries }: IndustriesProps) {
               <div className="ind-count">{ind.count} ideas</div>
             </CrawlableLink>
           ))}
+        </div>
+
+        <div className="ind-cta rv">
+          <a href="/free-ideas" className="btn btn--ghost-accent">
+            Browse 50 of them free — no signup <span className="arr">→</span>
+          </a>
         </div>
 
         <p className="ind-note rv">

@@ -3,9 +3,10 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
-import { X, ArrowRight, RotateCcw, ChevronLeft, Mail, User, Zap, CheckCircle2, Rocket } from 'lucide-react'
+import { X, ArrowRight, RotateCcw, ChevronLeft, Mail, User, Zap, CheckCircle2, Rocket, MessageCircle, Search, Sparkles, Video, Users, MoreHorizontal } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { getCheckoutUrl } from '@/lib/dodo'
+import type { ReferralSource } from '@/types'
 
 interface AuthModalProps {
   onClose: () => void
@@ -14,8 +15,18 @@ interface AuthModalProps {
 
 const OTP_LENGTH = 6
 
-type Step = 'form' | 'otp' | 'success'
+type Step = 'form' | 'otp' | 'onboarding' | 'success'
 type Mode = 'signup' | 'login'
+
+const REFERRAL_OPTIONS: { value: ReferralSource; label: string; icon: typeof Search }[] = [
+  { value: 'google', label: 'Google search', icon: Search },
+  { value: 'reddit', label: 'Reddit', icon: MessageCircle },
+  { value: 'x', label: 'X / Twitter', icon: Sparkles },
+  { value: 'producthunt', label: 'Product Hunt', icon: Rocket },
+  { value: 'youtube', label: 'YouTube', icon: Video },
+  { value: 'friend', label: 'A friend', icon: Users },
+  { value: 'other', label: 'Other', icon: MoreHorizontal },
+]
 
 export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModalProps) {
   const [step, setStep] = useState<Step>('form')
@@ -27,6 +38,10 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
   const [error, setError] = useState('')
   const [resendTimer, setResendTimer] = useState(0)
   const [redirectCountdown, setRedirectCountdown] = useState(3)
+  const [referralSource, setReferralSource] = useState<ReferralSource | null>(null)
+  const [referralDetail, setReferralDetail] = useState('')
+  const [newsletter, setNewsletter] = useState(true)
+  const [savingOnboarding, setSavingOnboarding] = useState(false)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const supabase = createClient()
   const [mounted, setMounted] = useState(false)
@@ -95,10 +110,11 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
       return
     }
 
-    if (mode === 'signup' && name.trim()) {
-      await supabase.auth.updateUser({ data: { full_name: name.trim() } })
-      setStep('success')
-      setRedirectCountdown(3)
+    if (mode === 'signup') {
+      if (name.trim()) {
+        await supabase.auth.updateUser({ data: { full_name: name.trim() } })
+      }
+      setStep('onboarding')
       setLoading(false)
     } else {
       onClose()
@@ -106,6 +122,32 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, name, mode, supabase, onClose])
+
+  const handleFinishOnboarding = useCallback(async () => {
+    setSavingOnboarding(true)
+    // Persist profile data; never block the user from reaching checkout if it fails.
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        await supabase
+          .from('profiles')
+          .update({
+            full_name: name.trim() || null,
+            referral_source: referralSource,
+            referral_source_detail:
+              referralSource === 'other' ? referralDetail.trim() || null : null,
+            newsletter_opt_in: newsletter,
+            onboarded: true,
+          })
+          .eq('id', user.id)
+      }
+    } catch {
+      // ignore — onboarding data is best-effort
+    }
+    setSavingOnboarding(false)
+    setStep('success')
+    setRedirectCountdown(3)
+  }, [supabase, name, referralSource, referralDetail, newsletter])
 
   const handleDigitChange = (index: number, value: string) => {
     if (!/^\d?$/.test(value)) return
@@ -147,7 +189,7 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
     setLoading(false)
   }
 
-  const stepIndex = step === 'form' ? 0 : step === 'otp' ? 1 : 2
+  const stepIndex = step === 'form' ? 0 : step === 'otp' ? 1 : step === 'onboarding' ? 2 : 3
 
   if (!mounted) return null
 
@@ -179,7 +221,7 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
 
             {/* Step indicator */}
             <div className="flex items-center gap-1.5 mb-6">
-              {[0, 1, 2].map(i => (
+              {[0, 1, 2, 3].map(i => (
                 <div
                   key={i}
                   className={`h-1 rounded-full transition-all duration-300 ${
@@ -380,7 +422,90 @@ export default function AuthModal({ onClose, initialMode = 'signup' }: AuthModal
               </div>
             )}
 
-            {/* ─── STEP 3: Success (signup only) ─── */}
+            {/* ─── STEP 3: Onboarding — where did you hear about us? ─── */}
+            {step === 'onboarding' && (
+              <div className="animate-fade-in">
+                <div className="w-11 h-11 rounded-2xl bg-accent-subtle border border-accent/20 flex items-center justify-center mb-5">
+                  <Sparkles className="w-5 h-5 text-accent" />
+                </div>
+
+                <h2 className="text-[1.55rem] font-bold font-heading text-text-primary leading-[1.2] tracking-tight mb-2">
+                  One quick thing
+                </h2>
+                <p className="text-sm text-text-muted leading-relaxed mb-5">
+                  Where did you hear about us? It helps us a ton.
+                </p>
+
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                  {REFERRAL_OPTIONS.map(opt => {
+                    const active = referralSource === opt.value
+                    return (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        onClick={() => setReferralSource(opt.value)}
+                        className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border text-sm font-medium transition-all ${
+                          active
+                            ? 'border-accent/50 bg-accent-subtle text-accent'
+                            : 'border-border bg-surface-2 text-text-muted hover:text-text-primary hover:border-border'
+                        }`}
+                      >
+                        <opt.icon className="w-4 h-4 shrink-0" />
+                        <span className="truncate">{opt.label}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+
+                {referralSource === 'other' && (
+                  <input
+                    type="text"
+                    placeholder="Where exactly? (optional)"
+                    value={referralDetail}
+                    onChange={e => setReferralDetail(e.target.value)}
+                    autoFocus
+                    className="w-full px-4 py-3 mb-4 bg-surface-2 border border-border rounded-button text-sm text-text-primary placeholder:text-text-subtle focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/40 transition-all"
+                  />
+                )}
+
+                <label className="flex items-start gap-2.5 mb-5 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={newsletter}
+                    onChange={e => setNewsletter(e.target.checked)}
+                    className="mt-0.5 w-4 h-4 rounded border-border text-accent focus:ring-accent/40 accent-accent"
+                  />
+                  <span className="text-xs text-text-muted leading-relaxed">
+                    Send me the free weekly micro-niche deep-dive — ideas, competition, gaps &amp; openings. No spam, unsubscribe anytime.
+                  </span>
+                </label>
+
+                <button
+                  onClick={handleFinishOnboarding}
+                  disabled={savingOnboarding}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-accent hover:bg-accent-hover text-white text-sm font-semibold rounded-button transition-all shadow-accent disabled:opacity-60 disabled:cursor-not-allowed group"
+                >
+                  {savingOnboarding ? (
+                    <><Spinner /> Saving…</>
+                  ) : (
+                    <>
+                      Continue
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    </>
+                  )}
+                </button>
+
+                <button
+                  onClick={handleFinishOnboarding}
+                  disabled={savingOnboarding}
+                  className="w-full text-center text-xs text-text-subtle hover:text-text-muted mt-3 transition-colors disabled:opacity-60"
+                >
+                  Skip
+                </button>
+              </div>
+            )}
+
+            {/* ─── STEP 4: Success (signup only) ─── */}
             {step === 'success' && (
               <div className="animate-fade-in text-center py-2">
 

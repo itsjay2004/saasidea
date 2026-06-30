@@ -54,6 +54,7 @@ const config: Config = {
         'pulse-dot':   'pulseDot 2s ease-in-out infinite',
         'spin-slow':   'spin 8s linear infinite',
         'marquee':     'marquee 20s linear infinite',
+        'loader-in':   'loaderIn 0.2s cubic-bezier(0.16,1,0.3,1) both',
       },
       keyframes: {
         fadeInUp: {
@@ -83,6 +84,10 @@ const config: Config = {
         marquee: {
           from: { transform: 'translateX(0)' },
           to:   { transform: 'translateX(-50%)' },
+        },
+        loaderIn: {
+          from: { opacity: '0', transform: 'translateY(6px) scale(0.96)' },
+          to:   { opacity: '1', transform: 'translateY(0) scale(1)' },
         },
       },
     },

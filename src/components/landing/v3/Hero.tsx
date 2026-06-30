@@ -43,20 +43,15 @@ export default function Hero() {
           <a href="#pricing" className="btn btn--primary btn--lg">
             Get lifetime access — $29
           </a>
-          <a href="/free-ideas" className="btn btn--ghost">
-            Or browse the free ideas, no signup <span className="arr">→</span>
+          <a href="/free-ideas" className="btn btn--ghost-accent">
+            Or read 50 ideas free — no signup <span className="arr">→</span>
           </a>
         </div>
 
         <div className="hero-trust rv d3">
-          <div className="avs">
-            <div className="av" style={{ background: '#5080d4' }}>A</div>
-            <div className="av" style={{ background: '#4aad72' }}>M</div>
-            <div className="av" style={{ background: '#e06328' }}>J</div>
-            <div className="av" style={{ background: '#c09e35' }}>S</div>
-            <div className="av" style={{ background: '#9b68d4' }}>K</div>
-          </div>
-          <span className="trust-t">Used by 500+ founders, indie hackers &amp; vibe coders</span>
+          <span className="trust-t">
+            Don&apos;t trust the pitch — read 50 complete ideas free and judge for yourself.
+          </span>
           <span className="trust-sep" />
           <span className="trust-mono">$29 once · no subscription · 15-day refund</span>
         </div>

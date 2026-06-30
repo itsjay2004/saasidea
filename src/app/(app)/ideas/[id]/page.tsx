@@ -281,7 +281,7 @@ export default async function IdeaPage({ params }: PageProps) {
           note="One-time payment. Lifetime access."
           highlights={['MRR range', 'Build time', 'SEO keywords', 'Pricing angle']}
           secondaryHref="/free-ideas"
-          secondaryLabel="See 60 free sample ideas"
+          secondaryLabel="See 50 free sample ideas"
         >
           {unlocked ? (
             <div className="grid lg:grid-cols-[1fr_296px] gap-8 items-start">

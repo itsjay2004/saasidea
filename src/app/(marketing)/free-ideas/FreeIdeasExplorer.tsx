@@ -18,6 +18,7 @@ interface FreeIdeasExplorerProps {
   industries: { industry: string; count: number }[]
   libraryTotal: number
   lockedConfig: LockedConfig
+  initialIndustry?: string
 }
 
 const ALL = 'All'
@@ -28,6 +29,7 @@ export default function FreeIdeasExplorer({
   industries,
   libraryTotal,
   lockedConfig,
+  initialIndustry,
 }: FreeIdeasExplorerProps) {
   // How many free samples we actually have per industry.
   const freeByIndustry = useMemo(() => {
@@ -46,7 +48,13 @@ export default function FreeIdeasExplorer({
       .sort((a, b) => b.free - a.free || b.total - a.total || a.name.localeCompare(b.name))
   }, [industries, freeByIndustry])
 
-  const [active, setActive] = useState<string>(ALL)
+  const [active, setActive] = useState<string>(() => {
+    if (!initialIndustry) return ALL
+    const match = industries.find(
+      (i) => i.count > 0 && i.industry.toLowerCase() === initialIndustry.toLowerCase(),
+    )
+    return match ? match.industry : ALL
+  })
   const [showAuth, setShowAuth] = useState(false)
   const openAuth = () => setShowAuth(true)
 
@@ -59,6 +67,20 @@ export default function FreeIdeasExplorer({
 
   return (
     <>
+      {/* Slim top banner — a free-account nudge framed as a perk, not a wall. */}
+      <div className="fi-topbar rv">
+        <span className="fi-topbar-text">
+          <span className="fi-topbar-gift" aria-hidden>📬</span>
+          <span>
+            <strong>Free weekly deep-dive:</strong> one micro-niche fully researched — ideas,
+            competition, gaps &amp; openings — in your inbox.
+          </span>
+        </span>
+        <button type="button" className="fi-topbar-cta" onClick={openAuth}>
+          Sign up free →
+        </button>
+      </div>
+
       <div className="fi-filters" role="tablist" aria-label="Filter ideas by industry">
         <button
           type="button"
@@ -149,9 +171,29 @@ export default function FreeIdeasExplorer({
         </div>
       )}
 
+      {/* Email capture — framed as a benefit, never a wall. */}
+      <div className="fi-capture rv">
+        <div className="fi-capture-text">
+          <span className="fi-capture-eyebrow">Free weekly research drop</span>
+          <h3 className="fi-capture-title">A micro-niche teardown in your inbox, every week</h3>
+          <p className="fi-capture-sub">
+            Each week we take one overlooked micro-niche and break it all the way down — the
+            buildable ideas inside it, who&apos;s already competing, where the gaps are, and the
+            openings worth chasing. Create a free account and it lands in your inbox. No card, no
+            spam, unsubscribe anytime.
+          </p>
+        </div>
+        <div className="fi-capture-actions">
+          <button type="button" className="btn btn--primary" onClick={openAuth}>
+            Create a free account →
+          </button>
+          <span className="fi-capture-note">Free · takes 20 seconds</span>
+        </div>
+      </div>
+
       <div className="preview-bridge rv">
         <div className="preview-bridge-text">
-          <h3>This is 60 of 1,200+.</h3>
+          <h3>This is 50 of 1,200+.</h3>
           <p>Same depth on every single one. One payment, lifetime access — no subscription.</p>
         </div>
         <div className="preview-bridge-actions">

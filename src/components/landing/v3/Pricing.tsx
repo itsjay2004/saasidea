@@ -91,6 +91,10 @@ export default function Pricing() {
                 <p className="pricing-secure">
                   🔒 Secure checkout &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; No subscription
                 </p>
+                <p className="pricing-free-hint">
+                  Not ready to buy?{' '}
+                  <a href="/free-ideas">Read 50 ideas free first →</a>
+                </p>
               </div>
             </div>
             <div className="pricing-card-features">

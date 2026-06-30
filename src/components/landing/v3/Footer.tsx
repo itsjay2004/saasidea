@@ -20,9 +20,9 @@ export default function Footer() {
           <div className="footer-links-group">
             <div className="footer-link-col">
               <span className="footer-link-title">Product</span>
+              <Link href="/free-ideas">Free Ideas</Link>
               <a href="#samples">Sample Ideas</a>
               <a href="#industries">Industries</a>
-              <Link href="/ideas">Browse Ideas</Link>
               <a href="#pricing">Pricing</a>
             </div>
             <div className="footer-link-col">
@@ -35,7 +35,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p className="footer-copy">© 2026 SaaSIdea Pro. All rights reserved.</p>
+          <p className="footer-copy">
+            © 2026 SaaSIdea Pro. All rights reserved.
+            <Link href="/ideas" className="footer-seo-link">Full idea library</Link>
+          </p>
           <div className="footer-guarantee-bar">
             <span className="footer-guarantee-dot" />
             15-day money-back guarantee &nbsp;·&nbsp; Secure checkout &nbsp;·&nbsp; Lifetime access

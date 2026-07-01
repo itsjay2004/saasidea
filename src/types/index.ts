@@ -50,6 +50,27 @@ export type Filters = {
   page: number
 }
 
+export type ReferralSource =
+  | 'reddit'
+  | 'x'
+  | 'google'
+  | 'producthunt'
+  | 'youtube'
+  | 'friend'
+  | 'other'
+
+export type Profile = {
+  id: string
+  email: string | null
+  full_name: string | null
+  referral_source: ReferralSource | null
+  referral_source_detail: string | null
+  newsletter_opt_in: boolean
+  onboarded: boolean
+  created_at: string
+  updated_at: string
+}
+
 export type Purchase = {
   id: string
   user_id: string

@@ -1,5 +1,5 @@
 import { createServerSupabaseClient } from './server'
-import type { Idea, IdeaWithKeywords, Keyword, Filters } from '@/types'
+import type { Idea, IdeaWithKeywords, Keyword, Filters, Profile } from '@/types'
 
 const PAGE_SIZE = 24
 
@@ -392,6 +392,18 @@ export async function getNicheStats(): Promise<{ niches: number; subNiches: numb
   })
 
   return { niches: niches.size, subNiches: subNiches.size }
+}
+
+export async function getProfile(userId: string): Promise<Profile | null> {
+  const supabase = await createServerSupabaseClient()
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', userId)
+    .single()
+
+  if (error || !data) return null
+  return data as Profile
 }
 
 export async function getTotalIdeasCount(): Promise<number> {

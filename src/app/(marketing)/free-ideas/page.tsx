@@ -29,7 +29,7 @@ export default async function FreeIdeasPage({
   try {
     ;[freeIdeas, lockedIdeas, industries] = await Promise.all([
       getFreeIdeas(50),
-      getPaidPreviewIdeas(3),
+      getPaidPreviewIdeas(1),
       getIndustries(),
     ])
   } catch {
@@ -42,18 +42,6 @@ export default async function FreeIdeasPage({
     <div className="free-ideas-page">
       <section className="section">
         <div className="wrap">
-
-          <div className="fi-header rv">
-            <span className="eyebrow">100% free · no paywall, no email wall</span>
-            <h1 className="fi-title">50 validated SaaS ideas you can read right now — free.</h1>
-            <p className="fi-subtitle">
-              SaaSIdea Pro is a library of <strong>1,200+ SaaS ideas</strong>, each one mined from a
-              real complaint people posted online — then checked for genuine demand and packaged with
-              MRR potential, build time, competition, and the keywords to rank for. The 50 below are
-              yours to read in full, free — no account, no card. Think of it as a glimpse of the
-              whole library.
-            </p>
-          </div>
 
           <FreeIdeasExplorer
             ideas={freeIdeas}

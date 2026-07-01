@@ -638,6 +638,7 @@ body::before {
 .icard-lock{position:absolute;inset:0;background:rgba(10,10,11,.74);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:2;text-align:center;padding:0 24px}
 .icard-lock-text{font-size:14px;color:var(--t2);line-height:1.5}
 .icard-lock-text strong{color:var(--t);display:block;font-weight:500;margin-bottom:2px}
+.icard-lock-note{margin-top:-4px;font-family:var(--font-geist-mono),monospace;font-size:10.5px;letter-spacing:.04em;color:var(--t3)}
 
 /* ── /free-ideas page — scoped compact styles ─────────────────────────────── */
 .free-ideas-page .fi-header{margin-bottom:40px}
@@ -685,6 +686,7 @@ body::before {
 .free-ideas-page .fi-capture-sub{font-size:13.5px;color:var(--t2);font-weight:300;line-height:1.65}
 .free-ideas-page .fi-capture-actions{display:flex;flex-direction:column;align-items:flex-start;gap:8px;flex-shrink:0}
 .free-ideas-page .fi-capture-note{font-family:var(--font-geist-mono),monospace;font-size:10.5px;letter-spacing:.04em;color:var(--t3)}
+.free-ideas-page .fi-capture-alt{margin-top:6px;font-size:12.5px;padding:9px 18px}
 @media(max-width:600px){.free-ideas-page .fi-capture{padding:24px 22px}.free-ideas-page .fi-capture-actions{align-items:stretch;width:100%}.free-ideas-page .fi-capture-actions .btn{width:100%;justify-content:center}.free-ideas-page .fi-capture-note{text-align:center}}
 .free-ideas-page .fi-grid{grid-template-columns:repeat(3,1fr);gap:18px}
 .free-ideas-page .icard{border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}

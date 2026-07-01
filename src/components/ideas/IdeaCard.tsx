@@ -11,6 +11,8 @@ interface LockedConfig {
   title?: string
   subtitle?: string
   cta?: string
+  /** Small reassurance line rendered below the CTA. */
+  note?: string
   /** When provided, the CTA becomes a button that runs this instead of navigating to `href`. */
   onUnlock?: () => void
 }
@@ -161,6 +163,7 @@ export default function IdeaCard({ idea, hasAccess, lockedConfig, className = ''
             Get access →
           </button>
         )}
+        {lockedConfig?.note && <span className="icard-lock-note">{lockedConfig.note}</span>}
       </div>
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </article>

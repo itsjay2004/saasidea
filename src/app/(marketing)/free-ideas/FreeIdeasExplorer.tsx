@@ -10,6 +10,7 @@ interface LockedConfig {
   title?: string
   subtitle?: string
   cta?: string
+  note?: string
 }
 
 interface FreeIdeasExplorerProps {
@@ -65,20 +66,39 @@ export default function FreeIdeasExplorer({
   const filtered = active === ALL ? ideas : ideas.filter((idea) => idea.industry === active)
   const hasFree = filtered.length > 0
 
+  // Copy for the single locked card at the tail of the grid — adapts to the selection.
+  const lockedRemaining = selected ? selected.total - selected.free : libraryTotal - ideas.length
+  const lockedTitle = selected
+    ? `+${lockedRemaining.toLocaleString()} more ideas in ${selected.name}`
+    : `+${lockedRemaining.toLocaleString()} more ideas inside`
+  const lockedIdea = lockedIdeas[0]
+
   return (
     <>
-      {/* Slim top banner — a free-account nudge framed as a perk, not a wall. */}
+      {/* Cold-visitor capture — the first thing on the page, framed as a perk, not a wall. */}
       <div className="fi-topbar rv">
         <span className="fi-topbar-text">
           <span className="fi-topbar-gift" aria-hidden>📬</span>
           <span>
-            <strong>Free weekly deep-dive:</strong> one micro-niche fully researched — ideas,
+            <strong>Free weekly deep-dive: </strong>  one micro-niche fully researched — ideas,
             competition, gaps &amp; openings — in your inbox.
           </span>
         </span>
         <button type="button" className="fi-topbar-cta" onClick={openAuth}>
           Sign up free →
         </button>
+      </div>
+
+      <div className="fi-header rv">
+        <span className="eyebrow">100% free · no paywall, no email wall</span>
+        <h1 className="fi-title">50 validated SaaS ideas you can read right now — free.</h1>
+        <p className="fi-subtitle">
+          SaaSIdea Pro is a library of <strong>1,200+ SaaS ideas</strong>, each one mined from a
+          real complaint people posted online — then checked for genuine demand and packaged with
+          MRR potential, build time, competition, and the keywords to rank for. The 50 below are
+          yours to read in full, free — no account, no card. Think of it as a glimpse of the
+          whole library.
+        </p>
       </div>
 
       <div className="fi-filters" role="tablist" aria-label="Filter ideas by industry">
@@ -141,15 +161,14 @@ export default function FreeIdeasExplorer({
           {filtered.map((idea) => (
             <IdeaCard key={idea.id} idea={idea} hasAccess={true} clickable={false} />
           ))}
-          {lockedIdeas.map((idea, i) => (
+          {lockedIdea && lockedRemaining > 0 && (
             <IdeaCard
-              key={idea.id}
-              idea={idea}
+              key={lockedIdea.id}
+              idea={lockedIdea}
               hasAccess={false}
-              className={i === 0 ? 'd1' : i === 1 ? 'd2' : ''}
-              lockedConfig={lockedCardConfig}
+              lockedConfig={{ ...lockedCardConfig, title: lockedTitle, note: '$29 once · no subscription' }}
             />
-          ))}
+          )}
         </div>
       ) : (
         // No free samples for this industry → focused upsell.
@@ -188,17 +207,8 @@ export default function FreeIdeasExplorer({
             Create a free account →
           </button>
           <span className="fi-capture-note">Free · takes 20 seconds</span>
-        </div>
-      </div>
-
-      <div className="preview-bridge rv">
-        <div className="preview-bridge-text">
-          <h3>This is 50 of 1,200+.</h3>
-          <p>Same depth on every single one. One payment, lifetime access — no subscription.</p>
-        </div>
-        <div className="preview-bridge-actions">
-          <button type="button" className="btn btn--primary" onClick={openAuth}>
-            Unlock all 1,200+ — $29
+          <button type="button" className="btn btn--outline fi-capture-alt" onClick={openAuth}>
+            Or unlock all {libraryTotal.toLocaleString()}+ — $29
           </button>
         </div>
       </div>

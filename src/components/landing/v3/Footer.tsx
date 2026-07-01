@@ -10,7 +10,7 @@ export default function Footer() {
             <div className="footer-logo">
               <Image src="/logo-icon.png" alt="SaaSIdea Pro" width={160} height={160} className="nav-mark-img" />
               <span className="nav-brand display">
-                SaaSIdea<em>Pro</em>
+                SaaS<em>Idea</em>
               </span>
             </div>
             <p className="footer-tagline">

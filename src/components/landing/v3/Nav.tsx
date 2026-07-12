@@ -61,6 +61,7 @@ export default function Nav() {
           <div className="nav-links">
             <a href="/#how">How it works</a>
             <a href="/free-ideas">Free ideas</a>
+            <a href="/launch-directories">Launch directories</a>
             <a href="/#pricing">Pricing</a>
             <a href="/#faq">FAQ</a>
           </div>
@@ -98,6 +99,7 @@ export default function Nav() {
           <div className="nav-mobile-links">
             <a href="/#how" onClick={() => setIsMenuOpen(false)}>How it works</a>
             <a href="/free-ideas" onClick={() => setIsMenuOpen(false)}>Free ideas</a>
+            <a href="/launch-directories" onClick={() => setIsMenuOpen(false)}>Launch directories</a>
             <a href="/#pricing" onClick={() => setIsMenuOpen(false)}>Pricing</a>
             <a href="/#faq" onClick={() => setIsMenuOpen(false)}>FAQ</a>
           </div>

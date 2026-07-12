@@ -1,5 +1,7 @@
 import { PRICING } from '@/lib/config'
 import { faqItems } from '@/lib/faq-data'
+import { launchFaqItems } from '@/lib/launch-faq-data'
+import { LAUNCH_DIRECTORIES } from '@/lib/launch-directories'
 import type { Idea, IdeaWithKeywords } from '@/types'
 
 const SITE_URL = 'https://saasidea.pro'
@@ -73,6 +75,49 @@ export function getHomeJsonLd() {
           '@type': 'Answer',
           text: faq.a,
         },
+      })),
+    },
+  ]
+}
+
+export function getLaunchDirectoriesJsonLd() {
+  const url = `${SITE_URL}/launch-directories`
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Launch Directories', item: url },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: `Where to Launch Your SaaS — ${LAUNCH_DIRECTORIES.length}+ Launch Directories`,
+      description:
+        'A curated, ranked list of the best directories, communities, and review platforms to launch a SaaS or startup — with domain rating, dofollow/nofollow, cost, and a submission tip for each.',
+      url,
+      isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: LAUNCH_DIRECTORIES.length,
+        itemListElement: LAUNCH_DIRECTORIES.map((dir, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: dir.url,
+          name: dir.name,
+          description: dir.description,
+        })),
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: launchFaqItems.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
       })),
     },
   ]

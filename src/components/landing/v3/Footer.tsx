@@ -21,6 +21,7 @@ export default function Footer() {
             <div className="footer-link-col">
               <span className="footer-link-title">Product</span>
               <Link href="/free-ideas">Free Ideas</Link>
+              <Link href="/launch-directories">Launch Directories</Link>
               <a href="#samples">Sample Ideas</a>
               <a href="#industries">Industries</a>
               <a href="#pricing">Pricing</a>

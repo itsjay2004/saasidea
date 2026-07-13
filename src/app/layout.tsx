@@ -3,6 +3,7 @@ import { Fraunces, Geist, Geist_Mono } from 'next/font/google'
 import { Suspense } from 'react'
 import './globals.css'
 import RouteTransitionLoader from '@/components/ui/RouteTransitionLoader'
+import Clarity from '@/components/analytics/Clarity'
 import { Providers } from './providers'
 
 const fraunces = Fraunces({
@@ -104,6 +105,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className={`${fraunces.variable} ${geist.variable} ${geistMono.variable} antialiased`}>
+        <Clarity />
         <Suspense fallback={null}>
           <RouteTransitionLoader />
         </Suspense>
